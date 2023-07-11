@@ -1,20 +1,19 @@
-import {StatusBar} from 'expo-status-bar';
-import {StyleSheet, Text, View} from 'react-native';
+import { Provider } from 'react-redux';
+import { StatusBar } from 'expo-status-bar';
+import { useAppState } from 'hooks/useAppState';
+import { ThemeProvider } from 'styled-components';
+import { useColorScheme } from 'react-native';
+import { darkTheme, lightTheme } from 'themes';
 
 export default function App() {
+    const store = useAppState();
+    const isDarkMode = useColorScheme() === 'dark';
+
     return (
-        <View style={styles.container}>
-            <Text>Hello World! By Alejandro</Text>
-            <StatusBar style="auto" />
-        </View>
+        <Provider store={store}>
+            <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+                <StatusBar style="auto" />
+            </ThemeProvider>
+        </Provider>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});

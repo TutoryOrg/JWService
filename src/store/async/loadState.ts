@@ -1,5 +1,5 @@
-import {RootState} from 'store/redux';
-import {KEY_CONSTANTS} from './constants';
+import { RootState } from 'store/redux';
+import { KEY_CONSTANTS } from './constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const loadState = async (): Promise<RootState | undefined> => {

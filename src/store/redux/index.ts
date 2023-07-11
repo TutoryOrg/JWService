@@ -1,4 +1,5 @@
-import {useDispatch} from 'react-redux';
+import { userReducer } from './user';
+import { useDispatch } from 'react-redux';
 import {
     AnyAction,
     CombinedState,
@@ -7,8 +8,8 @@ import {
     ThunkDispatch,
 } from '@reduxjs/toolkit';
 
-export const rootReducer = combineReducers({});
-export const emptyStore = configureStore({reducer: rootReducer});
+export const rootReducer = combineReducers({ user: userReducer });
+export const emptyStore = configureStore({ reducer: rootReducer });
 
 const _getDispatch = () => emptyStore.dispatch;
 
