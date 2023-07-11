@@ -1,7 +1,7 @@
 import i18n from 'i18next';
+import {resources} from './src/translations/resources';
 import {initReactI18next} from 'react-i18next';
 import {NativeModules, Platform} from 'react-native';
-import {resources} from './src/translations/resources';
 
 let locale =
     Platform.OS === 'ios'
