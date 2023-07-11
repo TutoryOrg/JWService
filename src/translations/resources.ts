@@ -11,4 +11,4 @@ const resources = {
     },
 };
 
-export {resources};
+export { resources };

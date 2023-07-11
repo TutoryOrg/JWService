@@ -19,6 +19,7 @@ module.exports = function (api) {
                     root: ['./src'],
                 },
             ],
+            ['styled-components'],
         ],
     };
 };
