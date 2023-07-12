@@ -1,9 +1,15 @@
-import { SafeViewBg, ViewComponent } from './styled';
-import { useTheme } from 'styled-components';
+import { Text } from 'react-native';
+import { ContentContainer, MenuContainer, SafeViewBg } from './styled';
 
 export function Menu() {
-    const theme = useTheme();
-    console.log({ theme });
-    // return <ViewComponent />;
-    return <SafeViewBg />;
+    return (
+        <SafeViewBg>
+            <MenuContainer>
+                <Text>Menu</Text>
+            </MenuContainer>
+            <ContentContainer>
+                <Text>Content</Text>
+            </ContentContainer>
+        </SafeViewBg>
+    );
 }

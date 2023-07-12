@@ -12,7 +12,7 @@ export default function App() {
 
     return (
         <Provider store={store}>
-            <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+            <ThemeProvider theme={lightTheme}>
                 <Menu />
                 <StatusBar style="auto" />
             </ThemeProvider>
