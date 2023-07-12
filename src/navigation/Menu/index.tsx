@@ -16,7 +16,11 @@ export const Option = memo((props: IMenuOption) => {
     const { text, selected, lastOne, setSelected } = props;
 
     return (
-        <OptionContainer onPress={() => setSelected(text)} selected={selected} lastOne={lastOne}>
+        <OptionContainer
+            disabled={selected}
+            selected={selected}
+            lastOne={lastOne}
+            onPress={() => setSelected(text)}>
             <TextContainer selected={selected} children={text} />
         </OptionContainer>
     );
@@ -51,6 +55,8 @@ export function Menu() {
             <SideMenu options={options} setOptions={setOptions} />
             <Content>
                 <Text>{selected}</Text>
+                <Text style={{ color: 'white' }}>{selected}</Text>
+                <Text style={{ color: 'white' }}>{selected}</Text>
             </Content>
         </MenuContainer>
     );

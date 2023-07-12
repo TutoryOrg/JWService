@@ -46,7 +46,7 @@ export const TextContainer = styled.Text<{ selected?: boolean }>`
     align-self: center;
     font-size: ${isMobile ? verticalScale(15) : 22}px;
     transform: ${isMobile ? 'rotate(-90deg)' : ''};
-    color: ${props => (props.selected ? 'white' : 'black')};
+    color: ${props => (props.selected ? props.theme.txtSelected : props.theme.txtColor)};
 `;
 
 export const OptionContainer = styled.TouchableOpacity<{ selected?: boolean; lastOne?: boolean }>`
@@ -56,12 +56,12 @@ export const OptionContainer = styled.TouchableOpacity<{ selected?: boolean; las
     width: 100%;
     align-content: center;
     justify-content: center;
-    border: 1px solid black;
+    border: ${props => `1px solid ${props.theme.borderColor}`};
     border-right-width: 0px;
     border-bottom-left-radius: 8px;
     border-top-left-radius: 8px;
     position: ${props => (props.lastOne ? 'absolute' : 'relative')};
-    background-color: ${props => (props.selected ? 'black' : 'white')};
+    background-color: ${props => (props.selected ? props.theme.selected : props.theme.bgColor)};
 `;
 
 export const SideMenuContainer = styled.View`
@@ -70,8 +70,9 @@ export const SideMenuContainer = styled.View`
     width: 8%;
     height: 100%;
     align-items: center;
-    border-color: black;
     border-right-width: 1.5px;
+    border-color: ${props => props.theme.borderColor};
+    background-color: ${props => props.theme.bgColor};
 `;
 
 export const MenuContainer = styled.SafeAreaView`
@@ -79,7 +80,7 @@ export const MenuContainer = styled.SafeAreaView`
     height: 100%;
     flex-direction: row;
     margin-top: ${isMobile ? 25 : 0}px;
-    border: ${isMobile ? '2px solid black' : 'none'};
+    border: ${props => (isMobile ? `2px solid ${props.theme.borderColor}` : 'none')};
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     background-color: ${props => props.theme.bgColor};
