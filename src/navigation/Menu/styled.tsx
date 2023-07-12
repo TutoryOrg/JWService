@@ -1,11 +1,84 @@
 import styled from 'styled-components/native';
-import { isMobile } from 'utils/scaleFunctions';
+import { Screens } from 'utils/constants';
+import { isMobile, verticalScale } from 'utils/scaleFunctions';
 
-export const Container = styled.SafeAreaView`
+export interface ISideMenu {
+    options: IOption[];
+    setOptions: (options: IOption[]) => void;
+}
+
+export interface IMenuOption extends IOption {
+    setSelected: (text: string) => void;
+}
+
+export interface IOption {
+    text: string;
+    selected?: boolean;
+    lastOne?: boolean;
+}
+
+export const initOptions: IOption[] = [
+    {
+        text: Screens.TODAY,
+        selected: true,
+        lastOne: false,
+    },
+    {
+        text: Screens.CALENDAR,
+        selected: false,
+        lastOne: false,
+    },
+    {
+        text: Screens.GOALS,
+        selected: false,
+        lastOne: false,
+    },
+    {
+        text: Screens.PROFILE,
+        selected: false,
+        lastOne: true,
+    },
+];
+
+export const TextContainer = styled.Text<{ selected?: boolean }>`
+    width: 110px;
+    text-align: center;
+    align-self: center;
+    font-size: ${isMobile ? verticalScale(15) : 22}px;
+    transform: ${isMobile ? 'rotate(-90deg)' : ''};
+    color: ${props => (props.selected ? 'white' : 'black')};
+`;
+
+export const OptionContainer = styled.TouchableOpacity<{ selected?: boolean; lastOne?: boolean }>`
+    right: 0px;
+    bottom: ${props => (props.lastOne ? 0 : 1)}px;
+    height: 20%;
+    width: 100%;
+    align-content: center;
+    justify-content: center;
+    border: 1px solid black;
+    border-right-width: 0px;
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
+    position: ${props => (props.lastOne ? 'absolute' : 'relative')};
+    background-color: ${props => (props.selected ? 'black' : 'white')};
+`;
+
+export const SideMenuContainer = styled.View`
+    max-width: 120px;
+    min-width: ${isMobile ? 0 : 90}px;
+    width: 8%;
+    height: 100%;
+    align-items: center;
+    border-color: black;
+    border-right-width: 1.5px;
+`;
+
+export const MenuContainer = styled.SafeAreaView`
     width: 100%;
     height: 100%;
     flex-direction: row;
-    margin-top: ${isMobile ? '25px' : 'none'};
+    margin-top: ${isMobile ? 25 : 0}px;
     border: ${isMobile ? '2px solid black' : 'none'};
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -16,7 +89,5 @@ export const Content = styled.View`
     width: 90%;
     height: 100%;
     align-items: center;
-    background-color: aliceblue;
-    border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 `;
