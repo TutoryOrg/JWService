@@ -1,3 +1,4 @@
+import './i18n';
 import { Menu } from 'navigation/Menu';
 import { Provider } from 'react-redux';
 import { StatusBar } from 'expo-status-bar';
@@ -12,9 +13,9 @@ export default function App() {
 
     return (
         <Provider store={store}>
-            <ThemeProvider theme={lightTheme}>
+            <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
                 <Menu />
-                <StatusBar style="auto" />
+                <StatusBar style={isDarkMode ? 'light' : 'dark'} />
             </ThemeProvider>
         </Provider>
     );

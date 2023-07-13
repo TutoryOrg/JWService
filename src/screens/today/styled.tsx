@@ -3,11 +3,13 @@ import styled from 'styled-components/native';
 export const Month = styled.Text`
     font-size: 14px;
     font-style: italic;
+    color: ${props => props.theme.txtColor};
 `;
 
 export const Day = styled.Text`
     font-size: 25px;
     font-style: normal;
+    color: ${props => props.theme.txtColor};
 `;
 
 export const DateContainer = styled.View``;

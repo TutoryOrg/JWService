@@ -1,6 +1,7 @@
 import { Screens } from 'utils/constants';
 import { memo, useMemo, useState } from 'react';
 import { Today, Calendar, Goals, Profile } from 'screens';
+import { useTranslation } from 'react-i18next';
 import {
     Content,
     IOption,
@@ -15,13 +16,15 @@ import {
 
 export const Option = memo((props: IMenuOption) => {
     const { text, selected, lastOne, setSelected } = props;
+    const { t } = useTranslation();
+
     return (
         <OptionContainer
             disabled={selected}
             selected={selected}
             lastOne={lastOne}
             onPress={() => setSelected(text)}>
-            <TextContainer selected={selected} children={text} />
+            <TextContainer selected={selected} children={t(text)} />
         </OptionContainer>
     );
 });

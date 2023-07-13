@@ -51,8 +51,8 @@ export const TextContainer = styled.Text<{ selected?: boolean }>`
 
 export const OptionContainer = styled.TouchableOpacity<{ selected?: boolean; lastOne?: boolean }>`
     right: 0px;
-    bottom: ${props => (props.lastOne ? 0 : 1)}px;
-    height: 20%;
+    bottom: ${props => (props.lastOne ? -10 : 2)}px;
+    height: 19%;
     width: 100%;
     align-content: center;
     justify-content: center;
@@ -65,23 +65,21 @@ export const OptionContainer = styled.TouchableOpacity<{ selected?: boolean; las
 `;
 
 export const SideMenuContainer = styled.View`
-    max-width: 120px;
-    min-width: ${isMobile ? 0 : 90}px;
     width: 8%;
     height: 100%;
-    align-items: center;
-    border-top-width: 0px;
+    max-width: 120px;
+    min-width: ${isMobile ? 0 : 90}px;
     border-left-width: 0px;
     border-right-width: 1.5px;
     border-top-left-radius: 8px;
-    border: 1px solid ${props => props.theme.borderColor};
+    border: 3px solid ${props => props.theme.borderColor};
 `;
 
 export const MenuContainer = styled.SafeAreaView`
     width: 100%;
     height: 100%;
     flex-direction: row;
-    margin-top: ${isMobile ? 25 : 0}px;
+    padding-top: ${isMobile ? 25 : 0}px;
     border: ${props => (isMobile ? `2px solid ${props.theme.borderColor}` : 'none')};
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
@@ -91,5 +89,7 @@ export const MenuContainer = styled.SafeAreaView`
 export const Content = styled.View`
     width: 92%;
     height: 100%;
+    border-top-width: 2px;
     border-top-right-radius: 8px;
+    border-color: ${props => props.theme.borderColor};
 `;
