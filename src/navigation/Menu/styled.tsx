@@ -70,9 +70,11 @@ export const SideMenuContainer = styled.View`
     width: 8%;
     height: 100%;
     align-items: center;
+    border-top-width: 0px;
+    border-left-width: 0px;
     border-right-width: 1.5px;
-    border-color: ${props => props.theme.borderColor};
-    background-color: ${props => props.theme.bgColor};
+    border-top-left-radius: 8px;
+    border: 1px solid ${props => props.theme.borderColor};
 `;
 
 export const MenuContainer = styled.SafeAreaView`
@@ -81,14 +83,13 @@ export const MenuContainer = styled.SafeAreaView`
     flex-direction: row;
     margin-top: ${isMobile ? 25 : 0}px;
     border: ${props => (isMobile ? `2px solid ${props.theme.borderColor}` : 'none')};
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     background-color: ${props => props.theme.bgColor};
 `;
 
 export const Content = styled.View`
-    width: 90%;
+    width: 92%;
     height: 100%;
-    align-items: center;
     border-top-right-radius: 8px;
 `;

@@ -1,5 +1,6 @@
-import { Text } from 'react-native';
+import { Screens } from 'utils/constants';
 import { memo, useMemo, useState } from 'react';
+import { Today, Calendar, Goals, Profile } from 'screens';
 import {
     Content,
     IOption,
@@ -51,8 +52,10 @@ export function Menu() {
         <MenuContainer>
             <SideMenu options={options} setOptions={setOptions} />
             <Content>
-                <Text>{selected}</Text>
-                <Text style={{ color: 'white' }}>{selected}</Text>
+                {selected === Screens.TODAY && <Today />}
+                {selected === Screens.GOALS && <Goals />}
+                {selected === Screens.PROFILE && <Profile />}
+                {selected === Screens.CALENDAR && <Calendar />}
             </Content>
         </MenuContainer>
     );
