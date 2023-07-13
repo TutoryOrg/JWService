@@ -14,7 +14,6 @@ import {
 
 export const Option = memo((props: IMenuOption) => {
     const { text, selected, lastOne, setSelected } = props;
-
     return (
         <OptionContainer
             disabled={selected}
@@ -28,7 +27,6 @@ export const Option = memo((props: IMenuOption) => {
 
 export const SideMenu = memo((props: ISideMenu) => {
     const { options, setOptions } = props;
-
     const setSelected = (text: string) => {
         const updatedOptions: IOption[] = options.map(op => ({
             ...op,
@@ -36,7 +34,6 @@ export const SideMenu = memo((props: ISideMenu) => {
         }));
         setOptions(updatedOptions);
     };
-
     return (
         <SideMenuContainer>
             {options?.map((op, index) => (
@@ -55,7 +52,6 @@ export function Menu() {
             <SideMenu options={options} setOptions={setOptions} />
             <Content>
                 <Text>{selected}</Text>
-                <Text style={{ color: 'white' }}>{selected}</Text>
                 <Text style={{ color: 'white' }}>{selected}</Text>
             </Content>
         </MenuContainer>

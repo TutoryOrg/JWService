@@ -1,8 +1,8 @@
 export enum Screens {
     TODAY = 'today',
-    CALENDAR = 'calendar',
     GOALS = 'goals',
     PROFILE = 'profile',
+    CALENDAR = 'calendar',
 }
 
 export const fontSizes = {
