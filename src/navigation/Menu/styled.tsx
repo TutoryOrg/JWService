@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { Screens } from 'utils/constants';
+import { Screens, fontSizes } from 'utils/constants';
 import { isMobile, verticalScale } from 'utils/scaleFunctions';
 
 export interface ISideMenu {
@@ -41,10 +41,11 @@ export const initOptions: IOption[] = [
 ];
 
 export const TextContainer = styled.Text<{ selected?: boolean }>`
-    width: 110px;
+    width: ${isMobile ? '120px' : '100%'};
     text-align: center;
     align-self: center;
-    font-size: ${isMobile ? verticalScale(15) : 22}px;
+    font-size: ${isMobile ? verticalScale(fontSizes.normal) : 22}px;
+    font-family: 'Cascadia';
     transform: ${isMobile ? 'rotate(-90deg)' : ''};
     color: ${props => (props.selected ? props.theme.txtSelected : props.theme.txtColor)};
 `;
@@ -68,7 +69,7 @@ export const SideMenuContainer = styled.View`
     width: 8%;
     height: 100%;
     max-width: 120px;
-    min-width: ${isMobile ? 0 : 90}px;
+    min-width: ${isMobile ? 0 : 110}px;
     border-left-width: 0px;
     border-right-width: 1.5px;
     border-top-left-radius: 8px;

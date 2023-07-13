@@ -6,14 +6,9 @@ export enum Screens {
 }
 
 export const fontSizes = {
-    xSmall: 12,
     small: 14,
     normal: 16,
-    large: 18,
-    xLarge: 22,
-    xxLarge: 26,
-    xxxLarge: 32,
-    xxxxLarge: 38,
+    large: 22,
 };
 
 export const gridSizes = {

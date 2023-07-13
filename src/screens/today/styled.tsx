@@ -1,14 +1,17 @@
 import styled from 'styled-components/native';
+import { fontSizes } from 'utils/constants';
+import { verticalScale, isMobile } from 'utils/scaleFunctions';
 
 export const Month = styled.Text`
-    font-size: 14px;
-    font-style: italic;
+    font-size: ${isMobile ? verticalScale(fontSizes.small) : 22}px;
+    font-family: 'CascadiaItalic';
     color: ${props => props.theme.txtColor};
 `;
 
 export const Day = styled.Text`
-    font-size: 25px;
     font-style: normal;
+    font-size: ${isMobile ? verticalScale(fontSizes.large) : 40}px;
+    font-family: 'CascadiaMono';
     color: ${props => props.theme.txtColor};
 `;
 

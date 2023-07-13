@@ -11,7 +11,7 @@ export const Date = () => {
 };
 
 export const Progress = () => {
-    return <Text>Progress</Text>;
+    return <Text style={{ fontFamily: 'Cascadia' }}>Progress</Text>;
 };
 
 export const Header = () => {
