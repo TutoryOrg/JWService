@@ -41,7 +41,7 @@ export const initOptions: IOption[] = [
 ];
 
 export const TextContainer = styled.Text<{ selected?: boolean }>`
-    width: ${isMobile ? '120px' : '100%'};
+    width: ${isMobile ? '180px' : '100%'};
     text-align: center;
     align-self: center;
     font-size: ${isMobile ? verticalScale(fontSizes.normal) : 22}px;

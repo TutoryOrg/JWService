@@ -1,18 +1,20 @@
 import { Text } from 'react-native';
+import { Fields } from 'utils/constants';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
     Day,
     Month,
-    DateContainer,
-    TodayContainer,
-    HeaderContainer,
-    FieldContainer,
     Title,
     Value,
     Field,
+    DateContainer,
+    TodayContainer,
+    FieldContainer,
+    ImageContainer,
+    HeaderContainer,
+    CommentContainer,
 } from './styled';
-import { useState } from 'react';
-import { Fields } from 'utils/constants';
-import { useTranslation } from 'react-i18next';
 
 const initFields = [
     { title: Fields.TIME, value: '0h 0min' },
@@ -58,6 +60,10 @@ export function Today() {
                     </Field>
                 ))}
             </FieldContainer>
+
+            <CommentContainer editable multiline maxLength={100} numberOfLines={4} />
+
+            <ImageContainer />
         </TodayContainer>
     );
 }

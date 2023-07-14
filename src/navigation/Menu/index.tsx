@@ -1,7 +1,7 @@
 import { Screens } from 'utils/constants';
+import { useTranslation } from 'react-i18next';
 import { memo, useMemo, useState } from 'react';
 import { Today, Calendar, Goals, Profile } from 'screens';
-import { useTranslation } from 'react-i18next';
 import {
     Content,
     IOption,
@@ -38,6 +38,7 @@ export const SideMenu = memo((props: ISideMenu) => {
         }));
         setOptions(updatedOptions);
     };
+
     return (
         <SideMenuContainer>
             {options?.map((op, index) => (
@@ -47,10 +48,8 @@ export const SideMenu = memo((props: ISideMenu) => {
     );
 });
 
-interface IMenu {
-    onLayoutRootView: () => Promise<void>;
-}
-export function Menu({ onLayoutRootView }: IMenu) {
+export function Menu(props: { onLayoutRootView: () => Promise<void> }) {
+    const { onLayoutRootView } = props;
     const [options, setOptions] = useState(initOptions);
     const selected = useMemo(() => options.find(op => op.selected === true)?.text, [options]);
 

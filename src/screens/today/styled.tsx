@@ -2,6 +2,27 @@ import styled from 'styled-components/native';
 import { fontFamilies, fontSizes } from 'utils/constants';
 import { verticalScale, isMobile } from 'utils/scaleFunctions';
 
+export const CommentContainer = styled.TextInput`
+    width: 80%;
+    height: 10%;
+    border-radius: 10px;
+    align-self: center;
+    margin-top: 20px;
+    padding: 10px;
+    font-size: ${verticalScale(fontSizes.small)}px;
+    background-color: lightgrey;
+`;
+
+export const ImageContainer = styled.TouchableOpacity`
+    width: 80%;
+    height: 30%;
+    max-width: 500px;
+    border-radius: 10px;
+    align-self: center;
+    margin-top: 30px;
+    background-color: lightgrey;
+`;
+
 export const Value = styled.Text`
     color: ${props => props.theme.txtColor};
     font-family: ${fontFamilies.Cascadia};
@@ -22,7 +43,7 @@ export const Field = styled.View`
 
 export const FieldContainer = styled.View`
     height: 30%;
-    width: ${isMobile ? '100%' : '90%'};
+    min-width: ${isMobile ? 200 : 100}px;
     align-items: center;
     justify-content: space-around;
     margin-top: ${verticalScale(20)}px;
