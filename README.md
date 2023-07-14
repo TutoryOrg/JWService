@@ -7,7 +7,6 @@ Android, iOs y Web App.
 
 ## WIP ⚒️
 
-![Screenshot from 2023-07-15 00-21-45](https://github.com/TutoryOrg/JWService/assets/66746179/e0587906-a178-48ec-8961-ae6bcb3f9dc7)
+![Screenshot from 2023-07-15 00-28-21](https://github.com/TutoryOrg/JWService/assets/66746179/62bf0dc2-a957-4445-ad08-566642b1010a)
 
-
-![Screenshot from 2023-07-15 00-18-13](https://github.com/TutoryOrg/JWService/assets/66746179/4e67de3e-7833-42e5-8bc7-45b4756aca99)
+![Screenshot from 2023-07-15 00-27-23](https://github.com/TutoryOrg/JWService/assets/66746179/68ac4799-ce0d-4455-b598-b58a6ff83ce4)
