@@ -11,3 +11,6 @@ Android, iOs y Web App.
 
 
 ![Screenshot from 2023-07-13 15-06-29](https://github.com/TutoryOrg/JWService/assets/66746179/d005978d-174e-4414-a434-849e94d76c2e)
+
+
+![Screenshot from 2023-07-14 18-58-30](https://github.com/TutoryOrg/JWService/assets/66746179/54f070c5-e4e2-4bf3-b13c-0a3693712de3)
