@@ -1,14 +1,10 @@
 import styled from 'styled-components/native';
-import { Screens, fontSizes } from 'utils/constants';
+import { Screens, fontFamilies, fontSizes } from 'utils/constants';
 import { isMobile, verticalScale } from 'utils/scaleFunctions';
 
 export interface ISideMenu {
     options: IOption[];
     setOptions: (options: IOption[]) => void;
-}
-
-export interface IMenuOption extends IOption {
-    setSelected: (text: string) => void;
 }
 
 export interface IOption {
@@ -44,8 +40,8 @@ export const TextContainer = styled.Text<{ selected?: boolean }>`
     width: ${isMobile ? '180px' : '100%'};
     text-align: center;
     align-self: center;
-    font-size: ${isMobile ? verticalScale(fontSizes.normal) : 22}px;
-    font-family: 'Cascadia';
+    font-family: ${fontFamilies.Cascadia};
+    font-size: ${isMobile ? verticalScale(fontSizes.small) : 22}px;
     transform: ${isMobile ? 'rotate(-90deg)' : ''};
     color: ${props => (props.selected ? props.theme.txtSelected : props.theme.txtColor)};
 `;

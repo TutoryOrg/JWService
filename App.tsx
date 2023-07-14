@@ -14,7 +14,6 @@ SplashScreen.preventAutoHideAsync();
 export default function App() {
     const store = useAppState();
     const isDarkMode = useColorScheme() === 'dark';
-
     const { fontsLoaded, onLayoutRootView } = useFontsAndLayout();
 
     if (!fontsLoaded) return null;

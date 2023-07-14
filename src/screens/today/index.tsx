@@ -2,6 +2,7 @@ import { Text } from 'react-native';
 import { Fields } from 'utils/constants';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { launchImageLibraryAsync } from 'expo-image-picker';
 import {
     Day,
     Month,
@@ -14,6 +15,7 @@ import {
     ImageContainer,
     HeaderContainer,
     CommentContainer,
+    ImageViewer,
 } from './styled';
 
 const initFields = [
@@ -24,32 +26,44 @@ const initFields = [
     { title: Fields.BIBLE_STUDIES, value: '_' },
 ];
 
-export const Date = (props: { day: string; month: string }) => {
-    const { day, month } = props;
-    return (
-        <DateContainer>
-            <Month>{month}</Month>
-            <Day>{day}</Day>
-        </DateContainer>
-    );
-};
+export const ImagePicker = ({ selectedImage, setSelectedImage }: any) => {
+    const pickImageAsync = async () => {
+        let result = await launchImageLibraryAsync({
+            allowsEditing: true,
+            quality: 1,
+        });
 
-export const Progress = (props: { progress: number }) => {
-    const { progress } = props;
-    return <Text style={{ fontFamily: 'Cascadia' }}>Progress {progress}</Text>;
+        if (!result.canceled) setSelectedImage(result.assets[0].uri);
+    };
+
+    return (
+        <>
+            {selectedImage === null ? (
+                <ImageContainer onPress={pickImageAsync} />
+            ) : (
+                <ImageContainer onPress={pickImageAsync}>
+                    <ImageViewer source={selectedImage} />
+                </ImageContainer>
+            )}
+        </>
+    );
 };
 
 export function Today() {
     const { t } = useTranslation();
     const [fields] = useState(initFields);
+    const [selectedImage, setSelectedImage] = useState(null);
     const date = { day: '4.Monday', month: 'July' };
     const progress = 70;
 
     return (
         <TodayContainer>
             <HeaderContainer>
-                <Date {...date} />
-                <Progress progress={progress} />
+                <DateContainer>
+                    <Month>{date.month}</Month>
+                    <Day>{date.day}</Day>
+                </DateContainer>
+                <Text style={{ fontFamily: 'Cascadia' }}>Progress {progress}</Text>
             </HeaderContainer>
 
             <FieldContainer>
@@ -63,7 +77,7 @@ export function Today() {
 
             <CommentContainer editable multiline maxLength={100} numberOfLines={4} />
 
-            <ImageContainer />
+            <ImagePicker selectedImage={selectedImage} setSelectedImage={setSelectedImage} />
         </TodayContainer>
     );
 }

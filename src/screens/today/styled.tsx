@@ -5,34 +5,39 @@ import { verticalScale, isMobile } from 'utils/scaleFunctions';
 export const CommentContainer = styled.TextInput`
     width: 80%;
     height: 10%;
+    padding: 20px;
+    margin-top: 20px;
     border-radius: 10px;
     align-self: center;
-    margin-top: 20px;
-    padding: 10px;
     font-size: ${verticalScale(fontSizes.small)}px;
     background-color: lightgrey;
 `;
 
+export const ImageViewer = styled.Image`
+    width: 100%;
+    height: 100%;
+`;
+
 export const ImageContainer = styled.TouchableOpacity`
     width: 80%;
-    height: 30%;
-    max-width: 500px;
+    height: 35%;
+    max-width: 800px;
+    margin-top: 30px;
     border-radius: 10px;
     align-self: center;
-    margin-top: 30px;
     background-color: lightgrey;
 `;
 
 export const Value = styled.Text`
     color: ${props => props.theme.txtColor};
-    font-family: ${fontFamilies.Cascadia};
-    font-size: ${isMobile ? verticalScale(fontSizes.small) : 30}px;
+    font-family: ${fontFamilies.CascadiaMono};
+    font-size: ${isMobile ? verticalScale(fontSizes.normal) : 30}px;
 `;
 
 export const Title = styled.Text`
     color: ${props => props.theme.txtColor};
     font-family: ${fontFamilies.Cascadia};
-    font-size: ${isMobile ? verticalScale(fontSizes.small) : 30}px;
+    font-size: ${isMobile ? verticalScale(fontSizes.normal) : 30}px;
 `;
 
 export const Field = styled.View`

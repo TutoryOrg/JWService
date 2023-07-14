@@ -7,30 +7,16 @@ import {
     IOption,
     ISideMenu,
     initOptions,
-    IMenuOption,
     TextContainer,
     MenuContainer,
     OptionContainer,
     SideMenuContainer,
 } from './styled';
 
-export const Option = memo((props: IMenuOption) => {
-    const { text, selected, lastOne, setSelected } = props;
-    const { t } = useTranslation();
-
-    return (
-        <OptionContainer
-            disabled={selected}
-            selected={selected}
-            lastOne={lastOne}
-            onPress={() => setSelected(text)}>
-            <TextContainer selected={selected} children={t(text)} />
-        </OptionContainer>
-    );
-});
-
 export const SideMenu = memo((props: ISideMenu) => {
     const { options, setOptions } = props;
+    const { t } = useTranslation();
+
     const setSelected = (text: string) => {
         const updatedOptions: IOption[] = options.map(op => ({
             ...op,
@@ -42,7 +28,14 @@ export const SideMenu = memo((props: ISideMenu) => {
     return (
         <SideMenuContainer>
             {options?.map((op, index) => (
-                <Option key={index} setSelected={setSelected} {...op} />
+                <OptionContainer
+                    key={index}
+                    disabled={op.selected}
+                    selected={op.selected}
+                    lastOne={op.lastOne}
+                    onPress={() => setSelected(op.text)}>
+                    <TextContainer selected={op.selected} children={t(op.text)} />
+                </OptionContainer>
             ))}
         </SideMenuContainer>
     );
