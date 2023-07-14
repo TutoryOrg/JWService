@@ -11,13 +11,15 @@ import {
     Field,
 } from './styled';
 import { useState } from 'react';
+import { Fields } from 'utils/constants';
+import { useTranslation } from 'react-i18next';
 
 const initFields = [
-    { title: 'time', value: '0h 0min' },
-    { title: 'publications', value: '_' },
-    { title: 'videos', value: '_' },
-    { title: 'return_visits', value: '_' },
-    { title: 'bible_studies', value: '_' },
+    { title: Fields.TIME, value: '0h 0min' },
+    { title: Fields.PUBLICATIONS, value: '_' },
+    { title: Fields.VIDEOS, value: '_' },
+    { title: Fields.RETURN_VISITS, value: '_' },
+    { title: Fields.BIBLE_STUDIES, value: '_' },
 ];
 
 export const Date = (props: { day: string; month: string }) => {
@@ -36,6 +38,7 @@ export const Progress = (props: { progress: number }) => {
 };
 
 export function Today() {
+    const { t } = useTranslation();
     const [fields] = useState(initFields);
     const date = { day: '4.Monday', month: 'July' };
     const progress = 70;
@@ -50,7 +53,7 @@ export function Today() {
             <FieldContainer>
                 {fields.map((field, index) => (
                     <Field key={index}>
-                        <Title>{field.title}</Title>
+                        <Title>{t(field.title)}</Title>
                         <Value>{field.value}</Value>
                     </Field>
                 ))}

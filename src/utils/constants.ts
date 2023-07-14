@@ -1,3 +1,11 @@
+export enum Fields {
+    TIME = 'time',
+    PUBLICATIONS = 'publications',
+    VIDEOS = 'videos',
+    RETURN_VISITS = 'return_visits',
+    BIBLE_STUDIES = 'bible_studies',
+}
+
 export enum Screens {
     TODAY = 'today',
     GOALS = 'goals',
@@ -37,6 +45,9 @@ export const gridSizes = {
 
 export const fontFamilies = {
     Cascadia: 'Cascadia',
+    CascadiaBold: 'CascadiaBold',
+    CascadiaMono: 'CascadiaMono',
+    CascadiaItalic: 'CascadiaItalic',
     Nunito: 'Nunito-Regular',
     NunitoBold: 'Nunito-Bold',
 };

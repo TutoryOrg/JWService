@@ -1,15 +1,17 @@
 import styled from 'styled-components/native';
-import { fontSizes } from 'utils/constants';
+import { fontFamilies, fontSizes } from 'utils/constants';
 import { verticalScale, isMobile } from 'utils/scaleFunctions';
 
 export const Value = styled.Text`
     color: ${props => props.theme.txtColor};
-    font-size: ${isMobile ? verticalScale(fontSizes.normal) : 30}px;
+    font-family: ${fontFamilies.Cascadia};
+    font-size: ${isMobile ? verticalScale(fontSizes.small) : 30}px;
 `;
 
 export const Title = styled.Text`
     color: ${props => props.theme.txtColor};
-    font-size: ${isMobile ? verticalScale(fontSizes.normal) : 30}px;
+    font-family: ${fontFamilies.Cascadia};
+    font-size: ${isMobile ? verticalScale(fontSizes.small) : 30}px;
 `;
 
 export const Field = styled.View`
