@@ -2,7 +2,8 @@ import { Text } from 'react-native';
 import { Fields } from 'utils/constants';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { launchImageLibraryAsync } from 'expo-image-picker';
+// import { launchImageLibraryAsync } from 'expo-image-picker';
+import * as ExpoImagePicker from 'expo-image-picker';
 import {
     Day,
     Month,
@@ -28,12 +29,12 @@ const initFields = [
 
 export const ImagePicker = ({ selectedImage, setSelectedImage }: any) => {
     const pickImageAsync = async () => {
-        let result = await launchImageLibraryAsync({
+        let result = await ExpoImagePicker.launchImageLibraryAsync({
             allowsEditing: true,
             quality: 1,
         });
 
-        if (!result.canceled) setSelectedImage(result.assets[0].uri);
+        if (result.assets) setSelectedImage(result.assets[0].uri);
     };
 
     return (
@@ -42,7 +43,7 @@ export const ImagePicker = ({ selectedImage, setSelectedImage }: any) => {
                 <ImageContainer onPress={pickImageAsync} />
             ) : (
                 <ImageContainer onPress={pickImageAsync}>
-                    <ImageViewer source={selectedImage} />
+                    <ImageViewer source={{ uri: selectedImage }} />
                 </ImageContainer>
             )}
         </>
