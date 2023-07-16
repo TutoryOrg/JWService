@@ -4,9 +4,9 @@ import { verticalScale, isMobile } from 'utils/scaleFunctions';
 
 export const CommentContainer = styled.TextInput`
     width: 80%;
-    height: 10%;
+    height: 8%;
     padding: ${isMobile ? '10' : '30'}px;
-    margin-top: 20px;
+    margin-top: 40px;
     border-radius: 10px;
     font-size: ${verticalScale(fontSizes.small)}px;
     color: ${props => props.theme.txtColor};

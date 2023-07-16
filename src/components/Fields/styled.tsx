@@ -71,7 +71,7 @@ export const FieldView = styled.View`
 
 export const FieldContainer = styled.View`
     height: 30%;
-    width: 100%;
+    width: 95%;
     min-width: ${isMobile ? 200 : 100}px;
     align-items: center;
     justify-content: space-around;

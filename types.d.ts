@@ -4,7 +4,7 @@ export interface ITime {
 }
 
 export interface IToday {
-    date: Date;
+    date: Date | string;
     fields: { key: string; value: ITime | number }[];
     comment: string;
     image: string | null;
