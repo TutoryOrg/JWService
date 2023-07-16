@@ -10,11 +10,11 @@ const initFields = [
     { title: Field.RETURN_VISITS, value: '0' },
     { title: Field.BIBLE_STUDIES, value: '0' },
 ];
-
 export function Today() {
     const [fields] = useState(initFields);
     const [comment, setComment] = useState('');
     const [selectedImage, setSelectedImage] = useState(null);
+
     const date = { day: '4.Monday', month: 'July' };
 
     return (
