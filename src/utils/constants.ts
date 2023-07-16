@@ -1,4 +1,4 @@
-export enum Fields {
+export enum Field {
     TIME = 'time',
     PUBLICATIONS = 'publications',
     VIDEOS = 'videos',

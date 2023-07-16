@@ -8,6 +8,7 @@ declare module 'styled-components' {
         selected: string;
         txtSelected: string;
         borderColor: string;
+        gray: string;
     }
 }
 
@@ -17,6 +18,7 @@ export const lightTheme: DefaultTheme = {
     selected: '#000000',
     txtSelected: '#FFFFFF',
     borderColor: '#000000',
+    gray: '#dedede',
 };
 
 export const darkTheme: DefaultTheme = {
@@ -25,4 +27,5 @@ export const darkTheme: DefaultTheme = {
     selected: '#FFFFFF',
     txtSelected: '#000000',
     borderColor: '#FFFFFF',
+    gray: '#565555',
 };
