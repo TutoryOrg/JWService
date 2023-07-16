@@ -3,16 +3,14 @@ import { CommentContainer } from './styled';
 
 interface IComment {
     comment: string;
-    setComment: (comment: string) => void;
+    onChangeComment: (comment: string) => void;
 }
-export function Comment(props: IComment) {
-    const { comment, setComment } = props;
-
+export function Comment({ comment, onChangeComment }: IComment) {
     return (
         <CommentContainer
             multiline
             value={comment}
-            onChangeText={setComment}
+            onChangeText={onChangeComment}
             maxLength={isMobile ? 60 : 150}
         />
     );

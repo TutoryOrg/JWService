@@ -62,7 +62,7 @@ export const Title = styled.Text`
     font-size: ${isMobile ? verticalScale(fontSizes.small) : 30}px;
 `;
 
-export const Field = styled.View`
+export const FieldView = styled.View`
     width: 85%;
     flex-direction: row;
     align-items: center;
