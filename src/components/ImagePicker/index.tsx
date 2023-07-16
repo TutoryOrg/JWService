@@ -11,14 +11,8 @@ export const ImagePicker = ({ selectedImage, setSelectedImage }: any) => {
     };
 
     return (
-        <>
-            {selectedImage === null ? (
-                <ImageContainer onPress={pickImageAsync} />
-            ) : (
-                <ImageContainer onPress={pickImageAsync}>
-                    <ImageViewer source={{ uri: selectedImage }} />
-                </ImageContainer>
-            )}
-        </>
+        <ImageContainer onPress={pickImageAsync}>
+            <ImageViewer source={{ uri: selectedImage }} />
+        </ImageContainer>
     );
 };

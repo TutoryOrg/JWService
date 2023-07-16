@@ -1,9 +1,7 @@
 import { Field } from 'utils/constants';
-import { Comment } from 'components/Comment';
 import { useState } from 'react';
-import { isMobile } from 'utils/scaleFunctions';
 import { TodayContainer } from './styled';
-import { Header, Fields, ImagePicker } from 'components';
+import { Header, Fields, ImagePicker, Comment } from 'components';
 
 const initFields = [
     { title: Field.TIME, value: '6h:30m' },
@@ -15,6 +13,7 @@ const initFields = [
 
 export function Today() {
     const [fields] = useState(initFields);
+    const [comment, setComment] = useState('');
     const [selectedImage, setSelectedImage] = useState(null);
     const date = { day: '4.Monday', month: 'July' };
 
@@ -22,7 +21,7 @@ export function Today() {
         <TodayContainer>
             <Header date={date} />
             <Fields fields={fields} />
-            <Comment multiline maxLength={isMobile ? 60 : 150} />
+            <Comment comment={comment} setComment={setComment} />
             <ImagePicker selectedImage={selectedImage} setSelectedImage={setSelectedImage} />
         </TodayContainer>
     );
