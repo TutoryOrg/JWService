@@ -1,19 +1,13 @@
 import { Field } from 'utils/constants';
 import { useState } from 'react';
+import { ITime, IToday } from '@types';
 import { TodayContainer } from './styled';
 import { Header, Fields, ImagePicker, Comment } from 'components';
 
-interface IToday {
-    date: Date | string;
-    fields: { key: string; value: string | number }[];
-    comment: string;
-    image: string | null;
-}
-
 const initToday: IToday = {
-    date: 'Date Sun Jul 16 2023 10:49:54 GMT+0200 (Central European Summer Time)',
+    date: new Date(),
     fields: [
-        { key: Field.TIME, value: '6h:30m' },
+        { key: Field.TIME, value: { hours: 0, minutes: 0 } },
         { key: Field.PUBLICATIONS, value: 0 },
         { key: Field.VIDEOS, value: 0 },
         { key: Field.RETURN_VISITS, value: 0 },
@@ -35,7 +29,7 @@ export function Today() {
         setToday(prev => ({ ...prev, comment: text }));
     };
 
-    const onChangeField = (key: string, value: string | number) => {
+    const onChangeField = (key: string, value: ITime | number) => {
         setToday(prev => ({
             ...prev,
             fields: prev.fields.map(f => (f.key === key ? { ...f, value } : f)),

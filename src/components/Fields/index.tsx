@@ -1,3 +1,4 @@
+import { ITime } from '@types';
 import { Field } from 'utils/constants';
 import {
     Value,
@@ -13,23 +14,35 @@ import {
 import { useTranslation } from 'react-i18next';
 
 interface IFields {
-    fields: { key: string; value: string | number }[];
-    onChangeField: (key: string, newValue: string | number) => void;
+    fields: { key: string; value: ITime | number }[];
+    onChangeField: (key: string, newValue: ITime | number) => void;
 }
+
+const addTime = (hours: number, minutes: number, addMinutes: number) => {
+    const totalMinutes = hours * 60 + minutes + addMinutes;
+    if (totalMinutes < 0) return { hours: 0, minutes: 0 };
+    const updatedHours = Math.floor(totalMinutes / 60);
+    const updatedMinutes = totalMinutes % 60;
+    return { hours: updatedHours, minutes: updatedMinutes };
+};
+
 export function Fields({ fields, onChangeField }: IFields) {
     const { t } = useTranslation();
 
     const onSubValue = (key: Field) => {
         const value = fields.find(f => f.key === key)?.value;
-        if (value === 0) return;
-        if (typeof value === 'number') onChangeField(key, value - 1);
+        if (typeof value === 'number') return value === 0 ? null : onChangeField(key, value - 1);
+
+        const newTime = addTime(value?.hours as number, value?.minutes as number, -30);
+        return onChangeField(key, newTime as ITime);
     };
+
     const onAddValue = (key: Field) => {
         const value = fields.find(f => f.key === key)?.value;
-        if (typeof value === 'number') onChangeField(key, value + 1);
-        if (typeof value === 'string') {
-            console.log(value);
-        }
+        if (typeof value === 'number') return onChangeField(key, value + 1);
+
+        const newTime = addTime(value?.hours as number, value?.minutes as number, 30);
+        return onChangeField(key, newTime as ITime);
     };
 
     return (
@@ -39,7 +52,15 @@ export function Fields({ fields, onChangeField }: IFields) {
                     <FieldView key={index}>
                         <Title>{t(field.key)}</Title>
                         <ValueContainer>
-                            <Value>{field.value}</Value>
+                            <Value>
+                                {typeof field.value === 'number'
+                                    ? (field.value as number)
+                                    : `${field.value.hours}h:${
+                                          field.value.minutes.toString().length < 2
+                                              ? `0${field.value.minutes}`
+                                              : field.value.minutes
+                                      }m`}
+                            </Value>
                             <ControlContainer>
                                 <SubButtonContainer
                                     onPress={() => onSubValue(field.key as Field)}
