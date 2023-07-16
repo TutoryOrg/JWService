@@ -1,9 +1,9 @@
 import { Field } from 'utils/constants';
-import { isMobile } from 'utils/scaleFunctions';
+import { Comment } from 'components/Comment';
 import { useState } from 'react';
+import { isMobile } from 'utils/scaleFunctions';
 import { TodayContainer } from './styled';
 import { Header, Fields, ImagePicker } from 'components';
-import { Comment } from 'components/Comment';
 
 const initFields = [
     { title: Field.TIME, value: '6h:30m' },

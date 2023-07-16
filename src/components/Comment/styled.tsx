@@ -8,7 +8,6 @@ export const CommentContainer = styled.TextInput`
     padding: ${isMobile ? '10' : '30'}px;
     margin-top: 20px;
     border-radius: 10px;
-    align-self: center;
     font-size: ${verticalScale(fontSizes.small)}px;
     color: ${props => props.theme.txtColor};
     background-color: ${props => props.theme.gray};

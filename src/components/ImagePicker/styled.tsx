@@ -12,6 +12,5 @@ export const ImageContainer = styled.TouchableOpacity`
     max-width: 800px;
     margin-top: 30px;
     border-radius: 10px;
-    align-self: center;
     background-color: ${props => props.theme.gray};
 `;

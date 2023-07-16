@@ -65,12 +65,13 @@ export const Title = styled.Text`
 export const Field = styled.View`
     width: 85%;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 `;
 
 export const FieldContainer = styled.View`
     height: 30%;
+    width: 100%;
     min-width: ${isMobile ? 200 : 100}px;
     align-items: center;
     justify-content: space-around;
