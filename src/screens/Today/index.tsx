@@ -1,136 +1,11 @@
 import { useState } from 'react';
 import { Field } from 'utils/constants';
-// import { FlatList } from 'react-native-gesture-handler';
 import { FlatList } from 'react-native';
 import { ITime, IToday } from '@types';
 import { ContentContainer, TodayContainer } from './styled';
 import { Header, Fields, ImagePicker, Comment } from 'components';
-
-const secondDays: IToday[] = [
-    {
-        date: 'date 1',
-        fields: [
-            { key: Field.TIME, value: { hours: 2, minutes: 0 } },
-            { key: Field.PUBLICATIONS, value: 2 },
-            { key: Field.VIDEOS, value: 0 },
-            { key: Field.RETURN_VISITS, value: 0 },
-            { key: Field.BIBLE_STUDIES, value: 0 },
-        ],
-        comment: '',
-        image: null,
-    },
-    {
-        date: 'date 2',
-        fields: [
-            { key: Field.TIME, value: { hours: 2, minutes: 0 } },
-            { key: Field.PUBLICATIONS, value: 2 },
-            { key: Field.VIDEOS, value: 0 },
-            { key: Field.RETURN_VISITS, value: 2 },
-            { key: Field.BIBLE_STUDIES, value: 0 },
-        ],
-        comment: '',
-        image: null,
-    },
-    {
-        date: 'date 3',
-        fields: [
-            { key: Field.TIME, value: { hours: 1, minutes: 0 } },
-            { key: Field.PUBLICATIONS, value: 2 },
-            { key: Field.VIDEOS, value: 8 },
-            { key: Field.RETURN_VISITS, value: 0 },
-            { key: Field.BIBLE_STUDIES, value: 0 },
-        ],
-        comment: '',
-        image: null,
-    },
-    {
-        date: 'date 4',
-        fields: [
-            { key: Field.TIME, value: { hours: 0, minutes: 0 } },
-            { key: Field.PUBLICATIONS, value: 0 },
-            { key: Field.VIDEOS, value: 0 },
-            { key: Field.RETURN_VISITS, value: 0 },
-            { key: Field.BIBLE_STUDIES, value: 0 },
-        ],
-        comment: '',
-        image: null,
-    },
-    {
-        date: 'date 5',
-        fields: [
-            { key: Field.TIME, value: { hours: 0, minutes: 0 } },
-            { key: Field.PUBLICATIONS, value: 0 },
-            { key: Field.VIDEOS, value: 0 },
-            { key: Field.RETURN_VISITS, value: 0 },
-            { key: Field.BIBLE_STUDIES, value: 0 },
-        ],
-        comment: '',
-        image: null,
-    },
-];
-
-const initDays: IToday[] = [
-    {
-        date: 'date 1',
-        fields: [
-            { key: Field.TIME, value: { hours: 0, minutes: 0 } },
-            { key: Field.PUBLICATIONS, value: 0 },
-            { key: Field.VIDEOS, value: 0 },
-            { key: Field.RETURN_VISITS, value: 0 },
-            { key: Field.BIBLE_STUDIES, value: 0 },
-        ],
-        comment: '',
-        image: null,
-    },
-    {
-        date: 'date 2',
-        fields: [
-            { key: Field.TIME, value: { hours: 0, minutes: 0 } },
-            { key: Field.PUBLICATIONS, value: 0 },
-            { key: Field.VIDEOS, value: 0 },
-            { key: Field.RETURN_VISITS, value: 0 },
-            { key: Field.BIBLE_STUDIES, value: 0 },
-        ],
-        comment: '',
-        image: null,
-    },
-    {
-        date: 'date 3',
-        fields: [
-            { key: Field.TIME, value: { hours: 0, minutes: 0 } },
-            { key: Field.PUBLICATIONS, value: 0 },
-            { key: Field.VIDEOS, value: 0 },
-            { key: Field.RETURN_VISITS, value: 0 },
-            { key: Field.BIBLE_STUDIES, value: 0 },
-        ],
-        comment: '',
-        image: null,
-    },
-    {
-        date: 'date 4',
-        fields: [
-            { key: Field.TIME, value: { hours: 0, minutes: 0 } },
-            { key: Field.PUBLICATIONS, value: 0 },
-            { key: Field.VIDEOS, value: 0 },
-            { key: Field.RETURN_VISITS, value: 0 },
-            { key: Field.BIBLE_STUDIES, value: 0 },
-        ],
-        comment: '',
-        image: null,
-    },
-    {
-        date: 'date 5',
-        fields: [
-            { key: Field.TIME, value: { hours: 0, minutes: 0 } },
-            { key: Field.PUBLICATIONS, value: 0 },
-            { key: Field.VIDEOS, value: 0 },
-            { key: Field.RETURN_VISITS, value: 0 },
-            { key: Field.BIBLE_STUDIES, value: 0 },
-        ],
-        comment: '',
-        image: null,
-    },
-];
+import { windowHeight } from 'utils/scaleFunctions';
+import initDays from 'mock/data/infoDays.json';
 
 interface IContent {
     day: IToday;
@@ -141,10 +16,21 @@ interface IContent {
 const Content = (props: IContent) => {
     const { day, onChangeComment, onChangeField, onChangeImage } = props;
     const { date, fields, comment, image } = day;
+    let dateObject = date;
+
+    if (!(date instanceof Date)) {
+        const dateParts = (date as string).split(' ');
+        const month = dateParts[2];
+        const dayN = parseInt(dateParts[3]);
+        const year = parseInt(dateParts[4]);
+        const time = dateParts[5];
+        const timeZoneOffset = dateParts[6];
+        dateObject = new Date(`${month} ${dayN}, ${year} ${time} ${timeZoneOffset}`);
+    }
 
     return (
         <ContentContainer>
-            <Header date={date} />
+            <Header date={dateObject} />
             <Fields
                 fields={fields}
                 onChangeField={(key: string, value: ITime | number) =>
@@ -164,11 +50,24 @@ const Content = (props: IContent) => {
 };
 
 const ListDays = () => {
-    const [days] = useState(initDays);
+    const today: IToday = {
+        date: new Date(),
+        fields: [
+            { key: Field.TIME, value: { hours: 0, minutes: 0 } },
+            { key: Field.PUBLICATIONS, value: 0 },
+            { key: Field.VIDEOS, value: 0 },
+            { key: Field.RETURN_VISITS, value: 0 },
+            { key: Field.BIBLE_STUDIES, value: 0 },
+        ],
+        comment: '',
+        image: null,
+    };
+
+    const [days] = useState<IToday[]>([today, ...(initDays as any)]);
 
     const onChangeImage = (date: Date, image: string) => {
         // console.log(date);
-        // console.log({ image });
+        console.log({ image });
     };
 
     const onChangeComment = (date: Date, text: string) => {
@@ -189,15 +88,24 @@ const ListDays = () => {
         <FlatList
             pagingEnabled
             data={days}
-            renderItem={({ item, index }) => (
-                <Content
+            renderItem={({ item, index }) => {
+            return (
+                    <Content
                     key={index}
                     day={item}
                     onChangeImage={onChangeImage}
                     onChangeComment={onChangeComment}
                     onChangeField={onChangeField}
-                />
-            )}
+                    />
+                   );
+            }}
+            onScroll={e => {
+                const index = Math.round(e.nativeEvent.contentOffset.y / windowHeight);
+                if (days.length - 3 < index) {
+                    console.log({ index });
+                    console.log('needs to load more questions');
+                }
+            }}
         />
     );
 };

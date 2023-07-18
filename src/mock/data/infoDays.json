@@ -1,0 +1,50 @@
+[
+    {
+        "date": "Date Mon Jul 17 2023 17:13:24 GMT+0200 (Central European Summer Time)",
+        "fields": [
+            { "key": "time", "value": { "hours": 2, "minutes": 0 } },
+            { "key": "publications", "value": 2 },
+            { "key": "videos", "value": 1 },
+            { "key": "return_visits", "value": 1 },
+            { "key": "bible_studies", "value": 0 }
+        ],
+        "comment": "",
+        "image": null
+    },
+    {
+        "date": "Date Mon Jul 15 2023 17:13:24 GMT+0200 (Central European Summer Time)",
+        "fields": [
+            { "key": "time", "value": { "hours": 2, "minutes": 0 } },
+            { "key": "publications", "value": 2 },
+            { "key": "videos", "value": 1 },
+            { "key": "return_visits", "value": 1 },
+            { "key": "bible_studies", "value": 0 }
+        ],
+        "comment": "",
+        "image": null
+    },
+    {
+        "date": "Date Mon Jul 14 2023 17:13:24 GMT+0200 (Central European Summer Time)",
+        "fields": [
+            { "key": "time", "value": { "hours": 2, "minutes": 0 } },
+            { "key": "publications", "value": 2 },
+            { "key": "videos", "value": 1 },
+            { "key": "return_visits", "value": 1 },
+            { "key": "bible_studies", "value": 0 }
+        ],
+        "comment": "",
+        "image": null
+    },
+    {
+        "date": "Date Mon Jul 13 2023 17:13:24 GMT+0200 (Central European Summer Time)",
+        "fields": [
+            { "key": "time", "value": { "hours": 2, "minutes": 0 } },
+            { "key": "publications", "value": 2 },
+            { "key": "videos", "value": 1 },
+            { "key": "return_visits", "value": 1 },
+            { "key": "bible_studies", "value": 0 }
+        ],
+        "comment": "",
+        "image": null
+    }
+]

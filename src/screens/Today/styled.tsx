@@ -11,3 +11,7 @@ export const TodayContainer = styled.View`
     height: ${windowHeight}px;
     border-top-right-radius: 8px;
 `;
+
+export const TextC = styled.Text`
+    color:'black';
+`
