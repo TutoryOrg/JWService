@@ -4,7 +4,7 @@ import { windowHeight } from 'utils/scaleFunctions';
 export const ContentContainer = styled.View`
     height: ${windowHeight}px;
     align-items: center;
-    border-top-right-radius: 10px;
+    border-top-right-radius: 12px;
 `;
 
 export const TodayContainer = styled.View`

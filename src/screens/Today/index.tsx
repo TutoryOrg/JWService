@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState } from 'react'
 import { Field } from 'utils/constants';
 import { FlatList } from 'react-native';
+import { windowHeight } from 'utils/scaleFunctions';
 import { ITime, IToday } from '@types';
 import { ContentContainer, TodayContainer } from './styled';
 import { Header, Fields, ImagePicker, Comment } from 'components';
-import { windowHeight } from 'utils/scaleFunctions';
 import initDays from 'mock/data/infoDays.json';
 
 interface IContent {
@@ -89,15 +89,15 @@ const ListDays = () => {
             pagingEnabled
             data={days}
             renderItem={({ item, index }) => {
-            return (
+                return (
                     <Content
-                    key={index}
-                    day={item}
-                    onChangeImage={onChangeImage}
-                    onChangeComment={onChangeComment}
-                    onChangeField={onChangeField}
+                        key={index}
+                        day={item}
+                        onChangeImage={onChangeImage}
+                        onChangeComment={onChangeComment}
+                        onChangeField={onChangeField}
                     />
-                   );
+                );
             }}
             onScroll={e => {
                 const index = Math.round(e.nativeEvent.contentOffset.y / windowHeight);
