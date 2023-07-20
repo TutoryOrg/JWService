@@ -1,11 +1,18 @@
-import { useState } from 'react'
-import { Field } from 'utils/constants';
+import { useState } from 'react';
+import { Field, Screens } from 'utils/constants';
 import { FlatList } from 'react-native';
 import { windowHeight } from 'utils/scaleFunctions';
 import { ITime, IToday } from '@types';
 import { ContentContainer, TodayContainer } from './styled';
 import { Header, Fields, ImagePicker, Comment } from 'components';
 import initDays from 'mock/data/infoDays.json';
+import { storeData } from 'store/async';
+
+const parseDateStringToDate = (dateString: string) => {
+    const cleanedDateString = dateString.replace(/GMT.*$/, '');
+    const date = new Date(cleanedDateString);
+    return date;
+};
 
 interface IContent {
     day: IToday;
@@ -16,17 +23,10 @@ interface IContent {
 const Content = (props: IContent) => {
     const { day, onChangeComment, onChangeField, onChangeImage } = props;
     const { date, fields, comment, image } = day;
-    let dateObject = date;
 
-    if (!(date instanceof Date)) {
-        const dateParts = (date as string).split(' ');
-        const month = dateParts[2];
-        const dayN = parseInt(dateParts[3]);
-        const year = parseInt(dateParts[4]);
-        const time = dateParts[5];
-        const timeZoneOffset = dateParts[6];
-        dateObject = new Date(`${month} ${dayN}, ${year} ${time} ${timeZoneOffset}`);
-    }
+    let dateObject = date instanceof Date ? date : parseDateStringToDate(date);
+
+    if (!dateObject) return null;
 
     return (
         <ContentContainer>
@@ -34,7 +34,7 @@ const Content = (props: IContent) => {
             <Fields
                 fields={fields}
                 onChangeField={(key: string, value: ITime | number) =>
-                    onChangeField(date as Date, key, value)
+                    onChangeField(dateObject as Date, key, value)
                 }
             />
             <Comment
@@ -51,7 +51,7 @@ const Content = (props: IContent) => {
 
 const ListDays = () => {
     const today: IToday = {
-        date: new Date(),
+        date: new Date().toString(),
         fields: [
             { key: Field.TIME, value: { hours: 0, minutes: 0 } },
             { key: Field.PUBLICATIONS, value: 0 },
@@ -63,11 +63,11 @@ const ListDays = () => {
         image: null,
     };
 
-    const [days] = useState<IToday[]>([today, ...(initDays as any)]);
+    const [days, setDays] = useState<IToday[]>([today, ...(initDays as any)]);
 
     const onChangeImage = (date: Date, image: string) => {
         // console.log(date);
-        console.log({ image });
+        // console.log({ image });
     };
 
     const onChangeComment = (date: Date, text: string) => {
@@ -76,12 +76,23 @@ const ListDays = () => {
     };
 
     const onChangeField = (date: Date, key: string, value: ITime | number) => {
-        // const selectedDay = days.find(day => day.date === date) as IToday;
-        // const newDay: IToday = {
-        //     ...selectedDay,
-        //     fields: selectedDay?.fields.map(f => (f.key === key ? { ...f, value } : f)) as any,
-        // };
-        // setDays([...days, newDay]);
+        const updateDay = days.map((d: IToday) => {
+            const ddate = parseDateStringToDate(d.date as string);
+            return ddate && date && ddate.valueOf() === date.valueOf()
+                ? {
+                      ...d,
+                      fields: d.fields.map(f => {
+                          return typeof f.value === 'number' &&
+                              typeof value === 'number' &&
+                              f.key === key
+                              ? { key: f.key, value: value }
+                              : f;
+                      }),
+                  }
+                : d;
+        });
+        setDays(updateDay);
+        storeData(Screens.TODAY, JSON.stringify(updateDay));
     };
 
     return (
@@ -102,8 +113,6 @@ const ListDays = () => {
             onScroll={e => {
                 const index = Math.round(e.nativeEvent.contentOffset.y / windowHeight);
                 if (days.length - 3 < index) {
-                    console.log({ index });
-                    console.log('needs to load more questions');
                 }
             }}
         />
