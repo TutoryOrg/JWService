@@ -13,11 +13,6 @@ import {
 } from './styled';
 import { useTranslation } from 'react-i18next';
 
-interface IFields {
-    fields: { key: string; value: ITime | number }[];
-    onChangeField: (key: string, newValue: ITime | number) => void;
-}
-
 const addTime = (hours: number, minutes: number, addMinutes: number) => {
     const totalMinutes = hours * 60 + minutes + addMinutes;
     if (totalMinutes < 0) return { hours: 0, minutes: 0 };
@@ -26,6 +21,10 @@ const addTime = (hours: number, minutes: number, addMinutes: number) => {
     return { hours: updatedHours, minutes: updatedMinutes };
 };
 
+interface IFields {
+    fields: { key: string; value: ITime | number }[];
+    onChangeField: (key: string, newValue: ITime | number) => void;
+}
 export function Fields({ fields, onChangeField }: IFields) {
     const { t } = useTranslation();
 

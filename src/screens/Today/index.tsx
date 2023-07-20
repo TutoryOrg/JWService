@@ -82,11 +82,7 @@ const ListDays = () => {
                 ? {
                       ...d,
                       fields: d.fields.map(f => {
-                          return typeof f.value === 'number' &&
-                              typeof value === 'number' &&
-                              f.key === key
-                              ? { key: f.key, value: value }
-                              : f;
+                          return f.key === key ? { key: f.key, value: value } : f;
                       }),
                   }
                 : d;
