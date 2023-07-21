@@ -1,16 +1,16 @@
-import { useDays } from 'hooks/useDays';
-import { Screens } from 'utils/constants';
-import { debounce } from 'lodash';
-import { FlatList } from 'react-native';
-import { storeData } from 'store/async';
-import { windowHeight } from 'utils/scaleFunctions';
-import { ITime, IToday } from '@types';
-import { ContentContainer, TodayContainer } from './styled';
-import { Header, Fields, ImagePicker, Comment } from 'components';
-import { useCallback } from 'react';
+import { useDays } from "hooks/useDays";
+import { Screens } from "utils/constants";
+import { debounce } from "lodash";
+import { FlatList } from "react-native";
+import { storeData } from "store/async";
+import { windowHeight } from "utils/scaleFunctions";
+import { ITime, IToday } from "@types";
+import { ContentContainer, TodayContainer } from "./styled";
+import { Comment, Fields, Header, ImagePicker } from "components";
+import { useCallback } from "react";
 
 const parseDateStringToDate = (dateString: string) => {
-    const cleanedDateString = dateString.replace(/GMT.*$/, '');
+    const cleanedDateString = dateString.replace(/GMT.*$/, "");
     const date = new Date(cleanedDateString);
     return date;
 };
@@ -33,16 +33,17 @@ const Content = (props: IContent) => {
             <Fields
                 fields={fields}
                 onChangeField={(key: string, value: ITime | number) =>
-                    onChangeField(dateObject as Date, key, value)
-                }
+                    onChangeField(dateObject as Date, key, value)}
             />
             <Comment
                 comment={comment}
-                onChangeComment={(text: string) => onChangeComment(dateObject as Date, text)}
+                onChangeComment={(text: string) =>
+                    onChangeComment(dateObject as Date, text)}
             />
             <ImagePicker
                 image={image}
-                onChangeImage={(image: string) => onChangeImage(dateObject as Date, image)}
+                onChangeImage={(image: string) =>
+                    onChangeImage(dateObject as Date, image)}
             />
         </ContentContainer>
     );
@@ -53,10 +54,9 @@ const ListDays = () => {
 
     const saveDataAsync = useCallback(
         debounce((d: IToday[]) => {
-            console.log('save');
             storeData(Screens.TODAY, JSON.stringify(d));
         }, 500),
-        []
+        [],
     );
 
     const onChangeImage = (date: Date, image: string) => {
@@ -64,9 +64,9 @@ const ListDays = () => {
             const ddate = parseDateStringToDate(d.date as string);
             return ddate && date && ddate.valueOf() === date.valueOf()
                 ? {
-                      ...d,
-                      image: image,
-                  }
+                    ...d,
+                    image: image,
+                }
                 : d;
         });
         setDays(updateDay);
@@ -78,9 +78,9 @@ const ListDays = () => {
             const ddate = parseDateStringToDate(d.date as string);
             return ddate && date && ddate.valueOf() === date.valueOf()
                 ? {
-                      ...d,
-                      comment: text,
-                  }
+                    ...d,
+                    comment: text,
+                }
                 : d;
         });
         setDays(updateDay);
@@ -92,11 +92,11 @@ const ListDays = () => {
             const ddate = parseDateStringToDate(d.date as string);
             return ddate && date && ddate.valueOf() === date.valueOf()
                 ? {
-                      ...d,
-                      fields: d.fields.map(f => {
-                          return f.key === key ? { key: f.key, value: value } : f;
-                      }),
-                  }
+                    ...d,
+                    fields: d.fields.map((f) => {
+                        return f.key === key ? { key: f.key, value: value } : f;
+                    }),
+                }
                 : d;
         });
         setDays(updateDay);
@@ -118,7 +118,7 @@ const ListDays = () => {
                     />
                 );
             }}
-            onScroll={e => {
+            onScroll={(e) => {
                 const index = Math.round(e.nativeEvent.contentOffset.y / windowHeight);
                 if (days.length - 3 < index) {
                 }
