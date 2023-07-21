@@ -3,11 +3,11 @@ import { Screens } from "utils/constants";
 import { debounce } from "lodash";
 import { FlatList } from "react-native";
 import { storeData } from "store/async";
+import { useCallback } from "react";
 import { windowHeight } from "utils/scaleFunctions";
 import { ITime, IToday } from "@types";
 import { ContentContainer, TodayContainer } from "./styled";
 import { Comment, Fields, Header, ImagePicker } from "components";
-import { useCallback } from "react";
 
 const parseDateStringToDate = (dateString: string) => {
     const cleanedDateString = dateString.replace(/GMT.*$/, "");
