@@ -10,41 +10,5 @@
         ],
         "comment": "",
         "image": null
-    },
-    {
-        "date": "Tue Jul 18 2023 16:42:22",
-        "fields": [
-            { "key": "time", "value": { "hours": 2, "minutes": 0 } },
-            { "key": "publications", "value": 2 },
-            { "key": "videos", "value": 1 },
-            { "key": "return_visits", "value": 1 },
-            { "key": "bible_studies", "value": 0 }
-        ],
-        "comment": "",
-        "image": null
-    },
-    {
-        "date": "Mon Jul 17 2023 16:43:11",
-        "fields": [
-            { "key": "time", "value": { "hours": 2, "minutes": 0 } },
-            { "key": "publications", "value": 2 },
-            { "key": "videos", "value": 1 },
-            { "key": "return_visits", "value": 1 },
-            { "key": "bible_studies", "value": 0 }
-        ],
-        "comment": "",
-        "image": null
-    },
-    {
-        "date": "Sun Jul 16 2023 16:43:11",
-        "fields": [
-            { "key": "time", "value": { "hours": 2, "minutes": 0 } },
-            { "key": "publications", "value": 2 },
-            { "key": "videos", "value": 1 },
-            { "key": "return_visits", "value": 1 },
-            { "key": "bible_studies", "value": 0 }
-        ],
-        "comment": "",
-        "image": null
     }
 ]

@@ -1,12 +1,13 @@
-import { useState } from 'react';
-import { Field, Screens } from 'utils/constants';
+import { useDays } from 'hooks/useDays';
+import { Screens } from 'utils/constants';
+import { debounce } from 'lodash';
 import { FlatList } from 'react-native';
+import { storeData } from 'store/async';
 import { windowHeight } from 'utils/scaleFunctions';
 import { ITime, IToday } from '@types';
 import { ContentContainer, TodayContainer } from './styled';
 import { Header, Fields, ImagePicker, Comment } from 'components';
-import initDays from 'mock/data/infoDays.json';
-import { storeData } from 'store/async';
+import { useCallback } from 'react';
 
 const parseDateStringToDate = (dateString: string) => {
     const cleanedDateString = dateString.replace(/GMT.*$/, '');
@@ -26,8 +27,6 @@ const Content = (props: IContent) => {
 
     let dateObject = date instanceof Date ? date : parseDateStringToDate(date);
 
-    if (!dateObject) return null;
-
     return (
         <ContentContainer>
             <Header date={dateObject} />
@@ -39,40 +38,53 @@ const Content = (props: IContent) => {
             />
             <Comment
                 comment={comment}
-                onChangeComment={(text: string) => onChangeComment(date as Date, text)}
+                onChangeComment={(text: string) => onChangeComment(dateObject as Date, text)}
             />
             <ImagePicker
                 image={image}
-                onChangeImage={(image: string) => onChangeImage(date as Date, image)}
+                onChangeImage={(image: string) => onChangeImage(dateObject as Date, image)}
             />
         </ContentContainer>
     );
 };
 
 const ListDays = () => {
-    const today: IToday = {
-        date: new Date().toString(),
-        fields: [
-            { key: Field.TIME, value: { hours: 0, minutes: 0 } },
-            { key: Field.PUBLICATIONS, value: 0 },
-            { key: Field.VIDEOS, value: 0 },
-            { key: Field.RETURN_VISITS, value: 0 },
-            { key: Field.BIBLE_STUDIES, value: 0 },
-        ],
-        comment: '',
-        image: null,
-    };
+    const [days, setDays] = useDays();
 
-    const [days, setDays] = useState<IToday[]>([today, ...(initDays as any)]);
+    const saveDataAsync = useCallback(
+        debounce((d: IToday[]) => {
+            console.log('save');
+            storeData(Screens.TODAY, JSON.stringify(d));
+        }, 500),
+        []
+    );
 
     const onChangeImage = (date: Date, image: string) => {
-        // console.log(date);
-        // console.log({ image });
+        const updateDay = days.map((d: IToday) => {
+            const ddate = parseDateStringToDate(d.date as string);
+            return ddate && date && ddate.valueOf() === date.valueOf()
+                ? {
+                      ...d,
+                      image: image,
+                  }
+                : d;
+        });
+        setDays(updateDay);
+        saveDataAsync(updateDay);
     };
 
     const onChangeComment = (date: Date, text: string) => {
-        // console.log(date);
-        // console.log({ text });
+        const updateDay = days.map((d: IToday) => {
+            const ddate = parseDateStringToDate(d.date as string);
+            return ddate && date && ddate.valueOf() === date.valueOf()
+                ? {
+                      ...d,
+                      comment: text,
+                  }
+                : d;
+        });
+        setDays(updateDay);
+        saveDataAsync(updateDay);
     };
 
     const onChangeField = (date: Date, key: string, value: ITime | number) => {
@@ -88,7 +100,7 @@ const ListDays = () => {
                 : d;
         });
         setDays(updateDay);
-        storeData(Screens.TODAY, JSON.stringify(updateDay));
+        saveDataAsync(updateDay);
     };
 
     return (
