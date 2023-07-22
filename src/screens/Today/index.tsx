@@ -25,7 +25,7 @@ const Content = (props: IContent) => {
     const { day, onChangeComment, onChangeField, onChangeImage } = props;
     const { date, fields, comment, image } = day;
 
-    let dateObject = date instanceof Date ? date : parseDateStringToDate(date);
+    const dateObject = date instanceof Date ? date : parseDateStringToDate(date);
 
     return (
         <ContentContainer>
@@ -59,7 +59,7 @@ const ListDays = () => {
         [],
     );
 
-    const onChangeImage = (date: Date, image: string) => {
+    const onChangeImage = (date: Date, image: string): void => {
         const updateDay = days.map((d: IToday) => {
             const ddate = parseDateStringToDate(d.date as string);
             return ddate && date && ddate.valueOf() === date.valueOf()
@@ -71,7 +71,7 @@ const ListDays = () => {
         });
         setDays(updateDay);
         saveDataAsync(updateDay);
-    };
+    }
 
     const onChangeComment = (date: Date, text: string) => {
         const updateDay = days.map((d: IToday) => {
@@ -93,7 +93,7 @@ const ListDays = () => {
             return ddate && date && ddate.valueOf() === date.valueOf()
                 ? {
                     ...d,
-                    fields: d.fields.map((f) => {
+                    fields: d.fields.map((f: { key: string; value: number | ITime }) => {
                         return f.key === key ? { key: f.key, value: value } : f;
                     }),
                 }
@@ -118,15 +118,16 @@ const ListDays = () => {
                     />
                 );
             }}
-            onScroll={(e) => {
+            onScroll={(e: any) => {
                 const index = Math.round(e.nativeEvent.contentOffset.y / windowHeight);
                 if (days.length - 3 < index) {
+                    console.log({ index });
                 }
             }}
         />
     );
 };
 
-export function Today() {
+export function Today(): JSX.Element {
     return <TodayContainer children={<ListDays />} />;
 }

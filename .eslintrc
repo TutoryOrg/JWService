@@ -24,6 +24,7 @@
     "ignorePatterns": ["./node_modules/*"],
     "rules": {
         "react-hooks/rules-of-hooks": "error",
-        "react-hooks/exhaustive-deps": "off"
+        "react-hooks/exhaustive-deps": "off",
+        "@typescript-eslint/no-unsafe-call": "warn"
     }
 }
