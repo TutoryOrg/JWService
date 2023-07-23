@@ -120,9 +120,7 @@ const ListDays = () => {
             }}
             onScroll={(e: any) => {
                 const index = Math.round(e.nativeEvent.contentOffset.y / windowHeight);
-                if (days.length - 3 < index) {
-                    console.log({ index });
-                }
+                if (days.length - 3 < index) { }
             }}
         />
     );
