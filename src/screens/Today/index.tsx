@@ -1,16 +1,16 @@
-import { useDays } from "hooks/useDays";
-import { Screens } from "utils/constants";
-import { debounce } from "lodash";
-import { FlatList } from "react-native";
-import { storeData } from "store/async";
-import { useCallback } from "react";
-import { windowHeight } from "utils/scaleFunctions";
-import { ITime, IToday } from "@types";
-import { ContentContainer, TodayContainer } from "./styled";
-import { Comment, Fields, Header, ImagePicker } from "components";
+import { useDays } from 'hooks/useDays';
+import { Screens } from 'utils/constants';
+import { debounce } from 'lodash';
+import { FlatList } from 'react-native';
+import { storeData } from 'store/async';
+import { useCallback } from 'react';
+import { windowHeight } from 'utils/scaleFunctions';
+import { ITime, IToday } from '@types';
+import { ContentContainer, TodayContainer } from './styled';
+import { Comment, Fields, Header, ImagePicker } from 'components';
 
 const parseDateStringToDate = (dateString: string) => {
-    const cleanedDateString = dateString.replace(/GMT.*$/, "");
+    const cleanedDateString = dateString.replace(/GMT.*$/, '');
     const date = new Date(cleanedDateString);
     return date;
 };
@@ -24,7 +24,6 @@ interface IContent {
 const Content = (props: IContent) => {
     const { day, onChangeComment, onChangeField, onChangeImage } = props;
     const { date, fields, comment, image } = day;
-
     const dateObject = date instanceof Date ? date : parseDateStringToDate(date);
 
     return (
@@ -33,17 +32,16 @@ const Content = (props: IContent) => {
             <Fields
                 fields={fields}
                 onChangeField={(key: string, value: ITime | number) =>
-                    onChangeField(dateObject as Date, key, value)}
+                    onChangeField(dateObject as Date, key, value)
+                }
             />
             <Comment
                 comment={comment}
-                onChangeComment={(text: string) =>
-                    onChangeComment(dateObject as Date, text)}
+                onChangeComment={(text: string) => onChangeComment(dateObject as Date, text)}
             />
             <ImagePicker
                 image={image}
-                onChangeImage={(image: string) =>
-                    onChangeImage(dateObject as Date, image)}
+                onChangeImage={(image: string) => onChangeImage(dateObject as Date, image)}
             />
         </ContentContainer>
     );
@@ -56,7 +54,7 @@ const ListDays = () => {
         debounce((d: IToday[]) => {
             storeData(Screens.TODAY, JSON.stringify(d));
         }, 500),
-        [],
+        []
     );
 
     const onChangeImage = (date: Date, image: string): void => {
@@ -64,23 +62,23 @@ const ListDays = () => {
             const ddate = parseDateStringToDate(d.date as string);
             return ddate && date && ddate.valueOf() === date.valueOf()
                 ? {
-                    ...d,
-                    image: image,
-                }
+                      ...d,
+                      image: image,
+                  }
                 : d;
         });
         setDays(updateDay);
         saveDataAsync(updateDay);
-    }
+    };
 
     const onChangeComment = (date: Date, text: string) => {
         const updateDay = days.map((d: IToday) => {
             const ddate = parseDateStringToDate(d.date as string);
             return ddate && date && ddate.valueOf() === date.valueOf()
                 ? {
-                    ...d,
-                    comment: text,
-                }
+                      ...d,
+                      comment: text,
+                  }
                 : d;
         });
         setDays(updateDay);
@@ -92,11 +90,11 @@ const ListDays = () => {
             const ddate = parseDateStringToDate(d.date as string);
             return ddate && date && ddate.valueOf() === date.valueOf()
                 ? {
-                    ...d,
-                    fields: d.fields.map((f: { key: string; value: number | ITime }) => {
-                        return f.key === key ? { key: f.key, value: value } : f;
-                    }),
-                }
+                      ...d,
+                      fields: d.fields.map((f: { key: string; value: number | ITime }) => {
+                          return f.key === key ? { key: f.key, value: value } : f;
+                      }),
+                  }
                 : d;
         });
         setDays(updateDay);
@@ -120,12 +118,13 @@ const ListDays = () => {
             }}
             onScroll={(e: any) => {
                 const index = Math.round(e.nativeEvent.contentOffset.y / windowHeight);
-                if (days.length - 3 < index) { }
+                if (days.length - 3 < index) {
+                }
             }}
         />
     );
 };
 
-export function Today(): JSX.Element {
+export function Today() {
     return <TodayContainer children={<ListDays />} />;
 }

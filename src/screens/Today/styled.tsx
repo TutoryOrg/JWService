@@ -13,5 +13,5 @@ export const TodayContainer = styled.View`
 `;
 
 export const TextC = styled.Text`
-    color:'black';
-`
+    color: 'black';
+`;
