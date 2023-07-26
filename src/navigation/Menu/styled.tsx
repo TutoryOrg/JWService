@@ -49,7 +49,7 @@ export const TextContainer = styled.Text<{ selected?: boolean }>`
 export const OptionContainer = styled.TouchableOpacity<{ selected?: boolean; lastOne?: boolean }>`
     right: 0px;
     bottom: ${props => (props.lastOne ? -10 : 2)}px;
-    height: 19%;
+    height: 20%;
     width: 100%;
     align-content: center;
     justify-content: center;
@@ -62,7 +62,7 @@ export const OptionContainer = styled.TouchableOpacity<{ selected?: boolean; las
 `;
 
 export const SideMenuContainer = styled.View`
-    width: 8%;
+    width: 10%;
     height: 100%;
     max-width: 120px;
     min-width: ${isMobile ? 0 : 110}px;
@@ -84,7 +84,7 @@ export const MenuContainer = styled.SafeAreaView`
 `;
 
 export const Content = styled.View`
-    width: 92%;
+    width: 90%;
     height: 100%;
     border-top-width: 2px;
     border-top-right-radius: 8px;

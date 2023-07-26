@@ -11,8 +11,8 @@ export const ButtonText = styled.Text`
 
 export const SubButtonContainer = styled.TouchableOpacity`
     text-align: center;
-    width: ${isMobile ? verticalScale(25) : 35}px;
-    height: ${isMobile ? verticalScale(25) : 35}px;
+    width: ${isMobile ? verticalScale(28) : 35}px;
+    height: ${isMobile ? verticalScale(28) : 35}px;
     align-items: center;
     justify-content: center;
     border-top-left-radius: 8px;
@@ -21,8 +21,8 @@ export const SubButtonContainer = styled.TouchableOpacity`
 
 export const AddButtonContainer = styled.TouchableOpacity`
     text-align: center;
-    width: ${isMobile ? verticalScale(25) : 35}px;
-    height: ${isMobile ? verticalScale(25) : 35}px;
+    width: ${isMobile ? verticalScale(28) : 35}px;
+    height: ${isMobile ? verticalScale(28) : 35}px;
     align-items: center;
     justify-content: center;
     border-top-right-radius: 8px;
@@ -53,13 +53,13 @@ export const Value = styled.Text`
     margin-right: 20px;
     color: ${props => props.theme.txtColor};
     font-family: ${fontFamilies.Cascadia};
-    font-size: ${isMobile ? verticalScale(fontSizes.small) : 30}px;
+    font-size: ${isMobile ? verticalScale(fontSizes.normal) : 30}px;
 `;
 
 export const Title = styled.Text`
     color: ${props => props.theme.txtColor};
     font-family: ${fontFamilies.Cascadia};
-    font-size: ${isMobile ? verticalScale(fontSizes.small) : 30}px;
+    font-size: ${isMobile ? verticalScale(fontSizes.normal) : 30}px;
 `;
 
 export const FieldView = styled.View`
@@ -71,7 +71,7 @@ export const FieldView = styled.View`
 
 export const FieldContainer = styled.View`
     height: 30%;
-    width: 95%;
+    width: 100%;
     min-width: ${isMobile ? 200 : 100}px;
     align-items: center;
     justify-content: space-around;

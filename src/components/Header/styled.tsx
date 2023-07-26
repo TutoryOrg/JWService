@@ -25,8 +25,8 @@ export const DateContainer = styled.View``;
 
 export const HeaderContainer = styled.View`
     width: 90%;
-    height: 12%;
-    min-height: 90px;
+    height: 10%;
+    min-height: 80px;
     display: flex;
     flex-direction: row;
     align-items: flex-end;

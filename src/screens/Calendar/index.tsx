@@ -1,5 +1,12 @@
-import { Text } from 'react-native';
+import { WeekComponent } from './Week';
+import { CalendarContainer } from './styled';
 
 export function Calendar() {
-    return <Text style={{ color: 'white' }}>CalendarScreen</Text>;
+    return (
+        <CalendarContainer>
+            <WeekComponent />
+            {/* <MonthComonent />
+            <YearComponent /> */}
+        </CalendarContainer>
+    );
 }
