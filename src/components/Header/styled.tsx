@@ -10,13 +10,13 @@ export const ButtonText = styled.Text`
 `;
 
 export const Month = styled.Text`
-    font-family: 'CascadiaItalic';
+    font-family: ${fontFamilies.CascadiaItalic};
     font-size: ${isMobile ? verticalScale(fontSizes.small) : 22}px;
     color: ${props => props.theme.txtColor};
 `;
 
 export const Day = styled.Text`
-    font-family: 'CascadiaMono';
+    font-family: ${fontFamilies.CascadiaMono};
     font-size: ${isMobile ? verticalScale(fontSizes.large) : 40}px;
     color: ${props => props.theme.txtColor};
 `;

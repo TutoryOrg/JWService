@@ -13,6 +13,7 @@
     "@expo/webpack-config": "^18.0.1",
     "@react-native-async-storage/async-storage": "1.17.11",
     "@reduxjs/toolkit": "^1.9.1",
+    "@typescript-eslint/parser": "6.2.0",
     "dom-to-image": "^2.6.0",
     "expo": "^48.0.17",
     "expo-font": "~11.1.1",
