@@ -7,7 +7,13 @@ export const LeftArrow = styled(AntDesign)`
     color: ${props => props.theme.borderColor};
 `;
 
-export const ChooseDays = styled.View``;
+export const ChooseDaysContainer = styled.View`
+    padding-top: 10px;
+    height: 50%;
+    width: 90%;
+    flex-direction: row;
+    justify-content: space-around;
+`;
 
 export const MonthText = styled.Text`
     font-family: ${fontFamilies.CascadiaMono};
