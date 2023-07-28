@@ -1,6 +1,6 @@
-import { Text, View } from 'react-native';
-import { fontFamilies } from 'utils/constants';
-import { verticalScale } from 'utils/scaleFunctions';
+import { useState } from 'react';
+import { View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import {
     WeekContainer,
     HeaderContainer,
@@ -9,53 +9,99 @@ import {
     MonthText,
     MonthButton,
     LeftArrow,
+    DayOfTheWeekContainer as WeekTouchable,
+    NameOfDay,
+    NumberOfDay,
 } from './styled';
+import { Months, Days } from '../index';
 
-const DayOfTheWeek = ({ nameDay, numberDay }: { nameDay: string; numberDay: number }) => {
+function getWeekDays(selectedDay: Date) {
+    const daysInWeek = 7;
+    const weekDays = [];
+
+    // Get the day of the week (0 for Sunday, 1 for Monday, etc.) of the selected day
+    const selectedDayKey = selectedDay.getDay();
+
+    // Calculate the difference in keys between the selected day and Monday (to get the start of the week)
+    const daysUntilMonday = (selectedDayKey + daysInWeek - 1) % daysInWeek;
+    const startOfWeek = new Date(selectedDay);
+    startOfWeek.setDate(selectedDay.getDate() - daysUntilMonday);
+
+    // Add the rest of the days of the week (from Monday to Sunday) to the weekDays array
+    for (let i = 0; i < daysInWeek; i++) {
+        const day = new Date(startOfWeek);
+        day.setDate(startOfWeek.getDate() + i);
+        weekDays.push({
+            key: i,
+            name: Days[i],
+            number: day.getDate(),
+        });
+    }
+
+    return weekDays;
+}
+
+const WeekDay = ({
+    nameDay,
+    numberDay,
+    selected,
+    setSelected,
+}: {
+    nameDay: string;
+    numberDay: number;
+    selected: boolean;
+    setSelected: () => void;
+}) => {
     return (
-        <View
-            style={{
-                height: '100%',
-                justifyContent: 'space-around',
-                alignItems: 'center',
-            }}>
-            <Text style={{ fontFamily: fontFamilies.CascadiaMono, fontSize: verticalScale(18) }}>
-                {nameDay}
-            </Text>
-            <Text style={{ fontFamily: fontFamilies.CascadiaMono, fontSize: verticalScale(16) }}>
-                {numberDay}
-            </Text>
-        </View>
+        <WeekTouchable onPress={setSelected}>
+            <NameOfDay children={nameDay} />
+            <NumberOfDay selected={selected} children={numberDay} />
+        </WeekTouchable>
     );
 };
 
-const ChooseDays = () => {
+interface IWeekDay {
+    key: number;
+    name: string;
+    number: number;
+}
+const ChooseDays = ({ selectedDay }: { selectedDay: Date }) => {
+    const { t } = useTranslation();
+    const [weekDays] = useState<IWeekDay[]>(getWeekDays(selectedDay));
+    const [selected, setSelected] = useState<number>(selectedDay.getDate());
+
     return (
         <ChooseDaysContainer>
-            <DayOfTheWeek nameDay="Mon" numberDay={10} />
-            <DayOfTheWeek nameDay="Tue" numberDay={11} />
-            <DayOfTheWeek nameDay="Wen" numberDay={12} />
-            <DayOfTheWeek nameDay="Thu" numberDay={13} />
-            <DayOfTheWeek nameDay="Fri" numberDay={14} />
-            <DayOfTheWeek nameDay="Sat" numberDay={15} />
-            <DayOfTheWeek nameDay="Sun" numberDay={16} />
+            {weekDays.map((d, index) => (
+                <WeekDay
+                    key={index}
+                    nameDay={t(d.name)}
+                    numberDay={d.number}
+                    selected={d.number === selected}
+                    setSelected={() => setSelected(d.number)}
+                />
+            ))}
         </ChooseDaysContainer>
     );
 };
 
 interface IWeekHeader {
+    selectedDay: Date;
     onViewMonth: () => void;
 }
-const WeekHeader = ({ onViewMonth }: IWeekHeader) => {
+const WeekHeader = ({ selectedDay, onViewMonth }: IWeekHeader) => {
+    const { t } = useTranslation();
+    const month = Months[selectedDay.getMonth()];
+
     return (
         <HeaderContainer>
             <HeaderMonth>
                 <MonthButton onPress={onViewMonth}>
                     <LeftArrow name="left" size={24} />
-                    <MonthText children={'July'} />
+                    <MonthText children={t(month)} />
                 </MonthButton>
             </HeaderMonth>
-            <ChooseDays />
+            <ChooseDays selectedDay={selectedDay} />
         </HeaderContainer>
     );
 };
@@ -65,12 +111,13 @@ const WeekContent = () => {
 };
 
 interface IWeekComponent {
+    selectedDay: Date;
     onViewMonth: () => void;
 }
-export const WeekComponent = ({ onViewMonth }: IWeekComponent) => {
+export const WeekComponent = ({ selectedDay, onViewMonth }: IWeekComponent) => {
     return (
         <WeekContainer>
-            <WeekHeader onViewMonth={onViewMonth} />
+            <WeekHeader selectedDay={selectedDay} onViewMonth={onViewMonth} />
             <WeekContent />
         </WeekContainer>
     );

@@ -43,4 +43,12 @@ export const months = [
     'dec',
 ];
 
-export const days = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+export const days = [
+    'sunday',
+    'monday',
+    'tuesday',
+    'wednesday',
+    'thusday',
+    'friday',
+    'saturday',
+];

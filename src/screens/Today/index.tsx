@@ -24,7 +24,8 @@ interface IContent {
 const Content = (props: IContent) => {
     const { day, onChangeComment, onChangeField, onChangeImage } = props;
     const { date, fields, comment, image } = day;
-    const dateObject = date instanceof Date ? date : parseDateStringToDate(date);
+    const dateObject =
+        date instanceof Date ? date : parseDateStringToDate(date);
 
     return (
         <ContentContainer>
@@ -37,11 +38,15 @@ const Content = (props: IContent) => {
             />
             <Comment
                 comment={comment}
-                onChangeComment={(text: string) => onChangeComment(dateObject as Date, text)}
+                onChangeComment={(text: string) =>
+                    onChangeComment(dateObject as Date, text)
+                }
             />
             <ImagePicker
                 image={image}
-                onChangeImage={(image: string) => onChangeImage(dateObject as Date, image)}
+                onChangeImage={(image: string) =>
+                    onChangeImage(dateObject as Date, image)
+                }
             />
         </ContentContainer>
     );
@@ -91,9 +96,13 @@ const ListDays = () => {
             return ddate && date && ddate.valueOf() === date.valueOf()
                 ? {
                       ...d,
-                      fields: d.fields.map((f: { key: string; value: number | ITime }) => {
-                          return f.key === key ? { key: f.key, value: value } : f;
-                      }),
+                      fields: d.fields.map(
+                          (f: { key: string; value: number | ITime }) => {
+                              return f.key === key
+                                  ? { key: f.key, value: value }
+                                  : f;
+                          }
+                      ),
                   }
                 : d;
         });
@@ -117,7 +126,9 @@ const ListDays = () => {
                 );
             }}
             onScroll={(e: any) => {
-                const index = Math.round(e.nativeEvent.contentOffset.y / windowHeight);
+                const index = Math.round(
+                    e.nativeEvent.contentOffset.y / windowHeight
+                );
                 if (days.length - 3 < index) {
                 }
             }}
