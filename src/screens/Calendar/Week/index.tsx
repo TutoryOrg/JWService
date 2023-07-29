@@ -1,6 +1,5 @@
 import { IToday } from '@types';
 import { useDays } from 'hooks/useDays';
-import { useState } from 'react';
 import { Content } from 'screens/Today';
 import { WeekHeader } from './Header';
 import { ContentContainer, WeekContainer } from './styled';

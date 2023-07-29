@@ -64,12 +64,11 @@ export function Fields({ fields, editable, onChangeField }: IFields) {
                             <Value>
                                 {typeof field.value === 'number'
                                     ? (field.value as number)
-                                    : `${field.value.hours}h:${
-                                          field.value.minutes.toString()
-                                              .length < 2
-                                              ? `0${field.value.minutes}`
-                                              : field.value.minutes
-                                      }m`}
+                                    : `${field.value.hours}h:${field.value.minutes.toString()
+                                        .length < 2
+                                        ? `0${field.value.minutes}`
+                                        : field.value.minutes
+                                    }m`}
                             </Value>
                             {editable && (
                                 <ControlContainer>
