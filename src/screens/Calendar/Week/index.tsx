@@ -44,7 +44,7 @@ interface IWeekComponent {
     setSelectedDay: (date: Date) => void;
     onViewMonth: () => void;
 }
-export const WeekComponent = ({ selectedDay, setSelectedDay, onViewMonth }: IWeekComponent) => {
+export const Week = ({ selectedDay, setSelectedDay, onViewMonth }: IWeekComponent) => {
     return (
         <WeekContainer>
             <WeekHeader selectedDay={selectedDay} setSelectedDay={setSelectedDay} onViewMonth={onViewMonth} />

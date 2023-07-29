@@ -1,5 +1,7 @@
+import { Year } from './Year';
+import { Month } from './Month';
 import { useState } from 'react';
-import { WeekComponent } from './Week';
+import { Week } from './Week';
 import { CalendarContainer } from './styled';
 
 export const Months = [
@@ -28,14 +30,18 @@ export function Calendar() {
     return (
         <CalendarContainer>
             {view === 'week' && (
-                <WeekComponent
+                <Week
                     selectedDay={selectedDay}
                     setSelectedDay={setSelectedDay}
                     onViewMonth={() => setView('month')}
                 />
             )}
-            {/* <MonthComonent />
-            <YearComponent /> */}
+            {view === 'month' && (
+                <Month />
+            )}
+            {view === 'year' && (
+                <Year />
+            )}
         </CalendarContainer>
     );
 }
