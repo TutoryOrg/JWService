@@ -37,7 +37,11 @@ export function Calendar() {
                 />
             )}
             {view === 'month' && (
-                <Month />
+                <Month
+                    selectedDay={selectedDay}
+                    setSelectedDay={setSelectedDay}
+                    onViewWeek={() => setView('week')}
+                />
             )}
             {view === 'year' && (
                 <Year />

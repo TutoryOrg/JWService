@@ -18,8 +18,6 @@ function getWeekDays(selectedDay: Date): IWeekDay[] {
     const daysInWeek = 7;
     const weekDays: IWeekDay[] = [];
 
-    const dayNames: string[] = ['sun', 'mon', 'tue', 'wen', 'thu', 'fri', 'sat'];
-
     // Get the day of the week (0 for Sunday, 1 for Monday, etc.) of the selected day
     const selectedDayKey: number = selectedDay.getDay();
 
@@ -34,7 +32,7 @@ function getWeekDays(selectedDay: Date): IWeekDay[] {
         day.setDate(startOfWeek.getDate() + i);
         weekDays.push({
             key: i,
-            name: dayNames[i],
+            name: Days[i],
             number: day.getDate(),
             date: day, // Add the `date` property with the `day` Date object
         });
