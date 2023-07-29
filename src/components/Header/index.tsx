@@ -1,6 +1,12 @@
 import { days, months } from 'utils/constants';
 import { useTranslation } from 'react-i18next';
-import { HeaderContainer, DateContainer, Month, ButtonText, Day } from './styled';
+import {
+    HeaderContainer,
+    DateContainer,
+    Month,
+    ButtonText,
+    Day,
+} from './styled';
 
 export function Header(props: { date: Date | string }) {
     const { date } = props;

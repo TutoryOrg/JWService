@@ -25,15 +25,6 @@ export function Calendar() {
     const today = new Date();
     const [view, setView] = useState<CalendarView>('week');
 
-    const refMonth = today.getMonth();
-    const numberToday = today.getDate();
-    const refNumberDay = today.getDay();
-
-    console.log({ refMonth });
-    console.log(Days[refNumberDay]);
-    console.log(Months[refMonth]);
-    console.log(numberToday);
-
     return (
         <CalendarContainer>
             {view === 'week' && (

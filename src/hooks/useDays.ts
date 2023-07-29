@@ -21,9 +21,14 @@ export function useDays(): [IToday[], (day: IToday[]) => void] {
 
     useEffect(() => {
         const fn = async () => {
-            const prevDays: IToday[] = (await readData(Screens.TODAY)) as IToday[];
+            const prevDays: IToday[] = (await readData(
+                Screens.TODAY
+            )) as IToday[];
             if (prevDays) {
-                if (new Date(today.date).getDate() === new Date(prevDays[0].date).getDate()) {
+                if (
+                    new Date(today.date).getDate() ===
+                    new Date(prevDays[0].date).getDate()
+                ) {
                     setDays(prevDays);
                 } else {
                     setDays([today, ...prevDays]);

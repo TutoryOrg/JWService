@@ -17,35 +17,39 @@ const parseDateStringToDate = (dateString: string) => {
 
 interface IContent {
     day: IToday;
+    editable: boolean;
     onChangeImage: (date: Date, image: string) => void;
     onChangeComment: (date: Date, text: string) => void;
     onChangeField: (date: Date, key: string, value: ITime | number) => void;
 }
-const Content = (props: IContent) => {
-    const { day, onChangeComment, onChangeField, onChangeImage } = props;
+
+export const Content = (props: IContent) => {
+    const { day, editable, onChangeComment, onChangeField, onChangeImage } =
+        props;
     const { date, fields, comment, image } = day;
     const dateObject =
         date instanceof Date ? date : parseDateStringToDate(date);
 
     return (
-        <ContentContainer>
-            <Header date={dateObject} />
+        <ContentContainer editable={editable}>
+            {editable && <Header date={dateObject} />}
             <Fields
                 fields={fields}
                 onChangeField={(key: string, value: ITime | number) =>
-                    onChangeField(dateObject as Date, key, value)
+                    editable && onChangeField(dateObject as Date, key, value)
                 }
+                editable={editable}
             />
             <Comment
                 comment={comment}
                 onChangeComment={(text: string) =>
-                    onChangeComment(dateObject as Date, text)
+                    editable && onChangeComment(dateObject as Date, text)
                 }
             />
             <ImagePicker
                 image={image}
                 onChangeImage={(image: string) =>
-                    onChangeImage(dateObject as Date, image)
+                    editable && onChangeImage(dateObject as Date, image)
                 }
             />
         </ContentContainer>
@@ -122,6 +126,7 @@ const ListDays = () => {
                         onChangeImage={onChangeImage}
                         onChangeComment={onChangeComment}
                         onChangeField={onChangeField}
+                        editable={true}
                     />
                 );
             }}

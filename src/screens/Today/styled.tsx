@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
 import { windowHeight } from 'utils/scaleFunctions';
 
-export const ContentContainer = styled.View`
-    height: ${windowHeight}px;
+export const ContentContainer = styled.View<{ editable: boolean }>`
+    height: ${props => (props.editable ? `${windowHeight}px` : '100%')};
     align-items: center;
     border-top-right-radius: 12px;
 `;
