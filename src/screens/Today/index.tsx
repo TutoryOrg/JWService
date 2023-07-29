@@ -43,14 +43,16 @@ export const Content = (props: IContent) => {
             <Comment
                 comment={comment}
                 onChangeComment={(text: string) =>
-                    editable && onChangeComment(dateObject as Date, text)
+                    onChangeComment(dateObject as Date, text)
                 }
+                editable={editable}
             />
             <ImagePicker
                 image={image}
                 onChangeImage={(image: string) =>
-                    editable && onChangeImage(dateObject as Date, image)
+                    onChangeImage(dateObject as Date, image)
                 }
+                editable={editable}
             />
         </ContentContainer>
     );
@@ -71,9 +73,9 @@ const ListDays = () => {
             const ddate = parseDateStringToDate(d.date as string);
             return ddate && date && ddate.valueOf() === date.valueOf()
                 ? {
-                      ...d,
-                      image: image,
-                  }
+                    ...d,
+                    image: image,
+                }
                 : d;
         });
         setDays(updateDay);
@@ -85,9 +87,9 @@ const ListDays = () => {
             const ddate = parseDateStringToDate(d.date as string);
             return ddate && date && ddate.valueOf() === date.valueOf()
                 ? {
-                      ...d,
-                      comment: text,
-                  }
+                    ...d,
+                    comment: text,
+                }
                 : d;
         });
         setDays(updateDay);
@@ -99,15 +101,15 @@ const ListDays = () => {
             const ddate = parseDateStringToDate(d.date as string);
             return ddate && date && ddate.valueOf() === date.valueOf()
                 ? {
-                      ...d,
-                      fields: d.fields.map(
-                          (f: { key: string; value: number | ITime }) => {
-                              return f.key === key
-                                  ? { key: f.key, value: value }
-                                  : f;
-                          }
-                      ),
-                  }
+                    ...d,
+                    fields: d.fields.map(
+                        (f: { key: string; value: number | ITime }) => {
+                            return f.key === key
+                                ? { key: f.key, value: value }
+                                : f;
+                        }
+                    ),
+                }
                 : d;
         });
         setDays(updateDay);

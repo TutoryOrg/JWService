@@ -24,16 +24,13 @@ export const NumberOfDay = styled.Text<{ selected: boolean }>`
     height: ${isMobile ? verticalScale(30) : 40}px;
     border: 2px;
     text-align: center;
-    border-bottom-width: 4px;
-    font-size: ${verticalScale(14)}px;
+    font-size: ${verticalScale(12)}px;
     border-radius: ${verticalScale(10)}px;
-    line-height: ${isMobile ? verticalScale(25) : 30}px;
+    line-height: ${isMobile ? verticalScale(30) : 30}px;
     font-family: ${fontFamilies.CascadiaMono};
     border-color: ${props => props.theme.selected};
-    color: ${props =>
-        props.selected ? props.theme.txtSelected : props.theme.txtColor};
-    background-color: ${props =>
-        props.selected ? props.theme.selected : props.theme.bgColor};
+    color: ${props => props.selected ? props.theme.txtSelected : props.theme.txtColor};
+    background-color: ${props => props.selected ? props.theme.selected : props.theme.bgColor};
 `;
 
 export const ChooseDaysContainer = styled.View`

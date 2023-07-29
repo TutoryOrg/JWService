@@ -34,20 +34,6 @@ export function Calendar() {
                     onViewMonth={() => setView('month')}
                 />
             )}
-            {view === 'month' && (
-                <WeekComponent
-                    selectedDay={selectedDay}
-                    setSelectedDay={setSelectedDay}
-                    onViewMonth={() => setView('month')}
-                />
-            )}
-            {view === 'year' && (
-                <WeekComponent
-                    selectedDay={selectedDay}
-                    setSelectedDay={setSelectedDay}
-                    onViewMonth={() => setView('month')}
-                />
-            )}
             {/* <MonthComonent />
             <YearComponent /> */}
         </CalendarContainer>
