@@ -22,12 +22,14 @@ interface IWeekContent {
 }
 const WeekContent = ({ selectedDay }: IWeekContent) => {
     const [days] = useDays();
-    const cl = () => console.log('change');
+    const cl = () => null;
+
+    const seDay = days.find(d => ((selectedDay && new Date(d.date).getDate() === selectedDay.getDate()) ? d : null))
 
     return (
         <ContentContainer>
             <Content
-                day={days[0]}
+                day={seDay ?? emptyDay}
                 onChangeImage={cl}
                 onChangeComment={cl}
                 onChangeField={cl}
@@ -39,12 +41,13 @@ const WeekContent = ({ selectedDay }: IWeekContent) => {
 
 interface IWeekComponent {
     selectedDay: Date;
+    setSelectedDay: (date: Date) => void;
     onViewMonth: () => void;
 }
-export const WeekComponent = ({ selectedDay, onViewMonth }: IWeekComponent) => {
+export const WeekComponent = ({ selectedDay, setSelectedDay, onViewMonth }: IWeekComponent) => {
     return (
         <WeekContainer>
-            <WeekHeader selectedDay={selectedDay} onViewMonth={onViewMonth} />
+            <WeekHeader selectedDay={selectedDay} setSelectedDay={setSelectedDay} onViewMonth={onViewMonth} />
             <WeekContent selectedDay={selectedDay} />
         </WeekContainer>
     );

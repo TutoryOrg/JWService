@@ -13,26 +13,30 @@ import {
     NumberOfDay,
 } from './styled';
 
-function getWeekDays(selectedDay: Date) {
+
+function getWeekDays(selectedDay: Date): IWeekDay[] {
     const daysInWeek = 7;
-    const weekDays = [];
+    const weekDays: IWeekDay[] = [];
+
+    const dayNames: string[] = ['sun', 'mon', 'tue', 'wen', 'thu', 'fri', 'sat'];
 
     // Get the day of the week (0 for Sunday, 1 for Monday, etc.) of the selected day
-    const selectedDayKey = selectedDay.getDay();
+    const selectedDayKey: number = selectedDay.getDay();
 
     // Calculate the difference in keys between the selected day and Monday (to get the start of the week)
-    const daysUntilMonday = (selectedDayKey + daysInWeek - 1) % daysInWeek;
-    const startOfWeek = new Date(selectedDay);
+    const daysUntilMonday: number = (selectedDayKey + daysInWeek - 1) % daysInWeek;
+    const startOfWeek: Date = new Date(selectedDay);
     startOfWeek.setDate(selectedDay.getDate() - daysUntilMonday);
 
     // Add the rest of the days of the week (from Monday to Sunday) to the weekDays array
     for (let i = 0; i < daysInWeek; i++) {
-        const day = new Date(startOfWeek);
+        const day: Date = new Date(startOfWeek);
         day.setDate(startOfWeek.getDate() + i);
         weekDays.push({
             key: i,
-            name: Days[i],
+            name: dayNames[i],
             number: day.getDate(),
+            date: day, // Add the `date` property with the `day` Date object
         });
     }
 
@@ -62,8 +66,9 @@ interface IWeekDay {
     key: number;
     name: string;
     number: number;
+    date: Date;
 }
-const ChooseDays = ({ selectedDay }: { selectedDay: Date }) => {
+const ChooseDays = ({ selectedDay, setSelectedDay }: { selectedDay: Date, setSelectedDay: (date: Date) => void }) => {
     const { t } = useTranslation();
     const [weekDays] = useState<IWeekDay[]>(getWeekDays(selectedDay));
     const [selected, setSelected] = useState<number>(selectedDay.getDate());
@@ -76,7 +81,11 @@ const ChooseDays = ({ selectedDay }: { selectedDay: Date }) => {
                     nameDay={t(d.name)}
                     numberDay={d.number}
                     selected={d.number === selected}
-                    setSelected={() => setSelected(d.number)}
+                    setSelected={() => {
+                        setSelected(d.number);
+                        setSelectedDay(d.date)
+                    }
+                    }
                 />
             ))}
         </ChooseDaysContainer>
@@ -85,10 +94,11 @@ const ChooseDays = ({ selectedDay }: { selectedDay: Date }) => {
 
 interface IWeekHeader {
     selectedDay: Date;
+    setSelectedDay: (date: Date) => void;
     onViewMonth: () => void;
 }
 
-export const WeekHeader = ({ selectedDay, onViewMonth }: IWeekHeader) => {
+export const WeekHeader = ({ selectedDay, setSelectedDay, onViewMonth }: IWeekHeader) => {
     const { t } = useTranslation();
     const month = Months[selectedDay.getMonth()];
 
@@ -100,7 +110,7 @@ export const WeekHeader = ({ selectedDay, onViewMonth }: IWeekHeader) => {
                     <MonthText children={t(month)} />
                 </MonthButton>
             </HeaderMonth>
-            <ChooseDays selectedDay={selectedDay} />
+            <ChooseDays selectedDay={selectedDay} setSelectedDay={setSelectedDay} />
         </HeaderContainer>
     );
 };

@@ -22,26 +22,29 @@ export const Days = ['mon', 'tue', 'wen', 'thu', 'fri', 'sat', 'sun'];
 type CalendarView = 'week' | 'month' | 'year';
 
 export function Calendar() {
-    const today = new Date();
+    const [selectedDay, setSelectedDay] = useState<Date>(new Date())
     const [view, setView] = useState<CalendarView>('week');
 
     return (
         <CalendarContainer>
             {view === 'week' && (
                 <WeekComponent
-                    selectedDay={today}
+                    selectedDay={selectedDay}
+                    setSelectedDay={setSelectedDay}
                     onViewMonth={() => setView('month')}
                 />
             )}
             {view === 'month' && (
                 <WeekComponent
-                    selectedDay={today}
+                    selectedDay={selectedDay}
+                    setSelectedDay={setSelectedDay}
                     onViewMonth={() => setView('month')}
                 />
             )}
             {view === 'year' && (
                 <WeekComponent
-                    selectedDay={today}
+                    selectedDay={selectedDay}
+                    setSelectedDay={setSelectedDay}
                     onViewMonth={() => setView('month')}
                 />
             )}
