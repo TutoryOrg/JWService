@@ -8,6 +8,12 @@ export const YearText = styled.Text`
     font-family: ${fontFamilies.CascadiaMono};
 `;
 
+export const MonthButtonContainer = styled.TouchableOpacity`
+    flex-direction:row;
+    justify-content:center;
+    align-items:center;
+`
+
 export const MonthText = styled(YearText)``
 
 
@@ -16,6 +22,7 @@ export const YearContainer = styled.TouchableOpacity`
     width: ${verticalScale(100)}px;
     align-items: center;
     flex-direction: row;
+    justify-content: flex-end;
     margin-top: ${verticalScale(30)}px;
 `
 

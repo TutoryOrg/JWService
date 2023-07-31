@@ -104,8 +104,8 @@ export const WeekHeader = ({ selectedDay, setSelectedDay, onViewMonth }: IWeekHe
         <HeaderContainer>
             <HeaderMonth>
                 <MonthButton onPress={onViewMonth}>
-                    <LeftArrow name="left" size={24} />
                     <MonthText children={t(month)} />
+                    <LeftArrow name="right" size={24} />
                 </MonthButton>
             </HeaderMonth>
             <ChooseDays selectedDay={selectedDay} setSelectedDay={setSelectedDay} />

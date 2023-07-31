@@ -50,6 +50,7 @@ export const MonthButton = styled.TouchableOpacity`
     height: ${verticalScale(40)}px;
     width: ${verticalScale(100)}px;
     align-items: center;
+    justify-content:flex-end;
     flex-direction: row;
     margin-top: ${verticalScale(30)}px;
 `;
@@ -59,6 +60,7 @@ export const HeaderMonth = styled.View`
     height: 50%;
     border-bottom-width: 2px;
     border-color: ${props => props.theme.borderColor};
+    align-items:flex-end;
 `;
 
 export const HeaderContainer = styled.View`

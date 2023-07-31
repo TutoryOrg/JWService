@@ -1,7 +1,7 @@
 import { Year } from './Year';
+import { Week } from './Week';
 import { Month } from './Month';
 import { useState } from 'react';
-import { Week } from './Week';
 import { CalendarContainer } from './styled';
 
 export const Months = [
