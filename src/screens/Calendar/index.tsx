@@ -25,7 +25,7 @@ type CalendarView = 'week' | 'month' | 'year';
 
 export function Calendar() {
     const [selectedDay, setSelectedDay] = useState<Date>(new Date())
-    const [view, setView] = useState<CalendarView>('week');
+    const [view, setView] = useState<CalendarView>('month');
 
     return (
         <CalendarContainer>

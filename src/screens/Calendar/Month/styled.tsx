@@ -8,7 +8,7 @@ export const YearText = styled.Text`
     font-family: ${fontFamilies.CascadiaMono};
 `;
 
-export const MonthButtonContainer = styled.TouchableOpacity`
+export const MonthButton = styled.TouchableOpacity`
     flex-direction:row;
     justify-content:center;
     align-items:center;
@@ -17,8 +17,8 @@ export const MonthButtonContainer = styled.TouchableOpacity`
 export const MonthText = styled(YearText)``
 
 
-export const YearContainer = styled.TouchableOpacity`
-    height: ${verticalScale(40)}px;
+export const YearButton = styled.TouchableOpacity`
+    height: ${verticalScale(35)}px;
     width: ${verticalScale(100)}px;
     align-items: center;
     flex-direction: row;
@@ -26,9 +26,24 @@ export const YearContainer = styled.TouchableOpacity`
     margin-top: ${verticalScale(30)}px;
 `
 
+export const CalendarNameOfDay = styled.Text`
+    color: ${props => props.theme.txtColor};
+    font-size: ${verticalScale(16)}px;
+    font-family: ${fontFamilies.CascadiaMono};
+`;
+
+export const MonthDaysContainer = styled.View`
+    height: 10%;
+    width: 90%;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+`
+
 export const MonthContent = styled.View`
     width: 100%;
-    height: 80%;
+    height: 90%;
+    align-items:center;
 `
 
 export const MonthHeader = styled.View`
