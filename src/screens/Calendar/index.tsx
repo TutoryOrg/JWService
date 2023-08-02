@@ -41,6 +41,7 @@ export function Calendar() {
                     selectedDay={selectedDay}
                     setSelectedDay={setSelectedDay}
                     onViewWeek={() => setView('week')}
+                    onViewYear={() => setView('year')}
                 />
             )}
             {view === 'year' && (

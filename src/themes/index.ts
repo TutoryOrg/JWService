@@ -29,3 +29,6 @@ export const darkTheme: DefaultTheme = {
     borderColor: '#FFFFFF',
     gray: '#565555',
 };
+
+
+

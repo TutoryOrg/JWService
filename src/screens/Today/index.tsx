@@ -30,6 +30,7 @@ export const Content = (props: IContent) => {
     const dateObject =
         date instanceof Date ? date : parseDateStringToDate(date);
 
+
     return (
         <ContentContainer editable={editable}>
             {editable && <Header date={dateObject} />}
