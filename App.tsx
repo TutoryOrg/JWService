@@ -7,11 +7,11 @@ import { ThemeProvider } from 'styled-components/native';
 import { useColorScheme } from 'react-native';
 import { useFontsAndLayout } from 'hooks/useFontsAndLayout';
 import { darkTheme, lightTheme } from 'themes';
-import * as SplashScreen from 'expo-splash-screen';
+// import * as SplashScreen from 'expo-splash-screen';
+// SplashScreen.preventAutoHideAsync();
+// import Constants from 'expo-constants';
 
-SplashScreen.preventAutoHideAsync();
-
-export default function App() {
+function App() {
     const store = useAppState();
     const isDarkMode = useColorScheme() === 'dark';
     const { fontsLoaded, onLayoutRootView } = useFontsAndLayout();
@@ -27,3 +27,15 @@ export default function App() {
         </Provider>
     );
 }
+
+let AppEntryPoint = App;
+
+// if (
+//     Constants.expoConfig &&
+//     Constants.expoConfig.extra &&
+//     Constants.expoConfig.extra.storybookEnabled === 'true'
+// ) {
+AppEntryPoint = require('./.storybook').default;
+// }
+
+export default AppEntryPoint;
