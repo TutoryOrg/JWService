@@ -3,18 +3,14 @@
         "strict": true,
         "baseUrl": "./src",
         "paths": {
-            "@types": [
-                "../types.d.ts"
-            ]
+            "@types": ["../types.d.ts"]
         },
         "allowSyntheticDefaultImports": true,
         "experimentalDecorators": true,
         "forceConsistentCasingInFileNames": true,
         "importHelpers": true,
         "jsx": "react-native",
-        "lib": [
-            "es2017"
-        ],
+        "lib": ["es2017"],
         "module": "es2015",
         "moduleResolution": "node",
         "noEmitHelpers": true,
@@ -24,8 +20,6 @@
         "target": "es2017",
         "jsxFactory": "h"
     },
-    "exclude": [
-        "node_modules"
-    ],
+    "exclude": ["node_modules"],
     "extends": "expo/tsconfig.base"
 }
