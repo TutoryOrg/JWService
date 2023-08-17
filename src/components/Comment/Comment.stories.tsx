@@ -1,21 +1,51 @@
-import { Comment } from './index';
+import { View } from "react-native";
+import { Comment } from "./index";
+import { ThemeProvider } from "styled-components/native";
+import { darkTheme, lightTheme } from "themes";
+import { ComponentStory, ComponentMeta } from "@storybook/react-native";
 
-const arrowNotes = `
-# Arrow Button Notes
-
-This button is used to navigate between screens.
-`;
-
-export default {
-    title: 'components/ArrowButton',
+const CommentMeta: ComponentMeta<typeof Comment> = {
+    title: "Components/Comment",
     component: Comment,
-    parameters: {
-        notes: arrowNotes,
-    },
-    argTypes: {
-        directionArrow: {
-            options: ['top', 'left', 'right', 'down'],
-            control: { type: 'select' },
-        },
-    },
-} as unknown as typeof Comment;
+    args: {},
+    decorators: [
+        (Story) => (
+            <View style={{ padding: 16 }}>
+                <Story />
+            </View>
+        )
+    ],
+};
+
+export default CommentMeta;
+
+type MyCommentStory = ComponentStory<typeof Comment>;
+
+export const Light: MyCommentStory = (args) => {
+    return (
+        <ThemeProvider theme={lightTheme}>
+            <Comment {...args} />
+        </ThemeProvider>
+    )
+}
+
+export const Dark: MyCommentStory = (args) => {
+    return (
+        <ThemeProvider theme={darkTheme}>
+            <Comment {...args} />
+        </ThemeProvider>
+    )
+}
+
+Light.parameters = {
+    backgrounds: {
+        default: 'light'
+    }
+}
+
+Dark.parameters = {
+    backgrounds: {
+        default: 'dark'
+    }
+}
+
