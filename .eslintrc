@@ -1,6 +1,5 @@
 {
     "root": true,
-    "plugins": ["prettier"],
     "parserOptions": {
         "sourceType": "module",
         "ecmaVersion": "latest"
@@ -12,7 +11,4 @@
         }
     },
     "ignorePatterns": ["./node_modules/*"],
-    "rules": {
-        "prettier/prettier": "warn"
-    }
 }
