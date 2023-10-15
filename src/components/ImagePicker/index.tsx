@@ -6,7 +6,11 @@ interface IImagePicker {
     editable: boolean;
     onChangeImage: (uri: string) => void;
 }
-export const ImagePicker = ({ image, editable, onChangeImage }: IImagePicker) => {
+export const ImagePicker = ({
+    image,
+    editable,
+    onChangeImage,
+}: IImagePicker) => {
     const pickImageAsync = async () => {
         if (!editable) return;
         let result = await launchImageLibraryAsync({
