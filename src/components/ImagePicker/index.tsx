@@ -6,6 +6,7 @@ interface IImagePicker {
     editable: boolean;
     onChangeImage: (uri: string) => void;
 }
+
 export const ImagePicker = ({
     image,
     editable,
