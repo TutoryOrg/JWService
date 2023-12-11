@@ -2,6 +2,7 @@ import { DateHeader } from './index';
 import { ThemeProvider } from 'styled-components';
 import { darkTheme, lightTheme } from 'themes';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { ViewStoriesContainer } from 'components/ViewStory';
 
 export default {
     title: 'components/DateHeader',
@@ -12,18 +13,22 @@ export default {
     argTypes: {},
 } as ComponentMeta<typeof DateHeader>;
 
-export const Basic_darkTheme: ComponentStory<typeof DateHeader> = args => {
+export const DateHeader_dark: ComponentStory<typeof DateHeader> = args => {
     return (
         <ThemeProvider theme={darkTheme}>
-            <DateHeader />
+            <ViewStoriesContainer>
+                <DateHeader />
+            </ViewStoriesContainer>
         </ThemeProvider>
     );
 };
 
-export const Basic_lightTheme: ComponentStory<typeof DateHeader> = args => {
+export const DateHeader_light: ComponentStory<typeof DateHeader> = args => {
     return (
         <ThemeProvider theme={lightTheme}>
-            <DateHeader />
+            <ViewStoriesContainer>
+                <DateHeader />
+            </ViewStoriesContainer>
         </ThemeProvider>
     );
 };
