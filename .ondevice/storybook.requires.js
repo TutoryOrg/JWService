@@ -14,7 +14,7 @@ global.STORIES = [
     directory: "./src/components",
     files: "**/*.stories.?(ts|tsx|js|jsx)",
     importPathMatcher:
-      "^\\.[\\\\/](?:src\\/components(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$",
+      "^\\.[\\\\/](?:src[\\\\/]components(?:[\\\\/](?!\\.)(?:(?:(?!(?:^|[\\\\/])\\.).)*?)[\\\\/]|[\\\\/]|$)(?!\\.)(?=.)[^\\\\/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$",
   },
 ];
 
@@ -48,7 +48,9 @@ try {
 } catch {}
 
 const getStories = () => {
-  return {};
+  return {
+    "./src/components/DateHeader/DateHeader.stories.tsx": require("../src/components/DateHeader/DateHeader.stories.tsx"),
+  };
 };
 
 configure(getStories, module, false);

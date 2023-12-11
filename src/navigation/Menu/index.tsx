@@ -1,8 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useState } from 'react';
-// import { Screens } from 'utils/constants';
-// import {  useMemo  } from 'react';
-// import { Today, Calendar, Goals, Profile } from 'screens';
 import {
     Content,
     IOption,
