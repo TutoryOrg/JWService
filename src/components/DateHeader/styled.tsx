@@ -20,7 +20,7 @@ export const Container = styled.View`
     background-color: #0ff;
     align-items: center;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-between; 
     background-color: ${props => props.theme.bgColor};
     border: ${props => `2px solid ${props.theme.borderColor}`};
     border-right-width: 0px;

@@ -1,28 +1,51 @@
+import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
+import { months, days } from 'utils/constants';
 import { Container, DateLabelText, MonthLabelText } from './styled';
 
-export const DateLabel = () => {
+interface IDateLabel {
+    month: string;
+    weekDay: string;
+    numberDay: number;
+}
+export const DateLabel = (props: IDateLabel) => {
+    const { month, weekDay, numberDay } = props;
     return (
         <View>
-            <MonthLabelText>July</MonthLabelText>
-            <DateLabelText>4.Monday</DateLabelText>
+            <MonthLabelText children={month} />
+            <DateLabelText children={`${numberDay}.${weekDay}`} />
         </View>
     );
 };
 
-export const ProgressCircle = () => {
+interface IProgressCircle {
+    progress: number;
+}
+export const ProgressCircle = (props: IProgressCircle) => {
+    const { progress } = props;
     return (
         <View>
-            <DateLabelText>()</DateLabelText>
+            <DateLabelText children={progress} />
         </View>
     );
 };
 
 export const DateHeader = () => {
+    const date = new Date();
+    const { t } = useTranslation();
+    const progress: number = 90;
+    const month = months[date.getMonth()];
+    const weekDay = days[date.getDay()];
+    const numberDay = date.getDate();
+
     return (
         <Container>
-            <DateLabel />
-            <ProgressCircle />
+            <DateLabel
+                month={t(month)}
+                weekDay={t(weekDay)}
+                numberDay={numberDay}
+            />
+            <ProgressCircle progress={progress} />
         </Container>
     );
 };
