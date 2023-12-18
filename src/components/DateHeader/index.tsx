@@ -13,7 +13,7 @@ export const DateLabel = () => {
 export const ProgressCircle = () => {
     return (
         <View>
-            <DateLabelText>Progress</DateLabelText>
+            <DateLabelText>()</DateLabelText>
         </View>
     );
 };
