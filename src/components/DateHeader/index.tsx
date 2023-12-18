@@ -1,13 +1,28 @@
-import { Text } from 'react-native';
-import { Container } from './styled';
+import { View } from 'react-native';
+import { Container, DateLabelText, MonthLabelText } from './styled';
+
+export const DateLabel = () => {
+    return (
+        <View>
+            <MonthLabelText>July</MonthLabelText>
+            <DateLabelText>4.Monday</DateLabelText>
+        </View>
+    );
+};
+
+export const ProgressCircle = () => {
+    return (
+        <View>
+            <DateLabelText>Progress</DateLabelText>
+        </View>
+    );
+};
 
 export const DateHeader = () => {
     return (
         <Container>
-            <Text>hello</Text>
-            <Text>hello</Text>
-            <Text>hello</Text>
-            <Text>hello</Text>
+            <DateLabel />
+            <ProgressCircle />
         </Container>
     );
 };

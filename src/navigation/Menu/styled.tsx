@@ -76,10 +76,10 @@ export const MenuContainer = styled.SafeAreaView`
     width: 100%;
     height: 100%;
     flex-direction: row;
-    padding-top: ${isMobile ? 25 : 0}px;
+    padding-top: ${isMobile ? 40 : 0}px;
     border: ${props => (isMobile ? `2px solid ${props.theme.borderColor}` : 'none')};
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     background-color: ${props => props.theme.bgColor};
 `;
 
