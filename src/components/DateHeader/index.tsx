@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
 import { View } from 'react-native';
+import Svg, { Circle } from 'react-native-svg';
 import { months, days } from 'utils/constants';
 import { useTranslation } from 'react-i18next';
-import Svg, { Circle, Rect } from 'react-native-svg';
 import { Container, DateLabelText, MonthLabelText } from './styled';
 
 interface IDateLabel {
