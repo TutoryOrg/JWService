@@ -25,7 +25,7 @@ interface IProgressCircle {
 }
 export const ProgressCircle = (props: IProgressCircle) => {
     const { progress } = props;
-    const size = 65;
+    const size = 55;
     const strokeWidth = 13;
     const radius = (size - strokeWidth) / 2;
     const circum = radius * 2 * Math.PI;
@@ -42,7 +42,7 @@ export const ProgressCircle = (props: IProgressCircle) => {
     `;
 
     return (
-        <View style={{ bottom: 10 }}>
+        <View style={{ height: size + 5 }}>
             <Svg width={size} height={size}>
                 <CircleStyled
                     r={radius}
