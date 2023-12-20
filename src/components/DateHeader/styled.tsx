@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import { fontFamilies, fontSizes } from 'utils/constants';
-import { verticalScale, moderateScale } from 'utils/scaleFunctions';
+import { verticalScale } from 'utils/scaleFunctions';
 
 export const MonthLabelText = styled.Text`
     font-size: ${fontSizes.normal}px;
@@ -20,9 +20,9 @@ export const Container = styled.View`
     background-color: #0ff;
     align-items: center;
     flex-direction: row;
-    justify-content: space-between; 
+    justify-content: space-between;
     background-color: ${props => props.theme.bgColor};
-    border: ${props => `2px solid ${props.theme.borderColor}`};
+    border: 2px solid ${props => props.theme.borderColor};
     border-right-width: 0px;
     border-left-width: 0px;
     border-top-width: 0px;

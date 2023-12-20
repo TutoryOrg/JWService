@@ -1,5 +1,11 @@
-import { StyleSheet, View } from 'react-native';
+import styled from 'styled-components/native';
 import { useFontsAndLayout } from 'hooks/useFontsAndLayout';
+
+const Container = styled.View`
+    top: 10%;
+    width: 100%;
+    height: 100%;
+`;
 
 interface ViewStoriesProps {
     children: JSX.Element;
@@ -10,14 +16,5 @@ export const ViewStoriesContainer = ({
 }: ViewStoriesProps): JSX.Element | null => {
     const { fontsLoaded } = useFontsAndLayout();
     if (!fontsLoaded) return null;
-    return <View style={styles.container}>{children}</View>;
+    return <Container>{children}</Container>;
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignSelf: 'center',
-        top: '10%',
-        width: '90%',
-    },
-});

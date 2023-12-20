@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
-import { Screens, fontFamilies, fontSizes } from 'utils/constants';
 import { isMobile, verticalScale } from 'utils/scaleFunctions';
+import { Screens, fontFamilies, fontSizes } from 'utils/constants';
 
 export interface ISideMenu {
     options: IOption[];
@@ -43,10 +43,14 @@ export const TextContainer = styled.Text<{ selected?: boolean }>`
     font-family: ${fontFamilies.Cascadia};
     font-size: ${isMobile ? verticalScale(fontSizes.small) : 22}px;
     transform: ${isMobile ? 'rotate(-90deg)' : ''};
-    color: ${props => (props.selected ? props.theme.txtSelected : props.theme.txtColor)};
+    color: ${props =>
+        props.selected ? props.theme.txtSelected : props.theme.txtColor};
 `;
 
-export const OptionContainer = styled.TouchableOpacity<{ selected?: boolean; lastOne?: boolean }>`
+export const OptionContainer = styled.TouchableOpacity<{
+    selected?: boolean;
+    lastOne?: boolean;
+}>`
     right: 0px;
     bottom: ${props => (props.lastOne ? -10 : 2)}px;
     height: 20%;
@@ -58,7 +62,8 @@ export const OptionContainer = styled.TouchableOpacity<{ selected?: boolean; las
     border-bottom-left-radius: 8px;
     border-top-left-radius: 8px;
     position: ${props => (props.lastOne ? 'absolute' : 'relative')};
-    background-color: ${props => (props.selected ? props.theme.selected : props.theme.bgColor)};
+    background-color: ${props =>
+        props.selected ? props.theme.selected : props.theme.bgColor};
 `;
 
 export const SideMenuContainer = styled.View`
@@ -77,7 +82,8 @@ export const MenuContainer = styled.SafeAreaView`
     height: 100%;
     flex-direction: row;
     padding-top: ${isMobile ? 40 : 0}px;
-    border: ${props => (isMobile ? `2px solid ${props.theme.borderColor}` : 'none')};
+    border: ${props =>
+        isMobile ? `2px solid ${props.theme.borderColor}` : 'none'};
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     background-color: ${props => props.theme.bgColor};

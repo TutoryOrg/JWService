@@ -1,5 +1,5 @@
 import { DateHeader } from './index';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components/native';
 import { ViewStoriesContainer } from 'components/ViewStory';
 import { darkTheme, lightTheme } from 'themes';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
@@ -23,6 +23,14 @@ export const Dark: ComponentStory<typeof DateHeader> = args => {
     );
 };
 
+Dark.story = {
+    parameters: {
+        backgrounds: {
+            default: 'dark',
+        },
+    },
+};
+
 export const Light: ComponentStory<typeof DateHeader> = args => {
     return (
         <ThemeProvider theme={lightTheme}>
@@ -31,4 +39,12 @@ export const Light: ComponentStory<typeof DateHeader> = args => {
             </ViewStoriesContainer>
         </ThemeProvider>
     );
+};
+
+Light.story = {
+    parameters: {
+        backgrounds: {
+            default: 'light',
+        },
+    },
 };
