@@ -49,6 +49,7 @@ try {
 
 const getStories = () => {
   return {
+    "./src/components/CalendarHeader/CalendarHeader.stories.tsx": require("../src/components/CalendarHeader/CalendarHeader.stories.tsx"),
     "./src/components/DateHeader/DateHeader.stories.tsx": require("../src/components/DateHeader/DateHeader.stories.tsx"),
   };
 };
