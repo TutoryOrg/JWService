@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
-import { fontFamilies, fontSizes } from 'utils/constants';
 import { verticalScale } from 'utils/scaleFunctions';
+import { fontFamilies, fontSizes } from 'utils/constants';
 
 export const MonthLabelText = styled.Text`
     font-size: ${fontSizes.normal}px;
