@@ -10,7 +10,7 @@ export const DaysOfWeekLabelText = styled.Text`
 
 export const MonthSubHeaderContainer = styled.View`
     width: 100%;
-    height: 70%;
+    height: ${verticalScale(50)}px;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
