@@ -1,7 +1,5 @@
 import { isMobile } from 'utils/scaleFunctions';
 import { CalendarMode } from '../index';
-import { days, months } from 'utils/constants';
-import { useTranslation } from 'react-i18next';
 import { TouchableOpacity, View } from 'react-native';
 import {
     DateLabelText,
@@ -48,22 +46,20 @@ const WeekHeader = (props: IWeekHeader) => {
 };
 
 interface IWeek {
+    month: string;
+    weekDay: string;
+    numberDay: number;
+    daysOfWeek: string[];
     setMode: (mode: CalendarMode) => void;
 }
-export const Week = ({ setMode }: IWeek) => {
-    const date = new Date();
-    const { t } = useTranslation();
-    const month = months[date.getMonth()];
-    const weekDay = days[date.getDay()];
-    const numberDay = date.getDate();
-    const daysOfWeek = days.map(d => t(d));
-
+export const Week = (props: IWeek) => {
+    const { month, weekDay, numberDay, daysOfWeek, setMode } = props;
     return (
         <View>
             <WeekHeader
                 setMode={setMode}
-                month={t(month)}
-                weekDay={t(weekDay)}
+                month={month}
+                weekDay={weekDay}
                 numberDay={numberDay}
             />
             <WeekSubHeader daysOfWeek={daysOfWeek} />

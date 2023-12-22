@@ -1,7 +1,5 @@
 import { isMobile } from 'utils/scaleFunctions';
 import { CalendarMode } from '../index';
-import { months, days } from 'utils/constants';
-import { useTranslation } from 'react-i18next';
 import { TouchableOpacity, View } from 'react-native';
 import {
     DateLabelText,
@@ -51,19 +49,17 @@ const MonthHeader = (props: IMonthHeader) => {
 };
 
 interface IMonth {
+    month: string;
+    year: number;
+    daysOfWeek: string[];
     setMode: (mode: CalendarMode) => void;
 }
 export const Month = (props: IMonth) => {
-    const { setMode } = props;
-    const date = new Date();
-    const { t } = useTranslation();
-    const month = months[date.getMonth()];
-    const year = date.getFullYear();
-    const daysOfWeek = days.map(d => t(d));
+    const { month, year, daysOfWeek, setMode } = props;
 
     return (
         <View>
-            <MonthHeader month={t(month)} year={year} setMode={setMode} />
+            <MonthHeader month={month} year={year} setMode={setMode} />
             <MonthSubHeader daysOfWeek={daysOfWeek} />
         </View>
     );
