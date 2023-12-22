@@ -16,6 +16,7 @@ export enum Screens {
 export const fontSizes = {
     small: 14,
     normal: 16,
+    normalX: 18,
     large: 22,
 };
 
@@ -44,11 +45,11 @@ export const months = [
 ];
 
 export const days = [
-    'sunday',
     'monday',
     'tuesday',
     'wednesday',
     'thusday',
     'friday',
     'saturday',
+    'sunday',
 ];

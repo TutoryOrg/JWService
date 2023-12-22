@@ -1,8 +1,14 @@
 import { useTranslation } from 'react-i18next';
 import { TouchableOpacity, View, Text } from 'react-native';
 import { days, months } from 'utils/constants';
+import { isMobile } from 'utils/scaleFunctions';
 import { IMode } from '../index';
-import { DateLabelText, WeekHeaderContainer } from './styled';
+import {
+    DaysOfWeekLabelText,
+    WeekSubHeaderContainer,
+    DateLabelText,
+    WeekHeaderContainer,
+} from './styled';
 
 interface IWeekHeader {
     setMode: (mode: IMode) => void;
@@ -34,11 +40,22 @@ const WeekHeader = (props: IWeekHeader) => {
     );
 };
 
-const WeekSubHeader = () => {
+const WeekSubHeader = (props: { daysOfWeek: string[] }) => {
+    const { daysOfWeek } = props;
     return (
-        <View>
-            <Text>WeekSubHeader</Text>
-        </View>
+        <WeekSubHeaderContainer>
+            {daysOfWeek.map((d, i) => (
+                <DaysOfWeekLabelText
+                    key={i}
+                    children={
+                        isMobile
+                            ? d.substring(0, 1).toUpperCase() +
+                              d.substring(1, 3)
+                            : d
+                    }
+                />
+            ))}
+        </WeekSubHeaderContainer>
     );
 };
 
@@ -51,6 +68,7 @@ export const Week = ({ setMode }: IWeek) => {
     const month = months[date.getMonth()];
     const weekDay = days[date.getDay()];
     const numberDay = date.getDate();
+    const daysOfWeek = days.map(d => t(d));
 
     return (
         <View>
@@ -60,7 +78,7 @@ export const Week = ({ setMode }: IWeek) => {
                 weekDay={t(weekDay)}
                 numberDay={numberDay}
             />
-            <WeekSubHeader />
+            <WeekSubHeader daysOfWeek={daysOfWeek} />
         </View>
     );
 };
