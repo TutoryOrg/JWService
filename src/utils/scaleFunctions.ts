@@ -17,7 +17,6 @@ const moderateScale = (size: number, factor = 0.5): number =>
 const isWeb = Platform.OS === 'web';
 const isIOs = Platform.OS === 'ios';
 const isAndroid = Platform.OS === 'android';
-console.log({ windowWidth });
 const isMobile =
     Platform.OS === 'android' || Platform.OS === 'ios' || windowWidth < 600;
 

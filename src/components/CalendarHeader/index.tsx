@@ -4,17 +4,21 @@ import { Month } from './Month';
 import { useState } from 'react';
 import { Container } from './styled';
 
-export type IMode = 'week' | 'month' | 'year';
+export enum CalendarMode {
+    WEEK = 'week',
+    MONTH = 'month',
+    YEAR = 'year',
+}
 
 interface ICalendarHeader {}
 export const CalendarHeader = (props: ICalendarHeader) => {
-    const [mode, setMode] = useState<IMode>('week');
+    const [mode, setMode] = useState<CalendarMode>(CalendarMode.WEEK);
 
     return (
         <Container>
-            {mode === 'week' && <Week setMode={setMode} />}
-            {mode === 'month' && <Month setMode={setMode} />}
-            {mode === 'year' && <Year setMode={setMode} />}
+            {mode === CalendarMode.WEEK && <Week setMode={setMode} />}
+            {mode === CalendarMode.MONTH && <Month setMode={setMode} />}
+            {mode === CalendarMode.YEAR && <Year setMode={setMode} />}
         </Container>
     );
 };

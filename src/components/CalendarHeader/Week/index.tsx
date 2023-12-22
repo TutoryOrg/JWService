@@ -1,44 +1,14 @@
-import { useTranslation } from 'react-i18next';
-import { TouchableOpacity, View, Text } from 'react-native';
-import { days, months } from 'utils/constants';
 import { isMobile } from 'utils/scaleFunctions';
-import { IMode } from '../index';
+import { CalendarMode } from '../index';
+import { days, months } from 'utils/constants';
+import { useTranslation } from 'react-i18next';
+import { TouchableOpacity, View } from 'react-native';
 import {
-    DaysOfWeekLabelText,
-    WeekSubHeaderContainer,
     DateLabelText,
+    DaysOfWeekLabelText,
     WeekHeaderContainer,
+    WeekSubHeaderContainer,
 } from './styled';
-
-interface IWeekHeader {
-    setMode: (mode: IMode) => void;
-    month: string;
-    weekDay: string;
-    numberDay: number;
-}
-const WeekHeader = (props: IWeekHeader) => {
-    const { setMode, month, weekDay, numberDay } = props;
-    const DateLabel = () => {
-        return (
-            <View>
-                <DateLabelText children={`${numberDay}.${weekDay}`} />
-            </View>
-        );
-    };
-    const GoToMonth = (props: { setMode: (mode: IMode) => void }) => {
-        return (
-            <TouchableOpacity onPress={() => setMode('month')}>
-                <DateLabelText children={`${month}>`} />
-            </TouchableOpacity>
-        );
-    };
-    return (
-        <WeekHeaderContainer>
-            <DateLabel />
-            <GoToMonth setMode={setMode} />
-        </WeekHeaderContainer>
-    );
-};
 
 const WeekSubHeader = (props: { daysOfWeek: string[] }) => {
     const { daysOfWeek } = props;
@@ -59,8 +29,26 @@ const WeekSubHeader = (props: { daysOfWeek: string[] }) => {
     );
 };
 
+interface IWeekHeader {
+    month: string;
+    weekDay: string;
+    numberDay: number;
+    setMode: (mode: CalendarMode) => void;
+}
+const WeekHeader = (props: IWeekHeader) => {
+    const { month, weekDay, numberDay, setMode } = props;
+    return (
+        <WeekHeaderContainer>
+            <DateLabelText children={`${numberDay}.${weekDay}`} />
+            <TouchableOpacity onPress={() => setMode(CalendarMode.MONTH)}>
+                <DateLabelText children={`${month}>`} />
+            </TouchableOpacity>
+        </WeekHeaderContainer>
+    );
+};
+
 interface IWeek {
-    setMode: (mode: IMode) => void;
+    setMode: (mode: CalendarMode) => void;
 }
 export const Week = ({ setMode }: IWeek) => {
     const date = new Date();
