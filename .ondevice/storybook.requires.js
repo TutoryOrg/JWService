@@ -49,9 +49,11 @@ try {
 
 const getStories = () => {
   return {
+    "./src/components/AddHabit/AddHabit.stories.tsx": require("../src/components/AddHabit/AddHabit.stories.tsx"),
     "./src/components/Arrow/Arrow.stories.tsx": require("../src/components/Arrow/Arrow.stories.tsx"),
     "./src/components/CalendarHeader/CalendarHeader.stories.tsx": require("../src/components/CalendarHeader/CalendarHeader.stories.tsx"),
     "./src/components/DateHeader/DateHeader.stories.tsx": require("../src/components/DateHeader/DateHeader.stories.tsx"),
+    "./src/components/Habit/Habit.stories.tsx": require("../src/components/Habit/Habit.stories.tsx"),
   };
 };
 
