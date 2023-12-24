@@ -1,6 +1,8 @@
+import { Arrow } from 'components/Arrow';
 import { isMobile } from 'utils/scaleFunctions';
-import { CalendarMode } from '../index';
+import { ContainerRow } from '../styled';
 import { TouchableOpacity, View } from 'react-native';
+import { CalendarMode, Direction } from 'utils/constants';
 import {
     DateLabelText,
     DaysOfWeekLabelText,
@@ -39,7 +41,10 @@ const WeekHeader = (props: IWeekHeader) => {
         <WeekHeaderContainer>
             <DateLabelText children={`${numberDay}.${weekDay}`} />
             <TouchableOpacity onPress={() => setMode(CalendarMode.MONTH)}>
-                <DateLabelText children={`${month}>`} />
+                <ContainerRow>
+                    <DateLabelText children={month} />
+                    <Arrow direction={Direction.RIGHT} />
+                </ContainerRow>
             </TouchableOpacity>
         </WeekHeaderContainer>
     );

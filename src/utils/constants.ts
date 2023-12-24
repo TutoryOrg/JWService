@@ -13,6 +13,17 @@ export enum Screens {
     CALENDAR = 'calendar',
 }
 
+export enum Direction {
+    LEFT = 'left',
+    RIGHT = 'right',
+}
+
+export enum CalendarMode {
+    WEEK = 'week',
+    MONTH = 'month',
+    YEAR = 'year',
+}
+
 export const fontSizes = {
     small: 14,
     normal: 16,

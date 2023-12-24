@@ -1,5 +1,7 @@
-import { CalendarMode } from '../index';
-import { View, TouchableOpacity } from 'react-native';
+import { Arrow } from 'components/Arrow';
+import { ContainerRow } from '../styled';
+import { TouchableOpacity } from 'react-native';
+import { CalendarMode, Direction } from 'utils/constants';
 import { YearHeaderContainer, DateLabelText } from './styled';
 
 interface IYear {
@@ -13,7 +15,12 @@ export const Year = (props: IYear) => {
         <YearHeaderContainer>
             <TouchableOpacity
                 onPress={() => setMode(CalendarMode.MONTH)}
-                children={<DateLabelText children={`<${year}`} />}
+                children={
+                    <ContainerRow>
+                        <Arrow direction={Direction.LEFT} />
+                        <DateLabelText children={year} />
+                    </ContainerRow>
+                }
             />
         </YearHeaderContainer>
     );

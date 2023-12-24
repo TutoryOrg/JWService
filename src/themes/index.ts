@@ -3,6 +3,7 @@ import { DefaultTheme } from 'styled-components';
 
 declare module 'styled-components' {
     export interface DefaultTheme {
+        themeName: string;
         bgColor: string;
         txtColor: string;
         selected: string;
@@ -13,6 +14,7 @@ declare module 'styled-components' {
 }
 
 export const lightTheme: DefaultTheme = {
+    themeName: 'lightTheme',
     bgColor: '#FFFFFF',
     txtColor: '#000000',
     selected: '#000000',
@@ -22,6 +24,7 @@ export const lightTheme: DefaultTheme = {
 };
 
 export const darkTheme: DefaultTheme = {
+    themeName: 'darkTheme',
     bgColor: '#000000',
     txtColor: '#FFFFFF',
     selected: '#FFFFFF',
@@ -29,6 +32,3 @@ export const darkTheme: DefaultTheme = {
     borderColor: '#FFFFFF',
     gray: '#565555',
 };
-
-
-

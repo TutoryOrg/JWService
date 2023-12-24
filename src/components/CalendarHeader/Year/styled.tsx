@@ -2,6 +2,10 @@ import styled from 'styled-components/native';
 import { verticalScale } from 'utils/scaleFunctions';
 import { fontFamilies, fontSizes } from 'utils/constants';
 
+export const ContainerRow = styled.View`
+    flex-direction: row;
+`;
+
 export const DateLabelText = styled.Text`
     font-size: ${fontSizes.large}px;
     font-family: ${fontFamilies.CascadiaBold};

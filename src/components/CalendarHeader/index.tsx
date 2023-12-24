@@ -1,16 +1,13 @@
 import { Week } from './Week';
 import { Year } from './Year';
 import { Month } from './Month';
+import { useTheme } from 'styled-components/native';
 import { useState } from 'react';
 import { Container } from './styled';
 import { days, months } from 'utils/constants';
 import { useTranslation } from 'react-i18next';
-
-export enum CalendarMode {
-    WEEK = 'week',
-    MONTH = 'month',
-    YEAR = 'year',
-}
+import { fontSizes, Direction, CalendarMode } from 'utils/constants';
+import styled from 'styled-components/native';
 
 interface ICalendarHeader {}
 export const CalendarHeader = (props: ICalendarHeader) => {
