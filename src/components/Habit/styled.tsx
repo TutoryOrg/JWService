@@ -94,3 +94,34 @@ export const ShowHabitIndicator = styled(ButtonLabel)<{ isDone: boolean }>`
     color: ${props =>
         props.isDone ? props.theme.txtSelected : props.theme.gray};
 `;
+
+export const ShowCheckButton = styled.TouchableOpacity`
+    height: 80%;
+    width: ${verticalScale(80)}px;
+    justify-content: center;
+    border-radius: 7px;
+    border: 2px solid ${props => props.theme.borderColor};
+    background-color: ${props => props.theme.gray};
+`;
+
+export const ShowCheckIndicator = styled.View<{ isDone: boolean }>`
+    height: 100%;
+    width: ${verticalScale(40)}px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    border-right-width: 2px;
+    border-right-style: solid;
+    border-right-color: ${props =>
+        props.isDone ? props.theme.borderColor : props.theme.selected};
+    background-color: ${props =>
+        props.isDone ? props.theme.selected : props.theme.bgColor};
+    transform: translateX(${props => (props.isDone ? verticalScale(39) : 0)}px);
+`;
+
+export const ShowOptionsButton = styled.TouchableOpacity`
+    width: 20%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+`;

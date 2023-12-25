@@ -7,18 +7,19 @@ import {
     AddHabitLabel,
     HabitContainer,
     ShowHabitLabel,
+    ShowCheckButton,
     AddHabitContainer,
     CreateButtonLabel,
+    ShowOptionsButton,
     ShowHabitContainer,
+    ShowCheckIndicator,
+    ShowHabitIndicator,
     CreateNewHabitInput,
     CreateHabitContainer,
     CreateButtonsContainer,
     ShowHabitButtonContainer,
-    ShowHabitIndicator,
 } from './styled';
 import _ from 'lodash';
-import styled from 'styled-components/native';
-import { verticalScale } from 'utils/scaleFunctions';
 
 const ShowHabit = (props: {
     habit: string;
@@ -27,52 +28,19 @@ const ShowHabit = (props: {
 }) => {
     const { habit, isDone, setIsDone } = props;
 
-    const CheckButton = styled.TouchableOpacity`
-        height: 80%;
-        width: ${verticalScale(80)}px;
-        justify-content: center;
-        border-radius: 7px;
-        border: 2px solid ${props => props.theme.borderColor};
-        background-color: ${props => props.theme.gray};
-    `;
-
-    const CheckIndicator = styled.View<{ isDone: boolean }>`
-        height: 100%;
-        width: ${verticalScale(40)}px;
-        align-items: center;
-        justify-content: center;
-        border-radius: 5px;
-        border-right-width: 2px;
-        border-right-style: solid;
-        border-right-color: ${props =>
-            props.isDone ? props.theme.borderColor : props.theme.selected};
-        background-color: ${props =>
-            props.isDone ? props.theme.selected : props.theme.bgColor};
-        transform: translateX(
-            ${props => (props.isDone ? verticalScale(39) : 0)}px
-        );
-    `;
-
-    const OptionsButton = styled.TouchableOpacity`
-        width: 20%;
-        height: 100%;
-        align-items: center;
-        justify-content: center;
-    `;
-
     return (
         <ShowHabitContainer>
             <ShowHabitLabel children={habit} />
             <ShowHabitButtonContainer>
-                <CheckButton onPress={() => setIsDone(!isDone)}>
-                    <CheckIndicator isDone={isDone}>
+                <ShowCheckButton onPress={() => setIsDone(!isDone)}>
+                    <ShowCheckIndicator isDone={isDone}>
                         <ShowHabitIndicator
                             isDone={isDone}
                             children={isDone ? '✔' : '○'}
                         />
-                    </CheckIndicator>
-                </CheckButton>
-                <OptionsButton children={<ButtonLabel children={':'} />} />
+                    </ShowCheckIndicator>
+                </ShowCheckButton>
+                <ShowOptionsButton children={<ButtonLabel children={':'} />} />
             </ShowHabitButtonContainer>
         </ShowHabitContainer>
     );
