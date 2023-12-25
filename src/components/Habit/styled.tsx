@@ -63,14 +63,12 @@ export const CancelButton = styled.TouchableOpacity`
     border: 2px solid ${props => props.theme.borderColor};
 `;
 
-export const CreateButton = styled(CancelButton)<{ value: string }>`
+export const CreateButton = styled(CancelButton)`
     border: 2px solid
         ${props =>
-            _.isEmpty(props.value)
-                ? props.theme.gray
-                : props.theme.borderColor};
+            props.disabled ? props.theme.gray : props.theme.borderColor};
     background-color: ${props =>
-        _.isEmpty(props.value) ? props.theme.bgColor : props.theme.borderColor};
+        props.disabled ? props.theme.bgColor : props.theme.borderColor};
 `;
 
 export const ButtonLabel = styled.Text`
@@ -79,9 +77,9 @@ export const ButtonLabel = styled.Text`
     font-size: ${fontSizes.large + verticalScale(2)}px;
 `;
 
-export const CreateButtonLabel = styled(ButtonLabel)<{ value: string }>`
+export const CreateButtonLabel = styled(ButtonLabel)<{ disabled: boolean }>`
     color: ${props =>
-        _.isEmpty(props.value) ? props.theme.gray : props.theme.txtSelected};
+        props.disabled ? props.theme.gray : props.theme.txtSelected};
 `;
 
 export const ShowHabitContainer = styled(CreateHabitContainer)``;

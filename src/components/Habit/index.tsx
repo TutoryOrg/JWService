@@ -52,8 +52,8 @@ const ShowHabit = (props: {
                         <ShowEditOptButtons
                             onPress={() => {
                                 setHabit('');
-                                setMode(EHabit.ADD);
                                 setIsDone(false);
+                                setMode(EHabit.ADD);
                                 setIsEditOpt(false);
                             }}
                             children={<ShowBasketButtonLabel children={'🗑'} />}
@@ -88,9 +88,15 @@ export const CreateHabit = (props: {
     const [editValue, setEditValue] = useState<string>('');
     console.log({ editValue });
     console.log({ mode });
+    const vbo =
+        (mode === EHabit.EDIT && _.isEmpty(editValue)) ||
+        (mode === EHabit.CREATE && _.isEmpty(habit));
+    console.log({ vbo });
+    console.log(_.isEmpty(editValue));
     return (
         <CreateHabitContainer>
             <CreateNewHabitInput
+                maxLength={15}
                 value={mode === EHabit.EDIT ? editValue : habit}
                 autoFocus={true}
                 placeholder={_.isEmpty(habit) ? 'new habit' : habit}
@@ -124,10 +130,19 @@ export const CreateHabit = (props: {
                             setHabit(editValue);
                         }
                     }}
-                    value={habit}
-                    disabled={_.isEmpty(habit)}
+                    disabled={
+                        (mode === EHabit.EDIT && _.isEmpty(editValue)) ||
+                        (mode === EHabit.CREATE && _.isEmpty(habit))
+                    }
                     children={
-                        <CreateButtonLabel value={habit} children={'✔'} />
+                        <CreateButtonLabel
+                            disabled={
+                                (mode === EHabit.EDIT &&
+                                    _.isEmpty(editValue)) ||
+                                (mode === EHabit.CREATE && _.isEmpty(habit))
+                            }
+                            children={'✔'}
+                        />
                     }
                 />
             </CreateButtonsContainer>
