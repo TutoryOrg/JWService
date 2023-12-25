@@ -1,9 +1,44 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { AddHabitLabel, AddHabitContainer, HabitContainer } from './styled';
+import {
+    AddHabitLabel,
+    NewHabitInput,
+    HabitContainer,
+    AddHabitContainer,
+    CreateHabitContainer,
+    HabitButtonsContainer,
+    CancelButton,
+    CreateButton,
+    TextButton,
+    CreateText,
+} from './styled';
+import _ from 'lodash';
 
-export const CreateHabitContainer = () => {
-    return <></>;
+export const CreateHabit = (props: { onCancel: Function }) => {
+    const { onCancel } = props;
+    const [value, setValue] = useState<string>('');
+    return (
+        <CreateHabitContainer>
+            <NewHabitInput
+                value={value}
+                autoFocus={true}
+                placeholder={'new habit'}
+                placeholderTextColor={'gray'}
+                onChangeText={txt => setValue(txt)}
+            />
+            <HabitButtonsContainer>
+                <CancelButton
+                    onPress={() => onCancel()}
+                    children={<TextButton children={'x'} />}
+                />
+                <CreateButton
+                    value={value}
+                    disabled={_.isEmpty(value)}
+                    children={<CreateText value={value} children={'✔'} />}
+                />
+            </HabitButtonsContainer>
+        </CreateHabitContainer>
+    );
 };
 
 enum EHabit {
@@ -13,7 +48,6 @@ enum EHabit {
 }
 export const Habit = (props: {}) => {
     const { t } = useTranslation();
-    const [habit, setHabit] = useState<string>('');
     const [mode, setMode] = useState<EHabit>(EHabit.ADD);
 
     return (
@@ -24,7 +58,9 @@ export const Habit = (props: {}) => {
                     children={<AddHabitLabel children={t('addHabit')} />}
                 />
             )}
-            {mode === EHabit.CREATE && <CreateHabitContainer />}
+            {mode === EHabit.CREATE && (
+                <CreateHabit onCancel={() => setMode(EHabit.ADD)} />
+            )}
         </HabitContainer>
     );
 };
