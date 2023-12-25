@@ -27,20 +27,28 @@ const ShowHabit = (props: {
     setIsDone: (done: boolean) => void;
 }) => {
     const { habit, isDone, setIsDone } = props;
+    const [isEditOpt, setIsEditOpt] = useState<boolean>(false);
 
     return (
         <ShowHabitContainer>
             <ShowHabitLabel children={habit} />
             <ShowHabitButtonContainer>
-                <ShowCheckButton onPress={() => setIsDone(!isDone)}>
-                    <ShowCheckIndicator isDone={isDone}>
-                        <ShowHabitIndicator
-                            isDone={isDone}
-                            children={isDone ? '✔' : '○'}
-                        />
-                    </ShowCheckIndicator>
-                </ShowCheckButton>
-                <ShowOptionsButton children={<ButtonLabel children={':'} />} />
+                {isEditOpt ? (
+                    <></>
+                ) : (
+                    <ShowCheckButton onPress={() => setIsDone(!isDone)}>
+                        <ShowCheckIndicator isDone={isDone}>
+                            <ShowHabitIndicator
+                                isDone={isDone}
+                                children={isDone ? '✔' : '○'}
+                            />
+                        </ShowCheckIndicator>
+                    </ShowCheckButton>
+                )}
+                <ShowOptionsButton
+                    onPress={() => setIsEditOpt(!isEditOpt)}
+                    children={<ButtonLabel children={':'} />}
+                />
             </ShowHabitButtonContainer>
         </ShowHabitContainer>
     );
