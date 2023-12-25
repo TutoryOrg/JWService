@@ -15,18 +15,24 @@ import {
     ShowCheckIndicator,
     ShowHabitIndicator,
     CreateNewHabitInput,
+    ShowEditButtonLabel,
+    ShowBasketButtonLabel,
+    ShowOptionsContainer,
     CreateHabitContainer,
     CreateButtonsContainer,
     ShowHabitButtonContainer,
+    ShowEditOptButtons,
 } from './styled';
 import _ from 'lodash';
 
 const ShowHabit = (props: {
     habit: string;
     isDone: boolean;
+    setMode: (mode: EHabit) => void;
+    setHabit: (habit: string) => void;
     setIsDone: (done: boolean) => void;
 }) => {
-    const { habit, isDone, setIsDone } = props;
+    const { habit, isDone, setMode, setHabit, setIsDone } = props;
     const [isEditOpt, setIsEditOpt] = useState<boolean>(false);
 
     return (
@@ -34,7 +40,25 @@ const ShowHabit = (props: {
             <ShowHabitLabel children={habit} />
             <ShowHabitButtonContainer>
                 {isEditOpt ? (
-                    <></>
+                    <ShowOptionsContainer>
+                        <ShowEditOptButtons
+                            onPress={() => {
+                                setIsDone(false);
+                                setIsEditOpt(false);
+                                setMode(EHabit.EDIT);
+                            }}
+                            children={<ShowEditButtonLabel children={'✎'} />}
+                        />
+                        <ShowEditOptButtons
+                            onPress={() => {
+                                setHabit('');
+                                setMode(EHabit.ADD);
+                                setIsDone(false);
+                                setIsEditOpt(false);
+                            }}
+                            children={<ShowBasketButtonLabel children={'🗑'} />}
+                        />
+                    </ShowOptionsContainer>
                 ) : (
                     <ShowCheckButton onPress={() => setIsDone(!isDone)}>
                         <ShowCheckIndicator isDone={isDone}>
@@ -56,29 +80,50 @@ const ShowHabit = (props: {
 
 export const CreateHabit = (props: {
     habit: string;
+    mode: EHabit;
     setHabit: Function;
     setMode: (mode: EHabit) => void;
 }) => {
-    const { habit, setHabit, setMode } = props;
+    const { habit, mode, setHabit, setMode } = props;
+    const [editValue, setEditValue] = useState<string>('');
+    console.log({ editValue });
+    console.log({ mode });
     return (
         <CreateHabitContainer>
             <CreateNewHabitInput
-                value={habit}
+                value={mode === EHabit.EDIT ? editValue : habit}
                 autoFocus={true}
                 placeholder={_.isEmpty(habit) ? 'new habit' : habit}
                 placeholderTextColor={'gray'}
-                onChangeText={txt => setHabit(txt)}
+                onChangeText={txt => {
+                    if (mode == EHabit.CREATE) {
+                        setHabit(txt);
+                    }
+                    if (mode == EHabit.EDIT) {
+                        setEditValue(txt);
+                    }
+                }}
             />
             <CreateButtonsContainer>
                 <CancelButton
                     onPress={() => {
-                        setHabit('');
-                        setMode(EHabit.ADD);
+                        if (mode == EHabit.CREATE) {
+                            setHabit('');
+                            setMode(EHabit.ADD);
+                        }
+                        if (mode == EHabit.EDIT) {
+                            setMode(EHabit.SHOW);
+                        }
                     }}
                     children={<ButtonLabel children={'x'} />}
                 />
                 <CreateButton
-                    onPress={() => setMode(EHabit.SHOW)}
+                    onPress={() => {
+                        setMode(EHabit.SHOW);
+                        if (mode == EHabit.EDIT) {
+                            setHabit(editValue);
+                        }
+                    }}
                     value={habit}
                     disabled={_.isEmpty(habit)}
                     children={
@@ -113,9 +158,10 @@ export const Habit = (props: {}) => {
                 />
             )}
 
-            {mode === EHabit.CREATE && (
+            {(mode === EHabit.CREATE || mode === EHabit.EDIT) && (
                 <CreateHabit
                     habit={habit}
+                    mode={mode}
                     setMode={setMode}
                     setHabit={setHabit}
                 />
@@ -125,6 +171,8 @@ export const Habit = (props: {}) => {
                 <ShowHabit
                     habit={habit}
                     isDone={isDone}
+                    setMode={setMode}
+                    setHabit={setHabit}
                     setIsDone={setIsDone}
                 />
             )}

@@ -125,3 +125,23 @@ export const ShowOptionsButton = styled.TouchableOpacity`
     align-items: center;
     justify-content: center;
 `;
+
+export const ShowOptionsContainer = styled(CreateHabitContainer)`
+    width: ${verticalScale(100)}px;
+`;
+
+export const ShowEditOptButtons = styled(CancelButton)`
+    background-color: ${props => props.theme.borderColor};
+    width: ${verticalScale(45)}px;
+`;
+
+export const ShowBasketButtonLabel = styled(ButtonLabel)`
+    color: ${props => props.theme.txtSelected};
+    font-size: ${fontSizes.large + verticalScale(2)}px;
+    padding-top: ${verticalScale(5)}px;
+`;
+
+export const ShowEditButtonLabel = styled(ShowBasketButtonLabel)`
+    font-size: ${fontSizes.large + verticalScale(10)}px;
+    transform: rotate(90deg);
+`;
