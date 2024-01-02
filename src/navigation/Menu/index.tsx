@@ -1,5 +1,7 @@
+import { Today } from 'screens';
+import { Screens } from 'utils/constants';
 import { useTranslation } from 'react-i18next';
-import { memo, useState } from 'react';
+import { memo, useMemo, useState } from 'react';
 import {
     Content,
     IOption,
@@ -45,17 +47,17 @@ export const SideMenu = memo((props: ISideMenu) => {
 export function Menu(props: { onLayoutRootView: () => Promise<void> }) {
     const { onLayoutRootView } = props;
     const [options, setOptions] = useState(initOptions);
-    // const selected = useMemo(
-    //     () => options.find(op => op.selected === true)?.text,
-    //     [options]
-    // );
+    const selected = useMemo(
+        () => options.find(op => op.selected === true)?.text,
+        [options]
+    );
 
     return (
         <MenuContainer onLayout={onLayoutRootView}>
             <SideMenu options={options} setOptions={setOptions} />
             <Content>
-                {/* 
                 {selected === Screens.TODAY && <Today />}
+                {/* 
                 {selected === Screens.GOALS && <Goals />}
                 {selected === Screens.PROFILE && <Profile />}
                 {selected === Screens.CALENDAR && <Calendar />}

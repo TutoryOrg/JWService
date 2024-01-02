@@ -1,1 +1,2 @@
-console.log('index.ts');
+import { Today } from './Today';
+export { Today };
