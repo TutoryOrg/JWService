@@ -66,10 +66,13 @@ export const ProgressCircle = (props: IProgressCircle) => {
     );
 };
 
-export const DateHeader = () => {
-    const date = new Date();
+interface IDateHeader {
+    date: Date;
+    progress: number;
+}
+export const DateHeader = (props: IDateHeader) => {
+    const { date, progress } = props;
     const { t } = useTranslation();
-    const progress: number = 90;
     const month = months[date.getMonth()];
     const weekDay = days[date.getDay()];
     const numberDay = date.getDate();

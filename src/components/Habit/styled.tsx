@@ -6,6 +6,7 @@ import _ from 'lodash';
 export const HabitContainer = styled.View`
     width: 100%;
     height: ${verticalScale(40)}px;
+    margin-top: ${verticalScale(10)}px;
     border-radius: 7px;
     border: 2px solid ${props => props.theme.borderColor};
     padding-left: ${verticalScale(15)}px;
@@ -34,7 +35,7 @@ export const CreateHabitContainer = styled.View`
 `;
 
 export const CreateNewHabitInput = styled.TextInput<{ value: string }>`
-    width: 70%;
+    width: 50%;
     height: 100%;
     color: ${props => props.theme.txtColor};
     font-size: ${fontSizes.normal}px;
@@ -55,7 +56,7 @@ export const CreateButtonsContainer = styled.View`
 `;
 
 export const CancelButton = styled.TouchableOpacity`
-    height: 80%;
+    height: 85%;
     width: ${verticalScale(50)}px;
     align-items: center;
     justify-content: center;
@@ -75,6 +76,7 @@ export const ButtonLabel = styled.Text`
     color: ${props => props.theme.txtColor};
     font-family: ${fontFamilies.CascadiaBold};
     font-size: ${fontSizes.large + verticalScale(2)}px;
+    text-align: center;
 `;
 
 export const CreateButtonLabel = styled(ButtonLabel)<{ disabled: boolean }>`

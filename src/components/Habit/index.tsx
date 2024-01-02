@@ -86,13 +86,10 @@ export const CreateHabit = (props: {
 }) => {
     const { habit, mode, setHabit, setMode } = props;
     const [editValue, setEditValue] = useState<string>('');
-    console.log({ editValue });
-    console.log({ mode });
     const vbo =
         (mode === EHabit.EDIT && _.isEmpty(editValue)) ||
         (mode === EHabit.CREATE && _.isEmpty(habit));
-    console.log({ vbo });
-    console.log(_.isEmpty(editValue));
+
     return (
         <CreateHabitContainer>
             <CreateNewHabitInput
