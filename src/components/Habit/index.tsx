@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { isMobile } from 'utils/scaleFunctions';
 import { useTranslation } from 'react-i18next';
 import {
     ButtonLabel,
@@ -86,16 +87,13 @@ export const CreateHabit = (props: {
 }) => {
     const { habit, mode, setHabit, setMode } = props;
     const [editValue, setEditValue] = useState<string>('');
-    const vbo =
-        (mode === EHabit.EDIT && _.isEmpty(editValue)) ||
-        (mode === EHabit.CREATE && _.isEmpty(habit));
 
     return (
         <CreateHabitContainer>
             <CreateNewHabitInput
-                maxLength={15}
-                value={mode === EHabit.EDIT ? editValue : habit}
                 autoFocus={true}
+                maxLength={isMobile ? 12 : 20}
+                value={mode === EHabit.EDIT ? editValue : habit}
                 placeholder={_.isEmpty(habit) ? 'new habit' : habit}
                 placeholderTextColor={'gray'}
                 onChangeText={txt => {

@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
-import { verticalScale } from 'utils/scaleFunctions';
+import { isMobile, verticalScale } from 'utils/scaleFunctions';
 import { fontSizes, fontFamilies } from 'utils/constants';
+
 import _ from 'lodash';
 
 export const HabitContainer = styled.View`
@@ -86,7 +87,13 @@ export const CreateButtonLabel = styled(ButtonLabel)<{ disabled: boolean }>`
 
 export const ShowHabitContainer = styled(CreateHabitContainer)``;
 
-export const ShowHabitLabel = styled(ButtonLabel)``;
+export const ShowHabitLabel = styled(ButtonLabel)`
+    width: 50%;
+    text-align: left;
+    font-size: ${isMobile
+        ? fontSizes.large
+        : fontSizes.large + verticalScale(2)}px;
+`;
 
 export const ShowHabitButtonContainer = styled(CreateButtonsContainer)``;
 
