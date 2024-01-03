@@ -81,7 +81,7 @@ export const ButtonLabel = styled.Text`
 `;
 
 export const IconsLabel = styled(ButtonLabel)`
-    bottom: ${isMobile ? 5 : 0}px;
+    bottom: ${isMobile ? verticalScale(2) : 0}px;
 `;
 
 export const CreateButtonLabel = styled(IconsLabel)<{ disabled: boolean }>`
@@ -157,7 +157,7 @@ export const ShowBasketButtonLabel = styled(IconsLabel)`
 export const ShowEditButtonLabel = styled(ButtonLabel)`
     color: ${props => props.theme.txtSelected};
     font-size: ${isMobile
-        ? fontSizes.large
+        ? fontSizes.large + verticalScale(2)
         : fontSizes.large + verticalScale(10)}px;
     height: 110%;
     width: 100%;
