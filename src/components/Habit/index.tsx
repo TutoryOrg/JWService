@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { isMobile } from 'utils/scaleFunctions';
 import { useTranslation } from 'react-i18next';
 import {
+    IconsLabel,
     ButtonLabel,
     CancelButton,
     CreateButton,
@@ -92,10 +93,10 @@ export const CreateHabit = (props: {
         <CreateHabitContainer>
             <CreateNewHabitInput
                 autoFocus={true}
-                maxLength={isMobile ? 12 : 20}
-                value={mode === EHabit.EDIT ? editValue : habit}
-                placeholder={_.isEmpty(habit) ? 'new habit' : habit}
+                maxLength={isMobile ? 10 : 20}
                 placeholderTextColor={'gray'}
+                placeholder={_.isEmpty(habit) ? 'new habit' : habit}
+                value={mode === EHabit.EDIT ? editValue : habit}
                 onChangeText={txt => {
                     if (mode == EHabit.CREATE) {
                         setHabit(txt);
@@ -116,7 +117,7 @@ export const CreateHabit = (props: {
                             setMode(EHabit.SHOW);
                         }
                     }}
-                    children={<ButtonLabel children={'x'} />}
+                    children={<IconsLabel children={'x'} />}
                 />
                 <CreateButton
                     onPress={() => {

@@ -80,7 +80,11 @@ export const ButtonLabel = styled.Text`
     text-align: center;
 `;
 
-export const CreateButtonLabel = styled(ButtonLabel)<{ disabled: boolean }>`
+export const IconsLabel = styled(ButtonLabel)`
+    bottom: ${isMobile ? 5 : 0}px;
+`;
+
+export const CreateButtonLabel = styled(IconsLabel)<{ disabled: boolean }>`
     color: ${props =>
         props.disabled ? props.theme.gray : props.theme.txtSelected};
 `;
@@ -97,7 +101,7 @@ export const ShowHabitLabel = styled(ButtonLabel)`
 
 export const ShowHabitButtonContainer = styled(CreateButtonsContainer)``;
 
-export const ShowHabitIndicator = styled(ButtonLabel)<{ isDone: boolean }>`
+export const ShowHabitIndicator = styled(IconsLabel)<{ isDone: boolean }>`
     color: ${props =>
         props.isDone ? props.theme.txtSelected : props.theme.gray};
 `;
@@ -142,13 +146,20 @@ export const ShowEditOptButtons = styled(CancelButton)`
     width: ${verticalScale(45)}px;
 `;
 
-export const ShowBasketButtonLabel = styled(ButtonLabel)`
+export const ShowBasketButtonLabel = styled(IconsLabel)`
     color: ${props => props.theme.txtSelected};
-    font-size: ${fontSizes.large + verticalScale(2)}px;
+    font-size: ${isMobile
+        ? fontSizes.large
+        : fontSizes.large + verticalScale(10)}px;
     padding-top: ${verticalScale(5)}px;
 `;
 
-export const ShowEditButtonLabel = styled(ShowBasketButtonLabel)`
-    font-size: ${fontSizes.large + verticalScale(10)}px;
-    transform: rotate(90deg);
+export const ShowEditButtonLabel = styled(ButtonLabel)`
+    color: ${props => props.theme.txtSelected};
+    font-size: ${isMobile
+        ? fontSizes.large
+        : fontSizes.large + verticalScale(10)}px;
+    height: 110%;
+    width: 100%;
+    transform: ${isMobile ? '' : 'rotate(90deg)'};
 `;
