@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { IHabit } from 'screens/Today';
+import { useEffect, useState } from 'react';
 import { isMobile } from 'utils/scaleFunctions';
 import { useTranslation } from 'react-i18next';
 import {
@@ -28,45 +29,42 @@ import {
 import _ from 'lodash';
 
 const ShowHabit = (props: {
-    habit: string;
-    isDone: boolean;
-    setMode: (mode: EHabit) => void;
-    setHabit: (habit: string) => void;
-    setIsDone: (done: boolean) => void;
+    habit: IHabit;
+    setMode: (mode: EnumHabit) => void;
+    removeHabit: (rHabit: IHabit) => void;
 }) => {
-    const { habit, isDone, setMode, setHabit, setIsDone } = props;
+    const { habit, setMode, removeHabit } = props;
     const [isEditOpt, setIsEditOpt] = useState<boolean>(false);
 
     return (
         <ShowHabitContainer>
-            <ShowHabitLabel children={habit} />
+            <ShowHabitLabel children={habit.label} />
             <ShowHabitButtonContainer>
                 {isEditOpt ? (
                     <ShowOptionsContainer>
                         <ShowEditOptButtons
                             onPress={() => {
-                                setIsDone(false);
                                 setIsEditOpt(false);
-                                setMode(EHabit.EDIT);
+                                setMode(EnumHabit.EDIT);
                             }}
                             children={<ShowEditButtonLabel children={'✎'} />}
                         />
                         <ShowEditOptButtons
                             onPress={() => {
-                                setHabit('');
-                                setIsDone(false);
-                                setMode(EHabit.ADD);
                                 setIsEditOpt(false);
+                                removeHabit(habit);
+                                // setMode(EnumHabit.ADD);
                             }}
                             children={<ShowBasketButtonLabel children={'🗑'} />}
                         />
                     </ShowOptionsContainer>
                 ) : (
-                    <ShowCheckButton onPress={() => setIsDone(!isDone)}>
-                        <ShowCheckIndicator isDone={isDone}>
+                    <ShowCheckButton
+                        onPress={() => console.log('setIsDone(!isDone)')}>
+                        <ShowCheckIndicator isDone={habit.isDone}>
                             <ShowHabitIndicator
-                                isDone={isDone}
-                                children={isDone ? '✔' : '○'}
+                                isDone={habit.isDone}
+                                children={habit.isDone ? '✔' : '○'}
                             />
                         </ShowCheckIndicator>
                     </ShowCheckButton>
@@ -81,12 +79,13 @@ const ShowHabit = (props: {
 };
 
 export const CreateHabit = (props: {
-    habit: string;
-    mode: EHabit;
-    setHabit: Function;
-    setMode: (mode: EHabit) => void;
+    label: string;
+    mode: EnumHabit;
+    setMode: (mode: EnumHabit) => void;
+    addHabit: (habit: IHabit) => void;
 }) => {
-    const { habit, mode, setHabit, setMode } = props;
+    const { label, mode, setMode, addHabit } = props;
+    const [value, setValue] = useState<string>(label);
     const [editValue, setEditValue] = useState<string>('');
 
     return (
@@ -95,13 +94,13 @@ export const CreateHabit = (props: {
                 autoFocus={true}
                 maxLength={isMobile ? 10 : 20}
                 placeholderTextColor={'gray'}
-                placeholder={_.isEmpty(habit) ? 'new habit' : habit}
-                value={mode === EHabit.EDIT ? editValue : habit}
+                placeholder={_.isEmpty(value) ? 'new habit' : value}
+                value={mode === EnumHabit.EDIT ? editValue : value}
                 onChangeText={txt => {
-                    if (mode == EHabit.CREATE) {
-                        setHabit(txt);
+                    if (mode == EnumHabit.CREATE) {
+                        setValue(txt);
                     }
-                    if (mode == EHabit.EDIT) {
+                    if (mode == EnumHabit.EDIT) {
                         setEditValue(txt);
                     }
                 }}
@@ -109,33 +108,51 @@ export const CreateHabit = (props: {
             <CreateButtonsContainer>
                 <CancelButton
                     onPress={() => {
-                        if (mode == EHabit.CREATE) {
-                            setHabit('');
-                            setMode(EHabit.ADD);
+                        if (_.isEmpty(label) && mode == EnumHabit.CREATE) {
+                            setValue('');
+                            setMode(EnumHabit.ADD);
                         }
-                        if (mode == EHabit.EDIT) {
-                            setMode(EHabit.SHOW);
+                        if (!_.isEmpty(label) && mode == EnumHabit.CREATE) {
+                            setValue('');
+                            setMode(EnumHabit.SHOW);
+                        }
+                        if (mode == EnumHabit.EDIT) {
+                            setMode(EnumHabit.SHOW);
                         }
                     }}
                     children={<IconsLabel children={'x'} />}
                 />
                 <CreateButton
                     onPress={() => {
-                        setMode(EHabit.SHOW);
-                        if (mode == EHabit.EDIT) {
-                            setHabit(editValue);
+                        if (!_.isEmpty(label) && mode == EnumHabit.CREATE) {
+                            // addHabit({ label: value, isDone: false });
+                            console.log('editHabit');
+                            setMode(EnumHabit.ADD);
+                        }
+                        if (mode == EnumHabit.CREATE) {
+                            setMode(
+                                _.isEmpty(label)
+                                    ? EnumHabit.ADD
+                                    : EnumHabit.SHOW
+                            );
+                            // setMode(EnumHabit.ADD);
+                            addHabit({ label: value, isDone: false });
+                        }
+                        if (mode == EnumHabit.EDIT) {
+                            setMode(EnumHabit.SHOW);
+                            setValue(editValue);
                         }
                     }}
                     disabled={
-                        (mode === EHabit.EDIT && _.isEmpty(editValue)) ||
-                        (mode === EHabit.CREATE && _.isEmpty(habit))
+                        (mode === EnumHabit.EDIT && _.isEmpty(editValue)) ||
+                        (mode === EnumHabit.CREATE && _.isEmpty(value))
                     }
                     children={
                         <CreateButtonLabel
                             disabled={
-                                (mode === EHabit.EDIT &&
+                                (mode === EnumHabit.EDIT &&
                                     _.isEmpty(editValue)) ||
-                                (mode === EHabit.CREATE && _.isEmpty(habit))
+                                (mode === EnumHabit.CREATE && _.isEmpty(value))
                             }
                             children={'✔'}
                         />
@@ -146,45 +163,50 @@ export const CreateHabit = (props: {
     );
 };
 
-enum EHabit {
+enum EnumHabit {
     ADD = 'add',
     CREATE = 'create',
     SHOW = 'show',
     EDIT = 'edit',
 }
-export const Habit = (props: {}) => {
+export const Habit = (props: {
+    habit: IHabit;
+    addHabit: (h: IHabit) => void;
+    removeHabit: (h: IHabit) => void;
+}) => {
+    const { habit, addHabit, removeHabit } = props;
     const { t } = useTranslation();
-    const [habit, setHabit] = useState<string>('');
-    const [isDone, setIsDone] = useState<boolean>(false);
-    const [mode, setMode] = useState<EHabit>(
-        _.isEmpty(habit) ? EHabit.ADD : EHabit.SHOW
+
+    const [mode, setMode] = useState<EnumHabit>(
+        _.isEmpty(habit.label) ? EnumHabit.ADD : EnumHabit.SHOW
     );
+
+    console.log(habit.label);
+    console.log(_.isEmpty(habit.label));
 
     return (
         <HabitContainer>
-            {mode === EHabit.ADD && (
+            {mode === EnumHabit.ADD && (
                 <AddHabitContainer
-                    onPress={() => setMode(EHabit.CREATE)}
+                    onPress={() => setMode(EnumHabit.CREATE)}
                     children={<AddHabitLabel children={t('addHabit')} />}
                 />
             )}
 
-            {(mode === EHabit.CREATE || mode === EHabit.EDIT) && (
+            {(mode === EnumHabit.CREATE || mode === EnumHabit.EDIT) && (
                 <CreateHabit
-                    habit={habit}
                     mode={mode}
+                    label={habit.label}
                     setMode={setMode}
-                    setHabit={setHabit}
+                    addHabit={addHabit}
                 />
             )}
 
-            {mode === EHabit.SHOW && (
+            {mode === EnumHabit.SHOW && (
                 <ShowHabit
                     habit={habit}
-                    isDone={isDone}
                     setMode={setMode}
-                    setHabit={setHabit}
-                    setIsDone={setIsDone}
+                    removeHabit={removeHabit}
                 />
             )}
         </HabitContainer>
