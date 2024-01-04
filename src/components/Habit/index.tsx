@@ -1,5 +1,5 @@
 import { IHabit } from 'screens/Today';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { isMobile } from 'utils/scaleFunctions';
 import { useTranslation } from 'react-i18next';
 import {
