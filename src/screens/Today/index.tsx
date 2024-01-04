@@ -26,8 +26,6 @@ export const Today = () => {
         setHabits(prev => prev.filter(h => h.label !== delHabit.label));
     };
 
-    console.log(habits);
-
     return (
         <TodayCotainer>
             <DateHeader date={date} progress={25} />

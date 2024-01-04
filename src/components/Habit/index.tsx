@@ -126,7 +126,6 @@ export const CreateHabit = (props: {
                     onPress={() => {
                         if (!_.isEmpty(label) && mode == EnumHabit.CREATE) {
                             // addHabit({ label: value, isDone: false });
-                            console.log('editHabit');
                             setMode(EnumHabit.ADD);
                         }
                         if (mode == EnumHabit.CREATE) {
@@ -180,9 +179,6 @@ export const Habit = (props: {
     const [mode, setMode] = useState<EnumHabit>(
         _.isEmpty(habit.label) ? EnumHabit.ADD : EnumHabit.SHOW
     );
-
-    console.log(habit.label);
-    console.log(_.isEmpty(habit.label));
 
     return (
         <HabitContainer>
