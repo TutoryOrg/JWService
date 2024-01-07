@@ -1,3 +1,4 @@
+import { genUid } from 'light-uid';
 import { IHabit } from 'screens/Today';
 import { useState } from 'react';
 import { isMobile } from 'utils/scaleFunctions';
@@ -27,7 +28,6 @@ import {
     ShowEditOptButtons,
 } from './styled';
 import _ from 'lodash';
-import { genUid } from 'light-uid';
 
 const ShowHabit = (props: {
     habit: IHabit;
