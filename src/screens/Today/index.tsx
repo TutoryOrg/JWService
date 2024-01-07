@@ -3,11 +3,13 @@ import { TodayCotainer } from './styled';
 import { DateHeader, Habit } from 'components';
 
 export interface IHabit {
+    id: string;
     label: string;
     isDone: boolean;
 }
 
 export const emptyHabit: IHabit = {
+    id: '',
     label: '',
     isDone: false,
 };
@@ -26,6 +28,10 @@ export const Today = () => {
         setHabits(prev => prev.filter(h => h.label !== delHabit.label));
     };
 
+    const editHabit = (edHabit: IHabit) => {
+        setHabits(prev => prev.map(h => (h.id === edHabit.id ? edHabit : h)));
+    };
+
     return (
         <TodayCotainer>
             <DateHeader date={date} progress={25} />
@@ -34,12 +40,14 @@ export const Today = () => {
                     key={index}
                     habit={habit}
                     addHabit={addHabit}
+                    editHabit={editHabit}
                     removeHabit={removeHabit}
                 />
             ))}
             <Habit
                 habit={emptyHabit}
                 addHabit={addHabit}
+                editHabit={editHabit}
                 removeHabit={removeHabit}
             />
         </TodayCotainer>
