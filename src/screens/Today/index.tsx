@@ -25,7 +25,7 @@ export const Today = () => {
     };
 
     const removeHabit = (delHabit: IHabit) => {
-        setHabits(prev => prev.filter(h => h.label !== delHabit.label));
+        setHabits(prev => prev.filter(h => h.id !== delHabit.id));
     };
 
     const editHabit = (edHabit: IHabit) => {
@@ -44,12 +44,14 @@ export const Today = () => {
                     removeHabit={removeHabit}
                 />
             ))}
-            <Habit
-                habit={emptyHabit}
-                addHabit={addHabit}
-                editHabit={editHabit}
-                removeHabit={removeHabit}
-            />
+            {habits.length < 5 && (
+                <Habit
+                    habit={emptyHabit}
+                    addHabit={addHabit}
+                    editHabit={editHabit}
+                    removeHabit={removeHabit}
+                />
+            )}
         </TodayCotainer>
     );
 };

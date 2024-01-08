@@ -56,11 +56,11 @@ export const months = [
 ];
 
 export const days = [
+    'sunday',
     'monday',
     'tuesday',
     'wednesday',
     'thusday',
     'friday',
     'saturday',
-    'sunday',
 ];
