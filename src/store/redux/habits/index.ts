@@ -13,7 +13,7 @@ interface ISavedHabits {
 const initialState: ISavedHabits = { savedHabits: [] };
 
 const habitsSlice = createSlice({
-    name: 'user',
+    name: 'habits',
     initialState,
     reducers: {
         setSavedHabits(state, action: PayloadAction<ISavedHabits>) {

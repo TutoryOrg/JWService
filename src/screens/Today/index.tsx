@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { TodayCotainer } from './styled';
+import { useAppDispatch } from 'store/redux';
+import { setSavedHabits } from 'store/redux/habits';
 import { DateHeader, Habit } from 'components';
 
 export interface IHabit {
@@ -18,10 +20,12 @@ const savedHabits: IHabit[] = [];
 
 export const Today = () => {
     const date = new Date();
+    const dispatch = useAppDispatch();
     const [habits, setHabits] = useState<IHabit[]>(savedHabits);
 
     const addHabit = (newHabit: IHabit) => {
         setHabits(prev => [...prev, newHabit]);
+        dispatch(setSavedHabits());
     };
 
     const removeHabit = (delHabit: IHabit) => {

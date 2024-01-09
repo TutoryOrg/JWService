@@ -1,0 +1,79 @@
+[
+    {
+        "typeQuestion": "whowas",
+        "question": "Who was Lorem Ipsum?",
+        "correctAnswer": "A",
+        "clue": "Lorem Ipsum",
+        "options": {
+            "A": "Sheets",
+            "B": "Letraset",
+            "C": "Containing"
+        }
+    },
+    {
+        "typeQuestion": "whowas",
+        "question": "Whow was Lorem Ipsum?",
+        "correctAnswer": "B",
+        "clue": "Ipsum Lorem",
+        "options": {
+            "A": "Stalyn",
+            "B": "David",
+            "C": "Alcocer"
+        }
+    },
+    {
+        "typeQuestion": "whosaid",
+        "question": "Who said Lorem Ipsum?",
+        "correctAnswer": "A",
+        "clue": "Lorem Ipsum",
+        "options": {
+            "A": "Sheets",
+            "B": "Letraset",
+            "C": "Containing"
+        }
+    },
+    {
+        "typeQuestion": "history",
+        "question": "History Lorem Ipsum?",
+        "correctAnswer": "A",
+        "clue": "Lorem Ipsum",
+        "options": {
+            "A": "Sheets",
+            "B": "Letraset",
+            "C": "Containing"
+        }
+    },
+    {
+        "typeQuestion": "prophecies",
+        "question": "Prophecies Lorem Ipsum?",
+        "correctAnswer": "A",
+        "clue": "Lorem Ipsum",
+        "options": {
+            "A": "Sheets",
+            "B": "Letraset",
+            "C": "Containing"
+        }
+    },
+    {
+        "typeQuestion": "history",
+        "question": "History 2 Lorem Ipsum?",
+        "correctAnswer": "A",
+        "clue": "Lorem Ipsum",
+        "options": {
+            "A": "Sheets",
+            "B": "Letraset",
+            "C": "Containing"
+        }
+    },
+    {
+        "typeQuestion": "prophecies",
+        "question": "Prophecies 2 Lorem Ipsum?",
+        "correctAnswer": "B",
+        "clue": "Lorem Ipsum",
+        "options": {
+            "A": "Sheets",
+            "B": "Letraset",
+            "C": "Containing"
+        }
+    }
+]

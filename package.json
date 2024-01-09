@@ -8,6 +8,7 @@
         "android": "expo start --android",
         "ios": "expo start --ios",
         "web": "expo start --web",
+        "mock:api": "json-server --watch src/mock/db.js --port 3010 --routes src/mock/routes.json --middlewares src/mock/middleware.js --delay 500 --static src/mock/files",
         "eject": "expo eject",
         "build-storybook": "build-storybook",
         "storybook:web": "npm run storybook-generate && start-storybook -p 6006",
@@ -71,6 +72,7 @@
         "babel-plugin-module-resolver": "^5.0.0",
         "babel-plugin-react-docgen-typescript": "^1.5.1",
         "cross-env": "^7.0.3",
+        "json-server": "^0.17.4",
         "light-uid": "^1.1.0",
         "typescript": "^4.9.4"
     },
