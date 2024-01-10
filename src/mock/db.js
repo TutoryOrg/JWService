@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const countries = require('./data/countries.json');
+const habits = require('./data/habits.json');
 const questions = require('./data/questions.json');
+const countries = require('./data/countries.json');
 
 module.exports = () => ({
+    habits,
     countries,
     questions,
 });
