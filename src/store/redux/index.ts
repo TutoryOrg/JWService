@@ -13,6 +13,7 @@ export const rootReducer = combineReducers({
     user: userReducer,
     habits: habitsReducer,
 });
+
 export const emptyStore = configureStore({ reducer: rootReducer });
 
 const _getDispatch = () => emptyStore.dispatch;

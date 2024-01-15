@@ -1,15 +1,11 @@
 import { useState } from 'react';
+import { isSameDay } from 'utils/scaleFunctions';
 import { useSelector } from 'react-redux';
 import { TodayCotainer } from './styled';
 import { DateHeader, Habit } from 'components';
 import { RootState, useAppDispatch } from 'store/redux';
-import { IStoreHabits, setTodayHabits } from 'store/redux/habits';
-
-export interface IHabit {
-    id: string;
-    label: string;
-    isDone: boolean;
-}
+import { IHabit, IStoreHabits, setTodayHabits } from 'store/redux/habits';
+import _ from 'lodash';
 
 export const emptyHabit: IHabit = {
     id: '',
@@ -17,13 +13,17 @@ export const emptyHabit: IHabit = {
     isDone: false,
 };
 
-const savedHabits: IHabit[] = [];
-
 export const Today = () => {
     const date = new Date();
     const dispatch = useAppDispatch();
-    const [habits, setHabits] = useState<IHabit[]>(savedHabits);
-    const savedhabits = useSelector((state: RootState) => state.habits);
+    const savedhabits = useSelector(
+        (state: RootState) => state.habits.savedHabits
+    );
+
+    const [habits, setHabits] = useState<IHabit[]>(savedhabits[0].habits);
+
+    const tdate = savedhabits[0].date as string;
+    console.log(isSameDay(new Date(tdate), date));
 
     const addHabit = (newHabit: IHabit) => {
         setHabits(prev => [...prev, newHabit]);
