@@ -25,16 +25,12 @@ export const Today = () => {
     const [habits, setHabits] = useState<IHabit[]>(savedHabits);
     const savedhabits = useSelector((state: RootState) => state.habits);
 
-    console.log({ savedhabits });
-    console.log({ habits });
-
     const addHabit = (newHabit: IHabit) => {
         setHabits(prev => [...prev, newHabit]);
         const todayHabits: IStoreHabits = {
-            date: date,
-            habits: habits,
+            date: date.toString(),
+            habits: [...habits, newHabit],
         };
-        console.log({ todayHabits });
         dispatch(setTodayHabits(todayHabits));
     };
 

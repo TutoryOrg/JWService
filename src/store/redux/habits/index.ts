@@ -2,7 +2,7 @@ import { IHabit } from 'screens/Today';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface IStoreHabits {
-    date: Date | null;
+    date: string | null;
     habits: IHabit[];
 }
 
@@ -10,7 +10,9 @@ export interface ISavedHabits {
     savedHabits: IStoreHabits[];
 }
 
-const initialState: ISavedHabits = { savedHabits: [] };
+const initialState: ISavedHabits = {
+    savedHabits: [{ date: null, habits: [] }],
+};
 
 const habitsSlice = createSlice({
     name: 'habits',
@@ -20,10 +22,7 @@ const habitsSlice = createSlice({
             state.savedHabits = action.payload.savedHabits;
         },
         setTodayHabits(state, action: PayloadAction<IStoreHabits>) {
-            console.log({ action });
-            console.log({ state });
-            console.log(state.savedHabits);
-            // state.habits = state.habits.push(action.payload);
+            state.savedHabits = state.savedHabits.concat(action.payload);
         },
     },
 });
