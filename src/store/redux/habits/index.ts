@@ -27,14 +27,6 @@ const habitsSlice = createSlice({
         setSavedHabits(state, action: PayloadAction<ISavedHabits>) {
             state.savedHabits = action.payload.savedHabits;
         },
-        setNewHabits(state, action: PayloadAction<IStoreHabits>) {
-            state.savedHabits = state.savedHabits.concat(action.payload);
-        },
-        addHabits(state, action: PayloadAction<IHabit[]>) {
-            console.log('habits to add ', state.savedHabits[0].habits);
-            console.log(action.payload);
-            state.savedHabits[0].habits = action.payload;
-        },
         saveHabits(
             state,
             action: PayloadAction<{ date: string; habits: IHabit[] }>
@@ -59,6 +51,5 @@ const habitsSlice = createSlice({
     },
 });
 
-export const { saveHabits, addHabits, setNewHabits, setSavedHabits } =
-    habitsSlice.actions;
+export const { saveHabits, setSavedHabits } = habitsSlice.actions;
 export const habitsReducer = habitsSlice.reducer;
