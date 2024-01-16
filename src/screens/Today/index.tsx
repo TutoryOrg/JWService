@@ -1,11 +1,10 @@
-import { useState } from 'react';
 import { isSameDay } from 'utils/scaleFunctions';
 import { useSelector } from 'react-redux';
-import { TodayCotainer } from './styled';
+import { TodayContainer } from './styled';
 import { DateHeader, Habit } from 'components';
+import { IHabit, saveHabits } from 'store/redux/habits';
+import { useEffect, useState } from 'react';
 import { RootState, useAppDispatch } from 'store/redux';
-import { IHabit, IStoreHabits, setTodayHabits } from 'store/redux/habits';
-import _ from 'lodash';
 
 export const emptyHabit: IHabit = {
     id: '',
@@ -16,36 +15,37 @@ export const emptyHabit: IHabit = {
 export const Today = () => {
     const date = new Date();
     const dispatch = useAppDispatch();
-    const savedhabits = useSelector(
+    const savedHabits = useSelector(
         (state: RootState) => state.habits.savedHabits
     );
 
-    const [habits, setHabits] = useState<IHabit[]>(savedhabits[0].habits);
+    const [todayHabits, setHabits] = useState<IHabit[]>(
+        savedHabits[0]?.date && isSameDay(new Date(savedHabits[0].date), date)
+            ? (savedHabits[0].habits as IHabit[])
+            : []
+    );
 
-    const tdate = savedhabits[0].date as string;
-    console.log(isSameDay(new Date(tdate), date));
-
-    const addHabit = (newHabit: IHabit) => {
+    const addHabit = (newHabit: IHabit) =>
         setHabits(prev => [...prev, newHabit]);
-        const todayHabits: IStoreHabits = {
-            date: date.toString(),
-            habits: [...habits, newHabit],
-        };
-        dispatch(setTodayHabits(todayHabits));
-    };
 
-    const removeHabit = (delHabit: IHabit) => {
-        setHabits(prev => prev.filter(h => h.id !== delHabit.id));
-    };
+    const removeHabit = (delHabit: IHabit) =>
+        setHabits(prev => prev.filter(({ id }) => id !== delHabit.id));
 
-    const editHabit = (edHabit: IHabit) => {
+    const editHabit = (edHabit: IHabit) =>
         setHabits(prev => prev.map(h => (h.id === edHabit.id ? edHabit : h)));
+
+    const saveHabitsToStore = () => {
+        dispatch(saveHabits({ date: date.toString(), habits: todayHabits }));
     };
+
+    useEffect(() => {
+        saveHabitsToStore();
+    }, [todayHabits]);
 
     return (
-        <TodayCotainer>
+        <TodayContainer>
             <DateHeader date={date} progress={25} />
-            {habits.map((habit, index) => (
+            {todayHabits.map((habit, index) => (
                 <Habit
                     key={index}
                     habit={habit}
@@ -54,7 +54,7 @@ export const Today = () => {
                     removeHabit={removeHabit}
                 />
             ))}
-            {habits.length < 5 && (
+            {todayHabits.length < 5 && (
                 <Habit
                     habit={emptyHabit}
                     addHabit={addHabit}
@@ -62,6 +62,6 @@ export const Today = () => {
                     removeHabit={removeHabit}
                 />
             )}
-        </TodayCotainer>
+        </TodayContainer>
     );
 };
