@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { isSameDay } from 'utils/scaleFunctions';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface IHabit {
     id: string;

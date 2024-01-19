@@ -13,8 +13,7 @@ export const emptyHabit: IHabit = {
 };
 
 export const Today = () => {
-    let date = new Date();
-    date.setDate(date.getDate() + 2);
+    const date = new Date();
     const dispatch = useAppDispatch();
     const savedHabits = useSelector(
         (state: RootState) => state.habits.savedHabits
