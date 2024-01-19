@@ -6,7 +6,7 @@ export const AddHabit = (props: {}) => {
 
     return (
         <AddHabitContainer
-            onPress={() => console.log(t('addHabit'))}
+            onPress={() => null}
             children={<AddHabitLabel children={t('addHabit')} />}
         />
     );
