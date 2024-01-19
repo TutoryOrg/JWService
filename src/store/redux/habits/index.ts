@@ -39,11 +39,11 @@ const habitsSlice = createSlice({
 
             if (indexDay === -1) {
                 state.savedHabits = [
-                    ...state.savedHabits,
                     {
                         date: action.payload.date,
                         habits: action.payload.habits,
                     },
+                    ...state.savedHabits,
                 ];
             } else {
                 state.savedHabits[indexDay].habits = action.payload.habits;

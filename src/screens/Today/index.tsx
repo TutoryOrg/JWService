@@ -1,9 +1,9 @@
+import { useState } from 'react';
 import { isSameDay } from 'utils/scaleFunctions';
 import { useSelector } from 'react-redux';
 import { TodayContainer } from './styled';
 import { DateHeader, Habit } from 'components';
 import { IHabit, saveHabits } from 'store/redux/habits';
-import { useEffect, useState } from 'react';
 import { RootState, useAppDispatch } from 'store/redux';
 
 export const emptyHabit: IHabit = {
@@ -13,7 +13,8 @@ export const emptyHabit: IHabit = {
 };
 
 export const Today = () => {
-    const date = new Date();
+    let date = new Date();
+    date.setDate(date.getDate() + 2);
     const dispatch = useAppDispatch();
     const savedHabits = useSelector(
         (state: RootState) => state.habits.savedHabits
@@ -22,25 +23,30 @@ export const Today = () => {
     const [todayHabits, setHabits] = useState<IHabit[]>(
         savedHabits[0]?.date && isSameDay(new Date(savedHabits[0].date), date)
             ? (savedHabits[0].habits as IHabit[])
-            : []
+            : savedHabits[0].habits.map(h => ({ ...h, isDone: false }))
     );
 
-    const addHabit = (newHabit: IHabit) =>
-        setHabits(prev => [...prev, newHabit]);
-
-    const removeHabit = (delHabit: IHabit) =>
-        setHabits(prev => prev.filter(({ id }) => id !== delHabit.id));
-
-    const editHabit = (edHabit: IHabit) =>
-        setHabits(prev => prev.map(h => (h.id === edHabit.id ? edHabit : h)));
-
-    const saveHabitsToStore = () => {
-        dispatch(saveHabits({ date: date.toString(), habits: todayHabits }));
+    const saveHabitsToStore = (hb: IHabit[]) => {
+        dispatch(saveHabits({ date: date.toString(), habits: hb }));
     };
 
-    useEffect(() => {
-        saveHabitsToStore();
-    }, [todayHabits]);
+    const addHabit = (newHabit: IHabit) => {
+        const hb = [...todayHabits, newHabit];
+        setHabits(hb);
+        saveHabitsToStore(hb);
+    };
+
+    const removeHabit = (delHabit: IHabit) => {
+        const hb = todayHabits.filter(({ id }) => id !== delHabit.id);
+        setHabits(hb);
+        saveHabitsToStore(hb);
+    };
+
+    const editHabit = (edHabit: IHabit) => {
+        const hb = todayHabits.map(h => (h.id === edHabit.id ? edHabit : h));
+        setHabits(hb);
+        saveHabitsToStore(hb);
+    };
 
     return (
         <TodayContainer>
