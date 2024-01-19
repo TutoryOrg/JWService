@@ -9,8 +9,9 @@ export const ImageViewer = styled.Image`
 
 export const ImageContainer = styled.TouchableOpacity`
     width: 100%;
-    height: 30%;
+    height: 40%;
     max-width: 800px;
+    align-self: center;
     border-radius: 10px;
     margin-top: ${verticalScale(20)}px;
     background-color: ${props => props.theme.gray};
