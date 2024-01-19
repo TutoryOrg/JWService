@@ -8,7 +8,7 @@ export const ImageViewer = styled.Image`
 `;
 
 export const ImageContainer = styled.TouchableOpacity`
-    width: 80%;
+    width: 100%;
     height: 30%;
     max-width: 800px;
     border-radius: 10px;

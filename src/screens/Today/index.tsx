@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { isSameDay } from 'utils/scaleFunctions';
 import { useSelector } from 'react-redux';
 import { TodayContainer } from './styled';
-import { DateHeader, Habit } from 'components';
-import { IHabit, saveHabits } from 'store/redux/habits';
 import { RootState, useAppDispatch } from 'store/redux';
+import { DateHeader, Habit, ImagePicker } from 'components';
+import { IHabit, saveDesc, saveImage, saveHabits } from 'store/redux/habits';
 
 export const emptyHabit: IHabit = {
     id: '',
@@ -24,9 +24,24 @@ export const Today = () => {
             ? (savedHabits[0].habits as IHabit[])
             : savedHabits[0].habits.map(h => ({ ...h, isDone: false }))
     );
+    const [todayImage, setTodayImage] = useState<string>(
+        savedHabits[0]?.date && isSameDay(new Date(savedHabits[0].date), date)
+            ? (savedHabits[0].image as string)
+            : ''
+    );
+
+    const [todayDesc, setTodayDesc] = useState<string>('');
 
     const saveHabitsToStore = (hb: IHabit[]) => {
         dispatch(saveHabits({ date: date.toString(), habits: hb }));
+    };
+
+    const saveImageToStore = (newImage: string) => {
+        dispatch(saveImage({ date: date.toString(), image: newImage }));
+    };
+
+    const saveDescToStore = (newDesc: string) => {
+        dispatch(saveDesc({ date: date.toString(), description: newDesc }));
     };
 
     const addHabit = (newHabit: IHabit) => {
@@ -45,6 +60,11 @@ export const Today = () => {
         const hb = todayHabits.map(h => (h.id === edHabit.id ? edHabit : h));
         setHabits(hb);
         saveHabitsToStore(hb);
+    };
+
+    const addImage = (newImage: string) => {
+        setTodayImage(newImage);
+        saveImageToStore(newImage);
     };
 
     return (
@@ -67,6 +87,12 @@ export const Today = () => {
                     removeHabit={removeHabit}
                 />
             )}
+
+            <ImagePicker
+                image={todayImage}
+                editable={true}
+                onChangeImage={addImage}
+            />
         </TodayContainer>
     );
 };

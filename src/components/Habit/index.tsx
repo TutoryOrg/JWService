@@ -1,5 +1,5 @@
 import { genUid } from 'light-uid';
-import { IHabit } from 'screens/Today';
+import { IHabit } from 'store/redux/habits';
 import { useState } from 'react';
 import { isMobile } from 'utils/scaleFunctions';
 import { useTranslation } from 'react-i18next';
