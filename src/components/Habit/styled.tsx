@@ -6,8 +6,10 @@ import _ from 'lodash';
 
 export const HabitContainer = styled.View`
     width: 100%;
+    max-width: 1000px;
+    align-self: center;
     height: ${verticalScale(40)}px;
-    margin-top: ${verticalScale(10)}px;
+    margin-top: ${verticalScale(12)}px;
     border-radius: 7px;
     border: 2px solid ${props => props.theme.borderColor};
     padding-left: ${verticalScale(15)}px;

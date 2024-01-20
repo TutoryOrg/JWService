@@ -67,6 +67,11 @@ export const Today = () => {
         saveImageToStore(newImage);
     };
 
+    const addDesc = (desc: string) => {
+        setTodayDesc(desc);
+        saveDescToStore(desc);
+    };
+
     return (
         <TodayContainer>
             <DateHeader date={date} progress={25} />

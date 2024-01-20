@@ -1,5 +1,10 @@
 import { launchImageLibraryAsync } from 'expo-image-picker';
-import { ImageContainer, ImageViewer } from './styled';
+import {
+    CommentDesc,
+    ImageViewer,
+    ImageContainer,
+    ImagePickerContainer,
+} from './styled';
 
 interface IImagePicker {
     image: string | null;
@@ -22,8 +27,16 @@ export const ImagePicker = ({
     };
 
     return (
-        <ImageContainer onPress={pickImageAsync}>
-            {image && <ImageViewer source={{ uri: image }} />}
-        </ImageContainer>
+        <ImagePickerContainer>
+            <ImageContainer onPress={pickImageAsync}>
+                {image && <ImageViewer source={{ uri: image }} />}
+            </ImageContainer>
+            <CommentDesc
+                // value={}
+                editable={true}
+                // onChangeText={onChangeComment}
+                maxLength={25}
+            />
+        </ImagePickerContainer>
     );
 };
