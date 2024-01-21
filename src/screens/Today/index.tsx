@@ -5,6 +5,7 @@ import { TodayContainer } from './styled';
 import { RootState, useAppDispatch } from 'store/redux';
 import { DateHeader, Habit, ImagePicker } from 'components';
 import { IHabit, saveDesc, saveImage, saveHabits } from 'store/redux/habits';
+import _ from 'lodash';
 
 export const emptyHabit: IHabit = {
     id: '',
@@ -20,17 +21,28 @@ export const Today = () => {
     );
 
     const [todayHabits, setHabits] = useState<IHabit[]>(
-        savedHabits[0]?.date && isSameDay(new Date(savedHabits[0].date), date)
+        _.isEmpty(savedHabits)
+            ? []
+            : isSameDay(new Date(savedHabits[0].date as string), date)
             ? (savedHabits[0].habits as IHabit[])
             : savedHabits[0].habits.map(h => ({ ...h, isDone: false }))
     );
+
     const [todayImage, setTodayImage] = useState<string>(
-        savedHabits[0]?.date && isSameDay(new Date(savedHabits[0].date), date)
+        _.isEmpty(savedHabits)
+            ? ''
+            : isSameDay(new Date(savedHabits[0].date as string), date)
             ? (savedHabits[0].image as string)
             : ''
     );
 
-    const [todayDesc, setTodayDesc] = useState<string>('');
+    const [todayDesc, setTodayDesc] = useState<string>(
+        _.isEmpty(savedHabits)
+            ? ''
+            : isSameDay(new Date(savedHabits[0].date as string), date)
+            ? (savedHabits[0].description as string)
+            : ''
+    );
 
     const saveHabitsToStore = (hb: IHabit[]) => {
         dispatch(saveHabits({ date: date.toString(), habits: hb }));
@@ -94,8 +106,10 @@ export const Today = () => {
             )}
 
             <ImagePicker
-                image={todayImage}
                 editable={true}
+                desc={todayDesc}
+                image={todayImage}
+                onAddDesc={addDesc}
                 onChangeImage={addImage}
             />
         </TodayContainer>

@@ -5,17 +5,22 @@ import {
     ImageContainer,
     ImagePickerContainer,
 } from './styled';
+import _ from 'lodash';
 
 interface IImagePicker {
     image: string | null;
+    desc: string | null;
     editable: boolean;
     onChangeImage: (uri: string) => void;
+    onAddDesc: (des: string) => void;
 }
 
 export const ImagePicker = ({
+    desc,
     image,
     editable,
     onChangeImage,
+    onAddDesc,
 }: IImagePicker) => {
     const pickImageAsync = async () => {
         if (!editable) return;
@@ -29,12 +34,12 @@ export const ImagePicker = ({
     return (
         <ImagePickerContainer>
             <ImageContainer onPress={pickImageAsync}>
-                {image && <ImageViewer source={{ uri: image }} />}
+                {!_.isEmpty(image) && <ImageViewer source={{ uri: image }} />}
             </ImageContainer>
             <CommentDesc
-                // value={}
+                value={desc}
                 editable={true}
-                // onChangeText={onChangeComment}
+                onChangeText={onAddDesc}
                 maxLength={25}
             />
         </ImagePickerContainer>

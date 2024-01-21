@@ -1,7 +1,6 @@
 import styled from 'styled-components/native';
 import { fontSizes } from 'utils/constants';
 import { verticalScale } from 'utils/scaleFunctions';
-import { CommentContainer } from 'components/Comment/styled';
 
 export const ImageViewer = styled.Image`
     width: 100%;
