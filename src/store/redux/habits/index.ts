@@ -93,6 +93,7 @@ const habitsSlice = createSlice({
                 state.savedHabits,
                 action.payload.date
             );
+
             if (indexDay === -1) {
                 state.savedHabits = [
                     {
