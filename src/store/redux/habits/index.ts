@@ -19,6 +19,13 @@ export interface ISavedHabits {
     savedHabits: IStoreHabits[];
 }
 
+const findIndexByDate = (savedHabits: IStoreHabits[], date: string) => {
+    return savedHabits.findIndex(
+        ({ date: savedDate }) =>
+            savedDate && isSameDay(new Date(savedDate), new Date(date))
+    );
+};
+
 const initialState: ISavedHabits = {
     savedHabits: [],
 };
@@ -34,10 +41,9 @@ const habitsSlice = createSlice({
             state,
             action: PayloadAction<{ date: string; habits: IHabit[] }>
         ) {
-            const indexDay = state.savedHabits.findIndex(
-                ({ date }) =>
-                    date &&
-                    isSameDay(new Date(date), new Date(action.payload.date))
+            const indexDay = findIndexByDate(
+                state.savedHabits,
+                action.payload.date
             );
 
             if (indexDay === -1) {
@@ -59,10 +65,9 @@ const habitsSlice = createSlice({
             state,
             action: PayloadAction<{ date: string; image: string }>
         ) {
-            const indexDay = state.savedHabits.findIndex(
-                ({ date }) =>
-                    date &&
-                    isSameDay(new Date(date), new Date(action.payload.date))
+            const indexDay = findIndexByDate(
+                state.savedHabits,
+                action.payload.date
             );
 
             if (indexDay === -1) {
@@ -84,12 +89,10 @@ const habitsSlice = createSlice({
             state,
             action: PayloadAction<{ date: string; description: string }>
         ) {
-            const indexDay = state.savedHabits.findIndex(
-                ({ date }) =>
-                    date &&
-                    isSameDay(new Date(date), new Date(action.payload.date))
+            const indexDay = findIndexByDate(
+                state.savedHabits,
+                action.payload.date
             );
-
             if (indexDay === -1) {
                 state.savedHabits = [
                     {
