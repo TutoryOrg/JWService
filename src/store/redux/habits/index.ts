@@ -12,6 +12,7 @@ export interface IStoreHabits {
     image: string;
     habits: IHabit[];
     description: string;
+    progress: number;
 }
 
 export interface ISavedHabits {
@@ -46,6 +47,7 @@ const habitsSlice = createSlice({
                         habits: action.payload.habits,
                         image: '',
                         description: '',
+                        progress: 0,
                     },
                     ...state.savedHabits,
                 ];
@@ -70,6 +72,7 @@ const habitsSlice = createSlice({
                         habits: [],
                         image: action.payload.image,
                         description: '',
+                        progress: 0,
                     },
                     ...state.savedHabits,
                 ];
@@ -94,6 +97,7 @@ const habitsSlice = createSlice({
                         habits: [],
                         image: '',
                         description: action.payload.description,
+                        progress: 0,
                     },
                     ...state.savedHabits,
                 ];
@@ -102,9 +106,12 @@ const habitsSlice = createSlice({
                     action.payload.description;
             }
         },
+        saveProgress(state, action: PayloadAction<{ progress: number }>) {
+            state.savedHabits[0].progress = action.payload.progress;
+        },
     },
 });
 
-export const { saveHabits, saveImage, saveDesc, setSavedHabits } =
+export const { saveHabits, saveImage, saveDesc, saveProgress, setSavedHabits } =
     habitsSlice.actions;
 export const habitsReducer = habitsSlice.reducer;

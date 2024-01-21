@@ -4,7 +4,13 @@ import { useSelector } from 'react-redux';
 import { TodayContainer } from './styled';
 import { RootState, useAppDispatch } from 'store/redux';
 import { DateHeader, Habit, ImagePicker } from 'components';
-import { IHabit, saveDesc, saveImage, saveHabits } from 'store/redux/habits';
+import {
+    IHabit,
+    saveDesc,
+    saveImage,
+    saveHabits,
+    saveProgress,
+} from 'store/redux/habits';
 import _ from 'lodash';
 
 export const emptyHabit: IHabit = {
@@ -16,6 +22,7 @@ export const emptyHabit: IHabit = {
 export const Today = () => {
     const date = new Date();
     const dispatch = useAppDispatch();
+
     const savedHabits = useSelector(
         (state: RootState) => state.habits.savedHabits
     );
@@ -56,6 +63,10 @@ export const Today = () => {
         dispatch(saveDesc({ date: date.toString(), description: newDesc }));
     };
 
+    const saveProgressToStore = (newProgress: number) => {
+        dispatch(saveProgress({ progress: newProgress }));
+    };
+
     const addHabit = (newHabit: IHabit) => {
         const hb = [...todayHabits, newHabit];
         setHabits(hb);
@@ -84,9 +95,19 @@ export const Today = () => {
         saveDescToStore(desc);
     };
 
+    const calculateProgress = () => {
+        const numHabits = todayHabits.length;
+        const numHabitsDone = todayHabits.filter(h => h.isDone == true).length;
+        const progress = (numHabitsDone / numHabits) * 100;
+        if (isSameDay(date, new Date(savedHabits[0].date as string))) {
+            saveProgressToStore(progress);
+        }
+        return progress;
+    };
+
     return (
         <TodayContainer>
-            <DateHeader date={date} progress={25} />
+            <DateHeader date={date} progress={calculateProgress()} />
             {todayHabits.map((habit, index) => (
                 <Habit
                     key={index}
