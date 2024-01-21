@@ -8,8 +8,8 @@ import {
 import _ from 'lodash';
 
 interface IImagePicker {
-    image: string | null;
-    desc: string | null;
+    image: string;
+    desc: string;
     editable: boolean;
     onChangeImage: (uri: string) => void;
     onAddDesc: (des: string) => void;

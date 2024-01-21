@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import { fontSizes } from 'utils/constants';
-import { verticalScale } from 'utils/scaleFunctions';
+import { isMobile, verticalScale } from 'utils/scaleFunctions';
 
 export const ImageViewer = styled.Image`
     width: 100%;
@@ -27,7 +27,7 @@ export const CommentDesc = styled.TextInput`
     position: absolute;
     bottom: 0px;
     width: 100%;
-    height: 20%;
+    height: ${isMobile ? 15 : 20} %;
     opacity: 0.5;
     border-radius: 10px;
     font-size: ${verticalScale(fontSizes.small)}px;
