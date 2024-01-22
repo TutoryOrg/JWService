@@ -27,7 +27,7 @@ export const CommentDesc = styled.TextInput`
     position: absolute;
     bottom: 0px;
     width: 100%;
-    height: ${isMobile ? 15 : 20} %;
+    height: ${isMobile ? '15%' : '20%'};
     opacity: 0.5;
     border-radius: 10px;
     font-size: ${verticalScale(fontSizes.small)}px;
