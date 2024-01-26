@@ -11,12 +11,21 @@ import {
     saveHabits,
     saveProgress,
 } from 'store/redux/habits';
+import styled from 'styled-components/native';
 import _ from 'lodash';
 
 export const emptyHabit: IHabit = {
     id: '',
     label: '',
     isDone: false,
+};
+
+const Content = () => {
+    const ContentContainer = styled.View`
+        height: 100%;
+        width: 100%;
+    `;
+    return <ContentContainer></ContentContainer>;
 };
 
 export const Today = () => {
