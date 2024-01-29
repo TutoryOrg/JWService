@@ -1,7 +1,7 @@
 import { IToday } from '@types';
+import { readData } from 'store/async';
 import { Field, Screens } from 'utils/constants';
 import { useEffect, useState } from 'react';
-import { readData } from 'store/async';
 
 export function useDays(): [IToday[], (day: IToday[]) => void] {
     const today: IToday = {
