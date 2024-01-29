@@ -4,6 +4,7 @@ import Svg, { Circle } from 'react-native-svg';
 import { months, days } from 'utils/constants';
 import { useTranslation } from 'react-i18next';
 import { Container, DateLabelText, MonthLabelText } from './styled';
+import { isMobile, verticalScale } from 'utils/scaleFunctions';
 
 interface IDateLabel {
     month: string;
@@ -44,9 +45,14 @@ export const ProgressCircle = (props: IProgressCircle) => {
     return (
         <View style={{ height: size + 5 }}>
             <Svg width={size} height={size}>
-                <CircleStyled r={radius} cx={size / 2} cy={size / 2} strokeWidth={strokeWidth} />
+                <CircleStyled
+                    r={radius - (isMobile ? 2 : 0)}
+                    cx={size / 2}
+                    cy={size / 2}
+                    strokeWidth={strokeWidth}
+                />
                 <CircleProgressStyled
-                    r={radius}
+                    r={radius - (isMobile ? 2 : 0)}
                     cx={size / 2}
                     cy={size / 2}
                     strokeWidth={strokeWidth}
