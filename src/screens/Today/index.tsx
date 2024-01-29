@@ -1,20 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 import { FlatList } from 'react-native';
 import { useSelector } from 'react-redux';
-import { TodayContainer } from './styled';
 import { isSameDay, windowHeight } from 'utils/scaleFunctions';
 import { RootState, useAppDispatch } from 'store/redux';
 import { DateHeader, Habit, ImagePicker } from 'components';
-import {
-    IHabit,
-    saveDesc,
-    saveImage,
-    saveHabits,
-    saveProgress,
-    IStoreHabits,
-} from 'store/redux/habits';
+import { ContentContainer, TodayContainer } from './styled';
+import { IHabit, IStoreHabits, setSavedHabits } from 'store/redux/habits';
 import _ from 'lodash';
-import styled from 'styled-components/native';
 
 export const emptyHabit: IHabit = {
     id: '',
@@ -24,61 +16,17 @@ export const emptyHabit: IHabit = {
 
 interface IContent {
     day: IStoreHabits;
+    addHabit: (date: string, habits: IHabit[], hb: IHabit) => void;
+    removeHabit: (date: string, habits: IHabit[], hb: IHabit) => void;
+    editHabit: (date: string, habits: IHabit[], hb: IHabit) => void;
+    addImage: (date: string, img: string) => void;
+    addDescription: (date: string, desc: string) => void;
 }
 
 const Content = (props: IContent) => {
-    const { day } = props;
+    const { day, addHabit, removeHabit, editHabit, addDescription, addImage } =
+        props;
     const { date, habits, description, image, progress } = day;
-    const dispatch = useAppDispatch();
-
-    const ContentContainer = styled.View`
-        width: 100%;
-        height: ${windowHeight}px;
-    `;
-
-    // const [todayImage, setTodayImage] = useState<string>(
-    //     _.isEmpty(savedHabits)
-    //         ? ''
-    //         : isSameDay(new Date(savedHabits[0].date as string), date)
-    //         ? (savedHabits[0].image as string)
-    //         : ''
-    // );
-    //
-    // const [todayDesc, setTodayDesc] = useState<string>(
-    //     _.isEmpty(savedHabits)
-    //         ? ''
-    //         : isSameDay(new Date(savedHabits[0].date as string), date)
-    //         ? (savedHabits[0].description as string)
-    //         : ''
-    // );
-
-    const onAddHabit = (newHabit: IHabit) => {
-        // const hb = [...todayHabits, newHabit];
-        // setHabits(hb);
-        // saveHabitsToStore(hb);
-    };
-
-    const onRemoveHabit = (delHabit: IHabit) => {
-        // const hb = todayHabits.filter(({ id }) => id !== delHabit.id);
-        // setHabits(hb);
-        // saveHabitsToStore(hb);
-    };
-
-    const onEditHabit = (edHabit: IHabit) => {
-        // const hb = todayHabits.map(h => (h.id === edHabit.id ? edHabit : h));
-        // setHabits(hb);
-        // saveHabitsToStore(hb);
-    };
-
-    const onAddImage = (newImage: string) => {
-        // setTodayImage(newImage);
-        // saveImageToStore(newImage);
-    };
-
-    const onAddDesc = (desc: string) => {
-        // setTodayDesc(desc);
-        // _.debounce(() => saveDescToStore(desc), 1000);
-    };
 
     return (
         <ContentContainer>
@@ -88,18 +36,18 @@ const Content = (props: IContent) => {
                 <Habit
                     key={index}
                     habit={habit}
-                    addHabit={onAddHabit}
-                    editHabit={onEditHabit}
-                    removeHabit={onRemoveHabit}
+                    addHabit={h => addHabit(date as string, habits, h)}
+                    editHabit={h => editHabit(date as string, habits, h)}
+                    removeHabit={h => removeHabit(date as string, habits, h)}
                 />
             ))}
 
             {habits.length < 5 && (
                 <Habit
                     habit={emptyHabit}
-                    addHabit={onAddHabit}
-                    editHabit={onEditHabit}
-                    removeHabit={onRemoveHabit}
+                    addHabit={h => addHabit(date as string, habits, h)}
+                    editHabit={h => editHabit(date as string, habits, h)}
+                    removeHabit={h => removeHabit(date as string, habits, h)}
                 />
             )}
 
@@ -107,20 +55,21 @@ const Content = (props: IContent) => {
                 editable={true}
                 image={image}
                 desc={description}
-                onAddDesc={onAddDesc}
-                onChangeImage={onAddImage}
+                onAddDesc={d => addDescription(date as string, d)}
+                onChangeImage={i => addImage(date as string, i)}
             />
         </ContentContainer>
     );
 };
 
 export const Today = () => {
+    const dispatch = useAppDispatch();
     const todayDate = new Date();
     const savedHabits = useSelector(
         (state: RootState) => state.habits.savedHabits
     );
 
-    const [todayHabits, setTodayHabits] = useState<IStoreHabits[]>(
+    const [savedHabitsToday, setHabitsToday] = useState<IStoreHabits[]>(
         _.isEmpty(savedHabits)
             ? [
                   {
@@ -148,14 +97,68 @@ export const Today = () => {
               ]
     );
 
+    const saveDataAsync = useCallback(
+        _.debounce((d: IStoreHabits[]) => {
+            dispatch(setSavedHabits(d));
+        }, 500),
+        []
+    );
+
+    useEffect(() => {
+        saveDataAsync(savedHabitsToday);
+    }, [savedHabitsToday]);
+
+    const addHabit = (date: string, habits: IHabit[], newHabit: IHabit) => {
+        const hb = [...habits, newHabit];
+        setHabitsToday((prev: IStoreHabits[]) =>
+            prev.map(h => (h.date === date ? { ...h, habits: hb } : h))
+        );
+    };
+
+    const removeHabit = (date: string, habits: IHabit[], delHabit: IHabit) => {
+        const hb = habits.filter(({ id }) => id !== delHabit.id);
+        setHabitsToday((prev: IStoreHabits[]) =>
+            prev.map(h => (h.date === date ? { ...h, habits: hb } : h))
+        );
+    };
+
+    const editHabit = (date: string, habits: IHabit[], edHabit: IHabit) => {
+        const hb = habits.map(h => (h.id === edHabit.id ? edHabit : h));
+        setHabitsToday((prev: IStoreHabits[]) =>
+            prev.map(h => (h.date === date ? { ...h, habits: hb } : h))
+        );
+    };
+
+    const addImage = (date: string, newImage: string) => {
+        setHabitsToday((prev: IStoreHabits[]) =>
+            prev.map(h => (h.date === date ? { ...h, image: newImage } : h))
+        );
+    };
+
+    const addDescription = (date: string, desc: string) => {
+        setHabitsToday((prev: IStoreHabits[]) =>
+            prev.map(h => (h.date === date ? { ...h, description: desc } : h))
+        );
+    };
+
     return (
         <TodayContainer>
             <FlatList
-                showsHorizontalScrollIndicator={false}
                 pagingEnabled
-                data={todayHabits}
+                data={savedHabitsToday}
+                showsHorizontalScrollIndicator={false}
                 renderItem={({ item, index }) => {
-                    return <Content key={index} day={item} />;
+                    return (
+                        <Content
+                            key={index}
+                            day={item}
+                            addHabit={addHabit}
+                            removeHabit={removeHabit}
+                            editHabit={editHabit}
+                            addImage={addImage}
+                            addDescription={addDescription}
+                        />
+                    );
                 }}
                 onScroll={(e: any) => {
                     const index = Math.round(

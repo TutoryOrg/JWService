@@ -34,8 +34,8 @@ const habitsSlice = createSlice({
     name: 'habits',
     initialState,
     reducers: {
-        setSavedHabits(state, action: PayloadAction<ISavedHabits>) {
-            state.savedHabits = action.payload.savedHabits;
+        setSavedHabits(state, action: PayloadAction<IStoreHabits[]>) {
+            state.savedHabits = action.payload;
         },
         saveHabits(
             state,
