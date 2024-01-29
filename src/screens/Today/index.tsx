@@ -1,9 +1,9 @@
-import { useEffect, useCallback, useState } from 'react';
 import { FlatList } from 'react-native';
 import { useSelector } from 'react-redux';
 import { isSameDay, windowHeight } from 'utils/scaleFunctions';
 import { RootState, useAppDispatch } from 'store/redux';
 import { DateHeader, Habit, ImagePicker } from 'components';
+import { useEffect, useCallback, useState } from 'react';
 import { ContentContainer, TodayContainer } from './styled';
 import { IHabit, IStoreHabits, setSavedHabits } from 'store/redux/habits';
 import _ from 'lodash';
