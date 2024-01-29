@@ -14,16 +14,21 @@ export default {
 } as ComponentMeta<typeof DateHeader>;
 
 export const Dark: ComponentStory<typeof DateHeader> = args => {
+    const { date, progress } = args;
     return (
         <ThemeProvider theme={darkTheme}>
             <ViewStoriesContainer>
-                <DateHeader />
+                <DateHeader date={date} progress={progress} />
             </ViewStoriesContainer>
         </ThemeProvider>
     );
 };
 
 Dark.story = {
+    args: {
+        date: new Date(),
+        progress: 10,
+    },
     parameters: {
         backgrounds: {
             default: 'dark',
@@ -32,16 +37,21 @@ Dark.story = {
 };
 
 export const Light: ComponentStory<typeof DateHeader> = args => {
+    const { date, progress } = args;
     return (
         <ThemeProvider theme={lightTheme}>
             <ViewStoriesContainer>
-                <DateHeader />
+                <DateHeader date={date} progress={progress} />
             </ViewStoriesContainer>
         </ThemeProvider>
     );
 };
 
 Light.story = {
+    args: {
+        date: new Date(),
+        progress: 10,
+    },
     parameters: {
         backgrounds: {
             default: 'light',
