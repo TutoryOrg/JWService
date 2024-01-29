@@ -16,8 +16,8 @@ export const ImageContainer = styled.TouchableOpacity`
 `;
 
 export const ImagePickerContainer = styled.View`
-    width: 100%;
-    height: 45%;
+    width: 90%;
+    height: ${isMobile ? '40%' : '45%'};
     max-width: 1000px;
     align-self: center;
     margin-top: ${verticalScale(20)}px;

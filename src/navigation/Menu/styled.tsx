@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { isMobile, verticalScale, windowHeight } from 'utils/scaleFunctions';
+import { isMobile, verticalScale, windowWidth, windowHeight } from 'utils/scaleFunctions';
 import { Screens, fontFamilies, fontSizes } from 'utils/constants';
 
 export interface ISideMenu {
@@ -76,7 +76,7 @@ export const SideMenuContainer = styled.View`
 `;
 
 export const MenuContainer = styled.SafeAreaView`
-    width: 100%;
+    width: ${windowWidth}px;
     height: ${windowHeight}px;
     flex-direction: row;
     padding-top: ${isMobile ? 40 : 0}px;

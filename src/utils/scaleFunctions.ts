@@ -14,7 +14,7 @@ const moderateScale = (size: number, factor = 0.5): number => size + (scale(size
 const isWeb = Platform.OS === 'web';
 const isIOs = Platform.OS === 'ios';
 const isAndroid = Platform.OS === 'android';
-const isMobile = Platform.OS === 'android' || Platform.OS === 'ios' || windowWidth < 600;
+const isMobile = Platform.OS === 'android' || Platform.OS === 'ios' || windowWidth < 820;
 
 const isSameDay = (d1: Date, d2: Date) =>
     d1.getFullYear() === d2.getFullYear() &&

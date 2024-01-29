@@ -5,15 +5,15 @@ import { fontSizes, fontFamilies } from 'utils/constants';
 import _ from 'lodash';
 
 export const HabitContainer = styled.View`
-    width: 100%;
+    width: 85%;
     max-width: 1000px;
     align-self: center;
     height: ${verticalScale(40)}px;
     margin-top: ${verticalScale(12)}px;
     border-radius: 7px;
     border: 2px solid ${props => props.theme.borderColor};
-    padding-left: ${verticalScale(15)}px;
-    padding-right: ${verticalScale(15)}px;
+    padding-left: ${verticalScale(10)}px;
+    padding-right: ${verticalScale(10)}px;
 `;
 
 export const AddHabitContainer = styled.TouchableOpacity`

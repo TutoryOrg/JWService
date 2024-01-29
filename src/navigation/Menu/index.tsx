@@ -1,6 +1,6 @@
-import { Today } from 'screens';
 import { Screens } from 'utils/constants';
 import { useTranslation } from 'react-i18next';
+import { Today, Calendar } from 'screens';
 import { memo, useMemo, useState } from 'react';
 import {
     Content,
@@ -51,10 +51,10 @@ export function Menu(props: { onLayoutRootView: () => Promise<void> }) {
             <SideMenu options={options} setOptions={setOptions} />
             <Content>
                 {selected === Screens.TODAY && <Today />}
+                {selected === Screens.CALENDAR && <Calendar />}
                 {/* 
                 {selected === Screens.GOALS && <Goals />}
                 {selected === Screens.PROFILE && <Profile />}
-                {selected === Screens.CALENDAR && <Calendar />}
                 */}
             </Content>
         </MenuContainer>
