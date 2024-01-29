@@ -17,12 +17,7 @@ const WeekSubHeader = (props: { daysOfWeek: string[] }) => {
             {daysOfWeek.map((d, i) => (
                 <DaysOfWeekLabelText
                     key={i}
-                    children={
-                        isMobile
-                            ? d.substring(0, 1).toUpperCase() +
-                              d.substring(1, 3)
-                            : d
-                    }
+                    children={isMobile ? d.substring(0, 1).toUpperCase() + d.substring(1, 3) : d}
                 />
             ))}
         </WeekSubHeaderContainer>
@@ -61,12 +56,7 @@ export const Week = (props: IWeek) => {
     const { month, weekDay, numberDay, daysOfWeek, setMode } = props;
     return (
         <View>
-            <WeekHeader
-                setMode={setMode}
-                month={month}
-                weekDay={weekDay}
-                numberDay={numberDay}
-            />
+            <WeekHeader setMode={setMode} month={month} weekDay={weekDay} numberDay={numberDay} />
             <WeekSubHeader daysOfWeek={daysOfWeek} />
         </View>
     );

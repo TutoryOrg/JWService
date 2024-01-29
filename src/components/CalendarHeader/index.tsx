@@ -1,13 +1,11 @@
 import { Week } from './Week';
 import { Year } from './Year';
 import { Month } from './Month';
-import { useTheme } from 'styled-components/native';
 import { useState } from 'react';
 import { Container } from './styled';
 import { days, months } from 'utils/constants';
+import { CalendarMode } from 'utils/constants';
 import { useTranslation } from 'react-i18next';
-import { fontSizes, Direction, CalendarMode } from 'utils/constants';
-import styled from 'styled-components/native';
 
 interface ICalendarHeader {}
 export const CalendarHeader = (props: ICalendarHeader) => {
@@ -34,16 +32,9 @@ export const CalendarHeader = (props: ICalendarHeader) => {
                 />
             )}
             {mode === CalendarMode.MONTH && (
-                <Month
-                    year={year}
-                    month={t(month)}
-                    daysOfWeek={daysOfWeek}
-                    setMode={setMode}
-                />
+                <Month year={year} month={t(month)} daysOfWeek={daysOfWeek} setMode={setMode} />
             )}
-            {mode === CalendarMode.YEAR && (
-                <Year year={year} setMode={setMode} />
-            )}
+            {mode === CalendarMode.YEAR && <Year year={year} setMode={setMode} />}
         </Container>
     );
 };

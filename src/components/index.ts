@@ -6,12 +6,4 @@ import { DateHeader } from './DateHeader';
 import { ImagePicker } from './ImagePicker';
 import { CalendarHeader } from './CalendarHeader';
 
-export {
-    Habit,
-    Arrow,
-    Comment,
-    AddHabit,
-    DateHeader,
-    ImagePicker,
-    CalendarHeader,
-};
+export { Habit, Arrow, Comment, AddHabit, DateHeader, ImagePicker, CalendarHeader };

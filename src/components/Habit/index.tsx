@@ -60,10 +60,7 @@ const ShowHabit = (props: {
                         />
                     </ShowOptionsContainer>
                 ) : (
-                    <ShowCheckButton
-                        onPress={() =>
-                            editHabit({ ...habit, isDone: !habit.isDone })
-                        }>
+                    <ShowCheckButton onPress={() => editHabit({ ...habit, isDone: !habit.isDone })}>
                         <ShowCheckIndicator isDone={habit.isDone}>
                             <ShowHabitIndicator
                                 isDone={habit.isDone}
@@ -112,17 +109,11 @@ export const CreateHabit = (props: {
             <CreateButtonsContainer>
                 <CancelButton
                     onPress={() => {
-                        if (
-                            _.isEmpty(habit.label) &&
-                            mode == EnumHabit.CREATE
-                        ) {
+                        if (_.isEmpty(habit.label) && mode == EnumHabit.CREATE) {
                             setValue('');
                             setMode(EnumHabit.ADD);
                         }
-                        if (
-                            !_.isEmpty(habit.label) &&
-                            mode == EnumHabit.CREATE
-                        ) {
+                        if (!_.isEmpty(habit.label) && mode == EnumHabit.CREATE) {
                             setValue('');
                             setMode(EnumHabit.SHOW);
                         }
@@ -134,19 +125,12 @@ export const CreateHabit = (props: {
                 />
                 <CreateButton
                     onPress={() => {
-                        if (
-                            !_.isEmpty(habit.label) &&
-                            mode == EnumHabit.CREATE
-                        ) {
+                        if (!_.isEmpty(habit.label) && mode == EnumHabit.CREATE) {
                             // editHabit({ ...habit, label: editValue });
                             setMode(EnumHabit.ADD);
                         }
                         if (mode == EnumHabit.CREATE) {
-                            setMode(
-                                _.isEmpty(habit.label)
-                                    ? EnumHabit.ADD
-                                    : EnumHabit.SHOW
-                            );
+                            setMode(_.isEmpty(habit.label) ? EnumHabit.ADD : EnumHabit.SHOW);
                             addHabit({
                                 id: genUid(),
                                 label: value,
@@ -166,8 +150,7 @@ export const CreateHabit = (props: {
                     children={
                         <CreateButtonLabel
                             disabled={
-                                (mode === EnumHabit.EDIT &&
-                                    _.isEmpty(editValue)) ||
+                                (mode === EnumHabit.EDIT && _.isEmpty(editValue)) ||
                                 (mode === EnumHabit.CREATE && _.isEmpty(value))
                             }
                             children={'✔'}

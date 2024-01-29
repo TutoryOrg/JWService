@@ -34,10 +34,7 @@ export const SideMenu = memo((props: ISideMenu) => {
                     selected={op.selected}
                     lastOne={op.lastOne}
                     onPress={() => setSelected(op.text)}>
-                    <TextContainer
-                        selected={op.selected}
-                        children={t(op.text)}
-                    />
+                    <TextContainer selected={op.selected} children={t(op.text)} />
                 </OptionContainer>
             ))}
         </SideMenuContainer>
@@ -47,10 +44,7 @@ export const SideMenu = memo((props: ISideMenu) => {
 export function Menu(props: { onLayoutRootView: () => Promise<void> }) {
     const { onLayoutRootView } = props;
     const [options, setOptions] = useState(initOptions);
-    const selected = useMemo(
-        () => options.find(op => op.selected === true)?.text,
-        [options]
-    );
+    const selected = useMemo(() => options.find(op => op.selected === true)?.text, [options]);
 
     return (
         <MenuContainer onLayout={onLayoutRootView}>

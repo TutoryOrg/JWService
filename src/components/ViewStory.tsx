@@ -12,9 +12,7 @@ interface ViewStoriesProps {
     children: JSX.Element;
 }
 
-export const ViewStoriesContainer = ({
-    children,
-}: ViewStoriesProps): JSX.Element | null => {
+export const ViewStoriesContainer = ({ children }: ViewStoriesProps): JSX.Element | null => {
     const { fontsLoaded } = useFontsAndLayout();
     if (!fontsLoaded) return null;
     return <Container>{children}</Container>;

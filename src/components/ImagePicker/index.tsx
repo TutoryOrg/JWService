@@ -1,10 +1,5 @@
 import { launchImageLibraryAsync } from 'expo-image-picker';
-import {
-    CommentDesc,
-    ImageViewer,
-    ImageContainer,
-    ImagePickerContainer,
-} from './styled';
+import { CommentDesc, ImageViewer, ImageContainer, ImagePickerContainer } from './styled';
 import _ from 'lodash';
 
 interface IImagePicker {
@@ -15,13 +10,7 @@ interface IImagePicker {
     onAddDesc: (des: string) => void;
 }
 
-export const ImagePicker = ({
-    desc,
-    image,
-    editable,
-    onChangeImage,
-    onAddDesc,
-}: IImagePicker) => {
+export const ImagePicker = ({ desc, image, editable, onChangeImage, onAddDesc }: IImagePicker) => {
     const pickImageAsync = async () => {
         if (!editable) return;
         let result = await launchImageLibraryAsync({
@@ -36,12 +25,7 @@ export const ImagePicker = ({
             <ImageContainer onPress={pickImageAsync}>
                 {!_.isEmpty(image) && <ImageViewer source={{ uri: image }} />}
             </ImageContainer>
-            <CommentDesc
-                value={desc}
-                editable={true}
-                onChangeText={onAddDesc}
-                maxLength={25}
-            />
+            <CommentDesc value={desc} editable={true} onChangeText={onAddDesc} maxLength={25} />
         </ImagePickerContainer>
     );
 };

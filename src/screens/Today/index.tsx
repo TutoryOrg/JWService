@@ -24,8 +24,7 @@ interface IContent {
 }
 
 const Content = (props: IContent) => {
-    const { day, addHabit, removeHabit, editHabit, addDescription, addImage } =
-        props;
+    const { day, addHabit, removeHabit, editHabit, addDescription, addImage } = props;
     const { date, habits, description, image, progress } = day;
 
     return (
@@ -65,9 +64,7 @@ const Content = (props: IContent) => {
 export const Today = () => {
     const dispatch = useAppDispatch();
     const todayDate = new Date();
-    const savedHabits = useSelector(
-        (state: RootState) => state.habits.savedHabits
-    );
+    const savedHabits = useSelector((state: RootState) => state.habits.savedHabits);
 
     const [savedHabitsToday, setHabitsToday] = useState<IStoreHabits[]>(
         _.isEmpty(savedHabits)
@@ -134,9 +131,7 @@ export const Today = () => {
         const hb = habits.map(h => (h.id === edHabit.id ? edHabit : h));
         setHabitsToday((prev: IStoreHabits[]) =>
             prev.map(h =>
-                h.date === date
-                    ? { ...h, habits: hb, progress: calculateProgress(hb) }
-                    : h
+                h.date === date ? { ...h, habits: hb, progress: calculateProgress(hb) } : h
             )
         );
     };
@@ -173,9 +168,7 @@ export const Today = () => {
                     );
                 }}
                 onScroll={(e: any) => {
-                    const index = Math.round(
-                        e.nativeEvent.contentOffset.y / windowHeight
-                    );
+                    const index = Math.round(e.nativeEvent.contentOffset.y / windowHeight);
                     console.log({ index });
                 }}
             />

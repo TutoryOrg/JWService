@@ -43,8 +43,7 @@ export const TextContainer = styled.Text<{ selected?: boolean }>`
     font-family: ${fontFamilies.Cascadia};
     font-size: ${isMobile ? verticalScale(fontSizes.small) : 22}px;
     transform: ${isMobile ? 'rotate(-90deg)' : ''};
-    color: ${props =>
-        props.selected ? props.theme.txtSelected : props.theme.txtColor};
+    color: ${props => (props.selected ? props.theme.txtSelected : props.theme.txtColor)};
 `;
 
 export const OptionContainer = styled.TouchableOpacity<{
@@ -62,8 +61,7 @@ export const OptionContainer = styled.TouchableOpacity<{
     border-bottom-left-radius: 8px;
     border-top-left-radius: 8px;
     position: ${props => (props.lastOne ? 'absolute' : 'relative')};
-    background-color: ${props =>
-        props.selected ? props.theme.selected : props.theme.bgColor};
+    background-color: ${props => (props.selected ? props.theme.selected : props.theme.bgColor)};
 `;
 
 export const SideMenuContainer = styled.View`
@@ -82,8 +80,7 @@ export const MenuContainer = styled.SafeAreaView`
     height: ${windowHeight}px;
     flex-direction: row;
     padding-top: ${isMobile ? 40 : 0}px;
-    border: ${props =>
-        isMobile ? `2px solid ${props.theme.borderColor}` : 'none'};
+    border: ${props => (isMobile ? `2px solid ${props.theme.borderColor}` : 'none')};
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     background-color: ${props => props.theme.bgColor};

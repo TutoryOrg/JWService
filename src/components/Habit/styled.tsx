@@ -43,9 +43,7 @@ export const CreateNewHabitInput = styled.TextInput<{ value: string }>`
     color: ${props => props.theme.txtColor};
     font-size: ${fontSizes.normal}px;
     font-family: ${props =>
-        _.isEmpty(props.value)
-            ? fontFamilies.CascadiaItalic
-            : fontFamilies.CascadiaMono};
+        _.isEmpty(props.value) ? fontFamilies.CascadiaItalic : fontFamilies.CascadiaMono};
     padding-left: 10px;
     outline-style: none;
 `;
@@ -68,11 +66,8 @@ export const CancelButton = styled.TouchableOpacity`
 `;
 
 export const CreateButton = styled(CancelButton)`
-    border: 2px solid
-        ${props =>
-            props.disabled ? props.theme.gray : props.theme.borderColor};
-    background-color: ${props =>
-        props.disabled ? props.theme.bgColor : props.theme.borderColor};
+    border: 2px solid ${props => (props.disabled ? props.theme.gray : props.theme.borderColor)};
+    background-color: ${props => (props.disabled ? props.theme.bgColor : props.theme.borderColor)};
 `;
 
 export const ButtonLabel = styled.Text`
@@ -87,8 +82,7 @@ export const IconsLabel = styled(ButtonLabel)`
 `;
 
 export const CreateButtonLabel = styled(IconsLabel)<{ disabled: boolean }>`
-    color: ${props =>
-        props.disabled ? props.theme.gray : props.theme.txtSelected};
+    color: ${props => (props.disabled ? props.theme.gray : props.theme.txtSelected)};
 `;
 
 export const ShowHabitContainer = styled(CreateHabitContainer)``;
@@ -96,16 +90,13 @@ export const ShowHabitContainer = styled(CreateHabitContainer)``;
 export const ShowHabitLabel = styled(ButtonLabel)`
     width: 50%;
     text-align: left;
-    font-size: ${isMobile
-        ? fontSizes.large
-        : fontSizes.large + verticalScale(2)}px;
+    font-size: ${isMobile ? fontSizes.large : fontSizes.large + verticalScale(2)}px;
 `;
 
 export const ShowHabitButtonContainer = styled(CreateButtonsContainer)``;
 
 export const ShowHabitIndicator = styled(IconsLabel)<{ isDone: boolean }>`
-    color: ${props =>
-        props.isDone ? props.theme.txtSelected : props.theme.gray};
+    color: ${props => (props.isDone ? props.theme.txtSelected : props.theme.gray)};
 `;
 
 export const ShowCheckButton = styled.TouchableOpacity`
@@ -125,10 +116,8 @@ export const ShowCheckIndicator = styled.View<{ isDone: boolean }>`
     border-radius: 5px;
     border-right-width: 2px;
     border-right-style: solid;
-    border-right-color: ${props =>
-        props.isDone ? props.theme.borderColor : props.theme.selected};
-    background-color: ${props =>
-        props.isDone ? props.theme.selected : props.theme.bgColor};
+    border-right-color: ${props => (props.isDone ? props.theme.borderColor : props.theme.selected)};
+    background-color: ${props => (props.isDone ? props.theme.selected : props.theme.bgColor)};
     transform: translateX(${props => (props.isDone ? verticalScale(39) : 0)}px);
 `;
 
@@ -150,9 +139,7 @@ export const ShowEditOptButtons = styled(CancelButton)`
 
 export const ShowBasketButtonLabel = styled(IconsLabel)`
     color: ${props => props.theme.txtSelected};
-    font-size: ${isMobile
-        ? fontSizes.large
-        : fontSizes.large + verticalScale(10)}px;
+    font-size: ${isMobile ? fontSizes.large : fontSizes.large + verticalScale(10)}px;
     padding-top: ${verticalScale(5)}px;
 `;
 

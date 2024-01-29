@@ -17,12 +17,7 @@ const MonthSubHeader = (props: { daysOfWeek: string[] }) => {
             {daysOfWeek.map((d, i) => (
                 <DaysOfWeekLabelText
                     key={i}
-                    children={
-                        isMobile
-                            ? d.substring(0, 1).toUpperCase() +
-                              d.substring(1, 3)
-                            : d
-                    }
+                    children={isMobile ? d.substring(0, 1).toUpperCase() + d.substring(1, 3) : d}
                 />
             ))}
         </MonthSubHeaderContainer>

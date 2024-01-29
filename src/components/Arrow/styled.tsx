@@ -4,7 +4,5 @@ import styled from 'styled-components/native';
 export const ImageStyled = styled.Image<{ direction: string }>`
     height: ${fontSizes.large}px;
     width: ${fontSizes.large}px;
-    transform: rotate(
-        ${props => (props.direction === Direction.LEFT ? '180deg' : '0deg')}
-    );
+    transform: rotate(${props => (props.direction === Direction.LEFT ? '180deg' : '0deg')});
 `;

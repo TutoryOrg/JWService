@@ -44,12 +44,7 @@ export const ProgressCircle = (props: IProgressCircle) => {
     return (
         <View style={{ height: size + 5 }}>
             <Svg width={size} height={size}>
-                <CircleStyled
-                    r={radius}
-                    cx={size / 2}
-                    cy={size / 2}
-                    strokeWidth={strokeWidth}
-                />
+                <CircleStyled r={radius} cx={size / 2} cy={size / 2} strokeWidth={strokeWidth} />
                 <CircleProgressStyled
                     r={radius}
                     cx={size / 2}
@@ -57,9 +52,7 @@ export const ProgressCircle = (props: IProgressCircle) => {
                     strokeWidth={strokeWidth}
                     strokeDasharray={`${circum} ${circum}`}
                     transform={`rotate(-90, ${size / 2}, ${size / 2})`}
-                    strokeDashoffset={
-                        radius * Math.PI * 2 * (svgProgress / 100)
-                    }
+                    strokeDashoffset={radius * Math.PI * 2 * (svgProgress / 100)}
                 />
             </Svg>
         </View>
@@ -79,11 +72,7 @@ export const DateHeader = (props: IDateHeader) => {
 
     return (
         <Container>
-            <DateLabel
-                month={t(month)}
-                weekDay={t(weekDay)}
-                numberDay={numberDay}
-            />
+            <DateLabel month={t(month)} weekDay={t(weekDay)} numberDay={numberDay} />
             <ProgressCircle progress={progress} />
         </Container>
     );
