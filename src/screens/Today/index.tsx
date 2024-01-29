@@ -109,6 +109,7 @@ export const Today = () => {
     }, [savedHabitsToday]);
 
     const calculateProgress = (todayHabits: IHabit[]) => {
+        if (todayHabits.length === 0) return 0;
         const numHabits = todayHabits.length;
         const numHabitsDone = todayHabits.filter(h => h.isDone == true).length;
         const progress = (numHabitsDone / numHabits) * 100;
