@@ -108,6 +108,13 @@ export const Today = () => {
         saveDataAsync(savedHabitsToday);
     }, [savedHabitsToday]);
 
+    const calculateProgress = (todayHabits: IHabit[]) => {
+        const numHabits = todayHabits.length;
+        const numHabitsDone = todayHabits.filter(h => h.isDone == true).length;
+        const progress = (numHabitsDone / numHabits) * 100;
+        return progress;
+    };
+
     const addHabit = (date: string, habits: IHabit[], newHabit: IHabit) => {
         const hb = [...habits, newHabit];
         setHabitsToday((prev: IStoreHabits[]) =>
@@ -125,7 +132,11 @@ export const Today = () => {
     const editHabit = (date: string, habits: IHabit[], edHabit: IHabit) => {
         const hb = habits.map(h => (h.id === edHabit.id ? edHabit : h));
         setHabitsToday((prev: IStoreHabits[]) =>
-            prev.map(h => (h.date === date ? { ...h, habits: hb } : h))
+            prev.map(h =>
+                h.date === date
+                    ? { ...h, habits: hb, progress: calculateProgress(hb) }
+                    : h
+            )
         );
     };
 
