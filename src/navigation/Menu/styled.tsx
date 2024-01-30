@@ -78,7 +78,6 @@ export const SideMenuContainer = styled.View`
 export const MenuContainer = styled.SafeAreaView`
     overflow: hidden;
     width: ${windowWidth}px;
-    height: ${windowHeight}px;
     flex-direction: row;
     padding-top: ${isMobile ? 40 : 0}px;
     border: ${props => (isMobile ? `2px solid ${props.theme.borderColor}` : 'none')};
@@ -89,6 +88,7 @@ export const MenuContainer = styled.SafeAreaView`
 
 export const Content = styled.View`
     width: 90%;
+    overflow: hidden;
     height: ${windowHeight}px;
     border-top-width: 2px;
     border-top-right-radius: 8px;
