@@ -9,7 +9,6 @@ import { useFontsAndLayout } from 'hooks/useFontsAndLayout';
 import { darkTheme, lightTheme } from 'themes';
 import * as SplashScreen from 'expo-splash-screen';
 import Constants from 'expo-constants';
-import './App.css';
 
 function App() {
     const store = useAppState();

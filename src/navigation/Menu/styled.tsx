@@ -76,6 +76,7 @@ export const SideMenuContainer = styled.View`
 `;
 
 export const MenuContainer = styled.SafeAreaView`
+    overflow: hidden;
     width: ${windowWidth}px;
     height: ${windowHeight}px;
     flex-direction: row;
