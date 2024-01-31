@@ -19,6 +19,7 @@ export const CalendarHeader = (props: ICalendarHeader) => {
     const weekDay = days[date.getDay()];
     const numberDay = date.getDate();
     const daysOfWeek = days.map(d => t(d));
+    daysOfWeek.push(daysOfWeek.shift() as string);
 
     return (
         <Container>
