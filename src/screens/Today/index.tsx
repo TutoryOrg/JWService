@@ -1,13 +1,14 @@
 import { useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { Button, View, FlatList } from 'react-native';
+import { TouchableOpacity, FlatList } from 'react-native';
 import { RootState, useAppDispatch } from 'store/redux';
-import { isSameDay, isWeb, windowHeight } from 'utils/scaleFunctions';
-import { DateHeader, Habit, ImagePicker } from 'components';
+import { isMobile, isSameDay, isWeb, windowHeight } from 'utils/scaleFunctions';
+import { Arrow, DateHeader, Habit, ImagePicker } from 'components';
 import { useEffect, useCallback, useState } from 'react';
 import { ContentContainer, TodayContainer } from './styled';
 import { IHabit, IStoreHabits, setSavedHabits } from 'store/redux/habits';
 import _ from 'lodash';
+import { Direction } from 'utils/constants';
 
 export const emptyHabit: IHabit = {
     id: '',
@@ -109,6 +110,7 @@ export const Today = (props: { index: number; setIndex: (i: number) => void }) =
         saveDataAsync(savedHabitsToday);
     }, [savedHabitsToday]);
 
+    const isValidIndex = (i: number) => i >= 0 && i < savedHabitsToday.length;
     const scrollToIndex = (index: number) => {
         if (!(index >= 0 && index < savedHabitsToday.length)) return;
         setIndex(index);
@@ -195,16 +197,41 @@ export const Today = (props: { index: number; setIndex: (i: number) => void }) =
                     index,
                 })}
             />
-            {isWeb && (
-                <>
-                    <View style={{ position: 'absolute', right: 0, top: 0 }}>
-                        <Button title={'up'} onPress={() => scrollToIndex(index - 1)} />
-                    </View>
-
-                    <View style={{ position: 'absolute', right: 0, bottom: 0 }}>
-                        <Button title={'down'} onPress={() => scrollToIndex(index + 1)} />
-                    </View>
-                </>
+            {!isMobile && isValidIndex(index - 1) && (
+                <TouchableOpacity
+                    style={{
+                        position: 'absolute',
+                        right: 0,
+                        top: 170,
+                        width: 50,
+                        height: 50,
+                        backgroundColor: 'gray',
+                        borderRadius: 90,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}
+                    disabled={!isValidIndex(index - 1)}
+                    onPress={() => scrollToIndex(index - 1)}
+                    children={<Arrow direction={Direction.UP} />}
+                />
+            )}
+            {!isMobile && isValidIndex(index + 1) && (
+                <TouchableOpacity
+                    style={{
+                        position: 'absolute',
+                        right: 0,
+                        bottom: 150,
+                        width: 50,
+                        height: 50,
+                        backgroundColor: 'gray',
+                        borderRadius: 90,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}
+                    disabled={!isValidIndex(index + 1)}
+                    onPress={() => scrollToIndex(index + 1)}
+                    children={<Arrow direction={Direction.DOWN} />}
+                />
             )}
         </TodayContainer>
     );
