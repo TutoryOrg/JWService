@@ -196,6 +196,10 @@ export const Today = (props: { index: number; setIndex: (i: number) => void }) =
                     offset: windowHeight * index,
                     index,
                 })}
+                onScroll={(e: any) => {
+                    const index = Math.round(e.nativeEvent.contentOffset.y / windowHeight);
+                    setIndex(index);
+                }}
             />
             {!isMobile && isValidIndex(index - 1) && (
                 <TouchableOpacity
