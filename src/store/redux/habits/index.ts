@@ -7,7 +7,7 @@ export interface IHabit {
 }
 
 export interface IStoreHabits {
-    date: string | null;
+    date: string;
     image: string;
     habits: IHabit[];
     description: string;

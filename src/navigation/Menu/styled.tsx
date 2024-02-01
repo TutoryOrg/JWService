@@ -16,12 +16,12 @@ export interface IOption {
 export const initOptions: IOption[] = [
     {
         text: Screens.TODAY,
-        selected: false,
+        selected: true,
         lastOne: false,
     },
     {
         text: Screens.CALENDAR,
-        selected: true,
+        selected: false,
         lastOne: false,
     },
     {

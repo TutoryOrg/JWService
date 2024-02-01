@@ -1,8 +1,8 @@
 import { useRef } from 'react';
-import { FlatList } from 'react-native';
 import { useSelector } from 'react-redux';
-import { isSameDay, windowHeight } from 'utils/scaleFunctions';
+import { Button, View, FlatList } from 'react-native';
 import { RootState, useAppDispatch } from 'store/redux';
+import { isSameDay, isWeb, windowHeight } from 'utils/scaleFunctions';
 import { DateHeader, Habit, ImagePicker } from 'components';
 import { useEffect, useCallback, useState } from 'react';
 import { ContentContainer, TodayContainer } from './styled';
@@ -62,10 +62,12 @@ const Content = (props: IContent) => {
     );
 };
 
-export const Today = () => {
+export const Today = (props: { index: number; setIndex: (i: number) => void }) => {
+    const { index, setIndex } = props;
     const ref = useRef<FlatList>(null);
     const dispatch = useAppDispatch();
     const todayDate = new Date();
+    todayDate.setDate(todayDate.getDate() + 1);
     const savedHabits = useSelector((state: RootState) => state.habits.savedHabits);
 
     const [savedHabitsToday, setHabitsToday] = useState<IStoreHabits[]>(
@@ -107,12 +109,15 @@ export const Today = () => {
         saveDataAsync(savedHabitsToday);
     }, [savedHabitsToday]);
 
-    const scrollToIndex = (index: any) =>
+    const scrollToIndex = (index: number) => {
+        if (!(index >= 0 && index < savedHabitsToday.length)) return;
+        setIndex(index);
         ref?.current?.scrollToIndex({
             index: index,
             animated: true,
-            viewPosition: 0.5,
+            viewPosition: 0,
         });
+    };
 
     const calculateProgress = (todayHabits: IHabit[]) => {
         if (todayHabits.length === 0) return 0;
@@ -125,14 +130,18 @@ export const Today = () => {
     const addHabit = (date: string, habits: IHabit[], newHabit: IHabit) => {
         const hb = [...habits, newHabit];
         setHabitsToday((prev: IStoreHabits[]) =>
-            prev.map(h => (h.date === date ? { ...h, habits: hb } : h))
+            prev.map(h =>
+                h.date === date ? { ...h, habits: hb, progress: calculateProgress(hb) } : h
+            )
         );
     };
 
     const removeHabit = (date: string, habits: IHabit[], delHabit: IHabit) => {
         const hb = habits.filter(({ id }) => id !== delHabit.id);
         setHabitsToday((prev: IStoreHabits[]) =>
-            prev.map(h => (h.date === date ? { ...h, habits: hb } : h))
+            prev.map(h =>
+                h.date === date ? { ...h, habits: hb, progress: calculateProgress(hb) } : h
+            )
         );
     };
 
@@ -157,32 +166,46 @@ export const Today = () => {
         );
     };
 
+    const renderItem = ({ item, index }: { item: IStoreHabits; index: number }) => (
+        <Content
+            key={index}
+            day={item}
+            addHabit={addHabit}
+            removeHabit={removeHabit}
+            editHabit={editHabit}
+            addImage={addImage}
+            addDescription={addDescription}
+        />
+    );
+
     return (
         <TodayContainer>
             <FlatList
                 ref={ref}
-                pagingEnabled
+                pagingEnabled={true}
+                maxToRenderPerBatch={5}
                 data={savedHabitsToday}
+                renderItem={renderItem}
+                initialScrollIndex={index}
+                keyExtractor={item => item.date}
                 showsHorizontalScrollIndicator={false}
-                keyExtractor={item => item.date as string}
-                renderItem={({ item, index }) => {
-                    return (
-                        <Content
-                            key={index}
-                            day={item}
-                            addHabit={addHabit}
-                            removeHabit={removeHabit}
-                            editHabit={editHabit}
-                            addImage={addImage}
-                            addDescription={addDescription}
-                        />
-                    );
-                }}
-                onScroll={(e: any) => {
-                    const index = Math.round(e.nativeEvent.contentOffset.y / windowHeight);
-                    console.log({ index });
-                }}
+                getItemLayout={(data, index) => ({
+                    length: data?.length as number,
+                    offset: windowHeight * index,
+                    index,
+                })}
             />
+            {isWeb && (
+                <>
+                    <View style={{ position: 'absolute', right: 0, top: 0 }}>
+                        <Button title={'up'} onPress={() => scrollToIndex(index - 1)} />
+                    </View>
+
+                    <View style={{ position: 'absolute', right: 0, bottom: 0 }}>
+                        <Button title={'down'} onPress={() => scrollToIndex(index + 1)} />
+                    </View>
+                </>
+            )}
         </TodayContainer>
     );
 };

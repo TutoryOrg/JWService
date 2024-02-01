@@ -44,13 +44,16 @@ export const SideMenu = memo((props: ISideMenu) => {
 export function Menu(props: { onLayoutRootView: () => Promise<void> }) {
     const { onLayoutRootView } = props;
     const [options, setOptions] = useState(initOptions);
+    const [todayIndex, setTodayIndex] = useState<number>(0);
     const selected = useMemo(() => options.find(op => op.selected === true)?.text, [options]);
 
     return (
         <MenuContainer onLayout={onLayoutRootView}>
             <SideMenu options={options} setOptions={setOptions} />
             <Content>
-                {selected === Screens.TODAY && <Today />}
+                {selected === Screens.TODAY && (
+                    <Today index={todayIndex} setIndex={setTodayIndex} />
+                )}
                 {selected === Screens.CALENDAR && <Calendar />}
                 {/* 
                 {selected === Screens.GOALS && <Goals />}
