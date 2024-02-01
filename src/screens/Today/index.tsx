@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { FlatList } from 'react-native';
 import { useSelector } from 'react-redux';
 import { isSameDay, windowHeight } from 'utils/scaleFunctions';
@@ -62,6 +63,7 @@ const Content = (props: IContent) => {
 };
 
 export const Today = () => {
+    const ref = useRef<FlatList>(null);
     const dispatch = useAppDispatch();
     const todayDate = new Date();
     const savedHabits = useSelector((state: RootState) => state.habits.savedHabits);
@@ -104,6 +106,13 @@ export const Today = () => {
     useEffect(() => {
         saveDataAsync(savedHabitsToday);
     }, [savedHabitsToday]);
+
+    const scrollToIndex = (index: any) =>
+        ref?.current?.scrollToIndex({
+            index: index,
+            animated: true,
+            viewPosition: 0.5,
+        });
 
     const calculateProgress = (todayHabits: IHabit[]) => {
         if (todayHabits.length === 0) return 0;
@@ -151,9 +160,11 @@ export const Today = () => {
     return (
         <TodayContainer>
             <FlatList
+                ref={ref}
                 pagingEnabled
                 data={savedHabitsToday}
                 showsHorizontalScrollIndicator={false}
+                keyExtractor={item => item.date as string}
                 renderItem={({ item, index }) => {
                     return (
                         <Content
