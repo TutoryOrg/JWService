@@ -68,7 +68,6 @@ export const Today = (props: { index: number; setIndex: (i: number) => void }) =
     const ref = useRef<FlatList>(null);
     const dispatch = useAppDispatch();
     const todayDate = new Date();
-    todayDate.setDate(todayDate.getDate() + 1);
     const savedHabits = useSelector((state: RootState) => state.habits.savedHabits);
 
     const [savedHabitsToday, setHabitsToday] = useState<IStoreHabits[]>(
