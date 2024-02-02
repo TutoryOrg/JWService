@@ -8,9 +8,9 @@ import { CalendarMode } from 'utils/constants';
 import { useTranslation } from 'react-i18next';
 
 interface ICalendarHeader {}
+
 export const CalendarHeader = (props: ICalendarHeader) => {
     const { t } = useTranslation();
-
     const [mode, setMode] = useState<CalendarMode>(CalendarMode.WEEK);
 
     const date = new Date();
