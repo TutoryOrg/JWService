@@ -1,14 +1,14 @@
 import { useRef } from 'react';
+import { Direction } from 'utils/constants';
 import { useSelector } from 'react-redux';
-import { TouchableOpacity, FlatList } from 'react-native';
 import { RootState, useAppDispatch } from 'store/redux';
-import { isMobile, isSameDay, isWeb, windowHeight } from 'utils/scaleFunctions';
-import { Arrow, DateHeader, Habit, ImagePicker } from 'components';
+import { TouchableOpacity, FlatList } from 'react-native';
 import { useEffect, useCallback, useState } from 'react';
 import { ContentContainer, TodayContainer } from './styled';
+import { isMobile, isSameDay, windowHeight } from 'utils/scaleFunctions';
 import { IHabit, IStoreHabits, setSavedHabits } from 'store/redux/habits';
+import { Arrow, DateHeader, Habit, ImagePicker } from 'components';
 import _ from 'lodash';
-import { Direction } from 'utils/constants';
 
 export const emptyHabit: IHabit = {
     id: '',

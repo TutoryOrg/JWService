@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { windowHeight, isMobile, verticalScale } from 'utils/scaleFunctions';
+import { windowHeight } from 'utils/scaleFunctions';
 
 export const ContentContainer = styled.View`
     width: 100%;
