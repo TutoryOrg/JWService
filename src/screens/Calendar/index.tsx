@@ -1,7 +1,9 @@
 import { useRef } from 'react';
-import { View, FlatList } from 'react-native';
+import { useSelector } from 'react-redux';
 import { CalendarHeader } from 'components';
-import { CalendarContainer } from './styled';
+import { View, Text, FlatList } from 'react-native';
+import { RootState, useAppDispatch } from 'store/redux';
+import { CalendarContainer, CalendarContentContainer, ItemContainer } from './styled';
 
 export const Calendar = () => {
     const date = new Date();
@@ -16,9 +18,28 @@ export const Calendar = () => {
 
 const CalendarContent = () => {
     const ref = useRef<FlatList>(null);
+    const savedHabits = useSelector((state: RootState) => state.habits.savedHabits);
+
+    const renderItem = ({ item, index }: { item: IStoreHabits; index: number }) => {
+        console.log({ item });
+        return (
+            <ItemContainer>
+                <Text>{item.date}</Text>
+            </ItemContainer>
+        );
+    };
+
     return (
-        <View style={{ height: '80%', width: '90%', backgroundColor: 'yellow' }}>
-            <FlatList ref={ref} />
-        </View>
+        <CalendarContentContainer>
+            <FlatList
+                ref={ref}
+                data={savedHabits}
+                horizontal={true}
+                renderItem={renderItem}
+                keyExtractor={item => item.date}
+                pagingEnabled={true}
+                maxToRenderPerBatch={5}
+            />
+        </CalendarContentContainer>
     );
 };
