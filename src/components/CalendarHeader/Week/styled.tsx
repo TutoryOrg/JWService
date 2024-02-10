@@ -1,10 +1,10 @@
 import styled from 'styled-components/native';
-import { verticalScale } from 'utils/scaleFunctions';
 import { fontFamilies, fontSizes } from 'utils/constants';
+import { isMobile, verticalScale } from 'utils/scaleFunctions';
 
 export const DaysOfWeekLabelText = styled.Text<{ selected: boolean }>`
     color: ${props => (props.selected ? props.theme.bgColor : props.theme.txtColor)};
-    padding: 10px;
+    padding: ${isMobile ? '2px' : '10px'};
     font-size: ${props => (props.selected ? fontSizes.large : fontSizes.normalX)}px;
     font-family: ${fontFamilies.CascadiaBold};
     background-color: ${props => (props.selected ? props.theme.txtColor : props.theme.bgColor)};
