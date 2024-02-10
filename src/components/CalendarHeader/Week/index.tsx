@@ -9,14 +9,16 @@ import {
     WeekHeaderContainer,
     WeekSubHeaderContainer,
 } from './styled';
+import _ from 'lodash';
 
-const WeekSubHeader = (props: { daysOfWeek: string[] }) => {
-    const { daysOfWeek } = props;
+const WeekSubHeader = (props: { weekDay: string; daysOfWeek: string[] }) => {
+    const { weekDay, daysOfWeek } = props;
     return (
         <WeekSubHeaderContainer>
             {daysOfWeek.map((d, i) => (
                 <DaysOfWeekLabelText
                     key={i}
+                    selected={_.isEqual(d, weekDay)}
                     children={isMobile ? d.substring(0, 1).toUpperCase() + d.substring(1, 3) : d}
                 />
             ))}
@@ -54,10 +56,11 @@ interface IWeek {
 }
 export const Week = (props: IWeek) => {
     const { month, weekDay, numberDay, daysOfWeek, setMode } = props;
+
     return (
         <View>
             <WeekHeader setMode={setMode} month={month} weekDay={weekDay} numberDay={numberDay} />
-            <WeekSubHeader daysOfWeek={daysOfWeek} />
+            <WeekSubHeader weekDay={weekDay} daysOfWeek={daysOfWeek} />
         </View>
     );
 };

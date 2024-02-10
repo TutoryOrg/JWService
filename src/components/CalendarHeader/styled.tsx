@@ -7,6 +7,6 @@ export const ContainerRow = styled.View`
 
 export const Container = styled.View`
     width: 90%;
-    height: 100%;
+    height: 15%;
     margin-top: ${verticalScale(10)}px;
 `;

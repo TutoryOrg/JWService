@@ -7,13 +7,15 @@ import { days, months } from 'utils/constants';
 import { CalendarMode } from 'utils/constants';
 import { useTranslation } from 'react-i18next';
 
-interface ICalendarHeader {}
+interface ICalendarHeader {
+    date: Date;
+}
 
 export const CalendarHeader = (props: ICalendarHeader) => {
+    const { date } = props;
     const { t } = useTranslation();
     const [mode, setMode] = useState<CalendarMode>(CalendarMode.WEEK);
 
-    const date = new Date();
     const year = date.getFullYear();
     const month = months[date.getMonth()];
     const weekDay = days[date.getDay()];
