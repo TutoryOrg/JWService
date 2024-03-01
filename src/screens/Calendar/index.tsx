@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { useSelector } from 'react-redux';
+import { IStoreHabits } from 'store/redux/habits';
 import { CalendarHeader } from 'components';
 import { View, Text, FlatList } from 'react-native';
 import { RootState, useAppDispatch } from 'store/redux';
@@ -21,7 +22,6 @@ const CalendarContent = () => {
     const savedHabits = useSelector((state: RootState) => state.habits.savedHabits);
 
     const renderItem = ({ item, index }: { item: IStoreHabits; index: number }) => {
-        console.log({ item });
         return (
             <ItemContainer>
                 <Text>{item.date}</Text>
