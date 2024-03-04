@@ -1,9 +1,9 @@
 import { useRef } from 'react';
+import { RootState } from 'store/redux';
 import { useSelector } from 'react-redux';
 import { IStoreHabits } from 'store/redux/habits';
 import { CalendarHeader } from 'components';
-import { View, Text, FlatList } from 'react-native';
-import { RootState, useAppDispatch } from 'store/redux';
+import { Text, FlatList } from 'react-native';
 import { CalendarContainer, CalendarContentContainer, ItemContainer } from './styled';
 
 export const Calendar = () => {
