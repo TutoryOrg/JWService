@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { isMobile, windowHeight, windowWidth } from 'utils/scaleFunctions';
+import { windowHeight, windowWidth } from 'utils/scaleFunctions';
 
 export const ItemContainer = styled.View`
     width: ${windowWidth}px;
