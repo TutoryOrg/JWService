@@ -1,12 +1,11 @@
-import { days } from 'utils/constants';
 import { RootState } from 'store/redux';
+import { windowWidth } from 'utils/scaleFunctions';
 import { useSelector } from 'react-redux';
 import { IStoreHabits } from 'store/redux/habits';
 import { CalendarHeader } from 'components';
 import { Text, FlatList } from 'react-native';
 import { useRef, useState } from 'react';
 import { CalendarContainer, CalendarContentContainer, ItemContainer } from './styled';
-import { windowWidth } from 'utils/scaleFunctions';
 
 interface ICalendarContent {
     setDate: (date: Date) => void;
@@ -25,8 +24,6 @@ const CalendarContent = (props: ICalendarContent) => {
             </ItemContainer>
         );
     };
-
-    console.log({ index });
 
     return (
         <CalendarContentContainer>
