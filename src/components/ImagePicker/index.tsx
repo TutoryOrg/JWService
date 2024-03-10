@@ -22,10 +22,10 @@ export const ImagePicker = ({ desc, image, editable, onChangeImage, onAddDesc }:
 
     return (
         <ImagePickerContainer>
-            <ImageContainer onPress={pickImageAsync}>
+            <ImageContainer disabled={!editable} onPress={pickImageAsync}>
                 {!_.isEmpty(image) && <ImageViewer source={{ uri: image }} />}
             </ImageContainer>
-            <CommentDesc value={desc} editable={true} onChangeText={onAddDesc} maxLength={25} />
+            <CommentDesc value={desc} editable={editable} onChangeText={onAddDesc} maxLength={25} />
         </ImagePickerContainer>
     );
 };

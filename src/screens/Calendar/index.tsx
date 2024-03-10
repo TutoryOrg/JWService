@@ -1,10 +1,10 @@
-import { RootState } from 'store/redux';
 import { FlatList } from 'react-native';
+import { RootState } from 'store/redux';
 import { windowWidth } from 'utils/scaleFunctions';
 import { useSelector } from 'react-redux';
 import { IStoreHabits } from 'store/redux/habits';
-import { CalendarHeader, ProgressCircle } from 'components';
 import { useRef, useState } from 'react';
+import { CalendarHeader, ImagePicker, ProgressCircle } from 'components';
 import { CalendarContainer, CalendarContentContainer, ItemContainer } from './styled';
 
 interface ICalendarContent {
@@ -25,6 +25,13 @@ const CalendarContent = (props: ICalendarContent) => {
                     strokeWidth={22}
                     showNumber={true}
                     progress={item.progress}
+                />
+                <ImagePicker
+                    image={item.image}
+                    desc={''}
+                    editable={false}
+                    onChangeImage={() => console.log('')}
+                    onAddDesc={() => console.log('')}
                 />
             </ItemContainer>
         );
