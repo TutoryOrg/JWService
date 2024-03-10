@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import { fontFamilies, fontSizes } from 'utils/constants';
-import { isMobile, verticalScale } from 'utils/scaleFunctions';
+import { windowWidth, isMobile, verticalScale } from 'utils/scaleFunctions';
 
 export const DaysOfWeekLabelText = styled.Text<{ selected: boolean }>`
     color: ${props => (props.selected ? props.theme.bgColor : props.theme.txtColor)};
@@ -20,7 +20,7 @@ export const WeekSubHeaderContainer = styled.View`
 `;
 
 export const DateLabelText = styled.Text`
-    font-size: ${fontSizes.large}px;
+    font-size: ${windowWidth < 700 ? fontSizes.normalXL : fontSizes.large}px;
     font-family: ${fontFamilies.CascadiaBold};
     color: ${props => props.theme.txtColor};
 `;

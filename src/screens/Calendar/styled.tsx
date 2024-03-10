@@ -1,5 +1,12 @@
-import styled from 'styled-components/native';
 import { windowHeight, windowWidth } from 'utils/scaleFunctions';
+import { fontFamilies, fontSizes } from 'utils/constants';
+import styled from 'styled-components/native';
+
+export const DateLabelText = styled.Text`
+    font-size: ${fontSizes.large}px;
+    font-family: ${fontFamilies.CascadiaBold};
+    color: ${props => props.theme.txtColor};
+`;
 
 export const ItemContainer = styled.View`
     width: ${windowWidth}px;

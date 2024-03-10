@@ -8,6 +8,7 @@ export const Arrow = (props: { direction: Direction }) => {
 
     return (
         <ImageStyled
+            style={{ alignSelf: 'center' }}
             direction={direction}
             source={
                 themeName === 'darkTheme'

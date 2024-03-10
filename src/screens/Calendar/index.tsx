@@ -1,9 +1,9 @@
 import { RootState } from 'store/redux';
+import { FlatList } from 'react-native';
 import { windowWidth } from 'utils/scaleFunctions';
 import { useSelector } from 'react-redux';
 import { IStoreHabits } from 'store/redux/habits';
 import { CalendarHeader } from 'components';
-import { Text, FlatList } from 'react-native';
 import { useRef, useState } from 'react';
 import { CalendarContainer, CalendarContentContainer, ItemContainer } from './styled';
 
@@ -14,15 +14,11 @@ interface ICalendarContent {
 const CalendarContent = (props: ICalendarContent) => {
     const { setDate } = props;
     const ref = useRef<FlatList>(null);
-    const savedHabits = useSelector((state: RootState) => state.habits.savedHabits);
     const [index, setIndex] = useState(0);
+    const savedHabits = useSelector((state: RootState) => state.habits.savedHabits);
 
     const renderItem = ({ item }: { item: IStoreHabits; index: number }) => {
-        return (
-            <ItemContainer>
-                <Text>{item.date}</Text>
-            </ItemContainer>
-        );
+        return <ItemContainer></ItemContainer>;
     };
 
     return (

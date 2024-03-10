@@ -5,5 +5,6 @@ import { AddHabit } from './AddHabit';
 import { DateHeader } from './DateHeader';
 import { ImagePicker } from './ImagePicker';
 import { CalendarHeader } from './CalendarHeader';
+import { ProgressCircle } from './ProgressCircle';
 
-export { Habit, Arrow, Comment, AddHabit, DateHeader, ImagePicker, CalendarHeader };
+export { ProgressCircle, Habit, Arrow, Comment, AddHabit, DateHeader, ImagePicker, CalendarHeader };
