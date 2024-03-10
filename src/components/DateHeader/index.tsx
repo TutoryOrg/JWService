@@ -1,10 +1,10 @@
 import styled from 'styled-components/native';
 import { View } from 'react-native';
+import { isMobile } from 'utils/scaleFunctions';
 import Svg, { Circle } from 'react-native-svg';
 import { months, days } from 'utils/constants';
 import { useTranslation } from 'react-i18next';
 import { Container, DateLabelText, MonthLabelText } from './styled';
-import { isMobile, verticalScale } from 'utils/scaleFunctions';
 
 interface IDateLabel {
     month: string;
