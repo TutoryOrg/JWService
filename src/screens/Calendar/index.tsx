@@ -1,4 +1,4 @@
-import { FlatList } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 import { RootState } from 'store/redux';
 import { windowWidth } from 'utils/scaleFunctions';
 import { useSelector } from 'react-redux';
@@ -20,12 +20,27 @@ const CalendarContent = (props: ICalendarContent) => {
     const renderItem = ({ item }: { item: IStoreHabits; index: number }) => {
         return (
             <ItemContainer>
-                <ProgressCircle
-                    size={100}
-                    strokeWidth={22}
-                    showNumber={true}
-                    progress={item.progress}
-                />
+                <View
+                    style={{
+                        backgroundColor: 'yellow',
+                        width: '100%',
+                        justifyContent: 'space-evenly',
+                        alignItems: 'center',
+                        flexDirection: 'row',
+                    }}>
+                    <View style={{ flexDirection: 'column' }}>
+                        {item.habits.map(i => (
+                            <Text>{i.label}</Text>
+                        ))}
+                    </View>
+                    <ProgressCircle
+                        size={100}
+                        strokeWidth={22}
+                        showNumber={true}
+                        progress={item.progress}
+                    />
+                </View>
+
                 <ImagePicker
                     image={item.image}
                     desc={''}

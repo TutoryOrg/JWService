@@ -10,9 +10,10 @@ export const DateLabelText = styled.Text`
 
 export const ItemContainer = styled.View`
     width: ${windowWidth}px;
-    height: ${windowHeight}px;
+    height: ${windowHeight - 140}px;
     border: solid 2px yellow;
-    align-items: center;
+    background-color: red;
+    justify-content: space-evenly;
 `;
 
 export const CalendarContentContainer = styled.View`
