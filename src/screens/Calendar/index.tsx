@@ -3,7 +3,7 @@ import { FlatList } from 'react-native';
 import { windowWidth } from 'utils/scaleFunctions';
 import { useSelector } from 'react-redux';
 import { IStoreHabits } from 'store/redux/habits';
-import { CalendarHeader } from 'components';
+import { CalendarHeader, ProgressCircle } from 'components';
 import { useRef, useState } from 'react';
 import { CalendarContainer, CalendarContentContainer, ItemContainer } from './styled';
 
@@ -18,7 +18,16 @@ const CalendarContent = (props: ICalendarContent) => {
     const savedHabits = useSelector((state: RootState) => state.habits.savedHabits);
 
     const renderItem = ({ item }: { item: IStoreHabits; index: number }) => {
-        return <ItemContainer></ItemContainer>;
+        return (
+            <ItemContainer>
+                <ProgressCircle
+                    size={100}
+                    strokeWidth={22}
+                    showNumber={true}
+                    progress={item.progress}
+                />
+            </ItemContainer>
+        );
     };
 
     return (

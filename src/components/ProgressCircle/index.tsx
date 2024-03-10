@@ -1,15 +1,17 @@
 import styled from 'styled-components/native';
-import { View } from 'react-native';
 import { isMobile } from 'utils/scaleFunctions';
+import { Text, View } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
+import { fontSizes } from 'utils/constants';
 
 interface IProgressCircle {
+    size: number;
     progress: number;
+    strokeWidth: number;
+    showNumber: boolean;
 }
 export const ProgressCircle = (props: IProgressCircle) => {
-    const { progress } = props;
-    const size = 55;
-    const strokeWidth = 13;
+    const { progress, size, strokeWidth, showNumber } = props;
     const radius = (size - strokeWidth) / 2;
     const circum = radius * 2 * Math.PI;
     const svgProgress = 100 - progress;
@@ -25,7 +27,28 @@ export const ProgressCircle = (props: IProgressCircle) => {
     `;
 
     return (
-        <View style={{ height: size + 5 }}>
+        <View
+            style={{
+                height: size,
+                width: size,
+            }}>
+            {showNumber && (
+                <Text
+                    style={{
+                        fontSize: fontSizes.normal,
+                        fontWeight: 'bold',
+                        position: 'absolute',
+                        top: (size - strokeWidth) / 2,
+                        left:
+                            progress === 0
+                                ? (size - strokeWidth + 4) / 2
+                                : progress === 100
+                                ? (size - strokeWidth - 12) / 2
+                                : (size - strokeWidth - 5) / 2,
+                    }}>
+                    {progress}%
+                </Text>
+            )}
             <Svg width={size} height={size}>
                 <CircleStyled
                     r={radius - (isMobile ? 2 : 0)}

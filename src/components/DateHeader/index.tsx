@@ -1,8 +1,8 @@
 import { View } from 'react-native';
 import { months, days } from 'utils/constants';
 import { useTranslation } from 'react-i18next';
+import { ProgressCircle } from 'components';
 import { Container, DateLabelText, MonthLabelText } from './styled';
-import { ProgressCircle } from 'components/ProgressCircle';
 
 interface IDateLabel {
     month: string;
@@ -33,7 +33,7 @@ export const DateHeader = (props: IDateHeader) => {
     return (
         <Container>
             <DateLabel month={t(month)} weekDay={t(weekDay)} numberDay={numberDay} />
-            <ProgressCircle progress={progress} />
+            <ProgressCircle showNumber={false} strokeWidth={12} size={55} progress={progress} />
         </Container>
     );
 };
