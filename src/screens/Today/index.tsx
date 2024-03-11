@@ -1,13 +1,13 @@
 import { useRef } from 'react';
 import { Direction } from 'utils/constants';
 import { useSelector } from 'react-redux';
+import { Arrow, DateHeader, Habit, ImagePicker } from 'components';
 import { RootState, useAppDispatch } from 'store/redux';
 import { TouchableOpacity, FlatList } from 'react-native';
 import { useEffect, useCallback, useState } from 'react';
-import { ContentContainer, TodayContainer } from './styled';
 import { isMobile, isSameDay, windowHeight } from 'utils/scaleFunctions';
 import { IHabit, IStoreHabits, setSavedHabits } from 'store/redux/habits';
-import { Arrow, DateHeader, Habit, ImagePicker } from 'components';
+import { ContentContainer, ImageContainer, TodayContainer } from './styled';
 import _ from 'lodash';
 
 export const emptyHabit: IHabit = {
@@ -55,13 +55,15 @@ const Content = (props: IContent) => {
                 />
             )}
 
-            <ImagePicker
-                image={image}
-                desc={description}
-                editable={editable}
-                onAddDesc={d => addDescription(date as string, d)}
-                onChangeImage={i => addImage(date as string, i)}
-            />
+            <ImageContainer>
+                <ImagePicker
+                    image={image}
+                    desc={description}
+                    editable={editable}
+                    onAddDesc={d => addDescription(date as string, d)}
+                    onChangeImage={i => addImage(date as string, i)}
+                />
+            </ImageContainer>
         </ContentContainer>
     );
 };

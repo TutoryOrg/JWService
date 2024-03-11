@@ -1,11 +1,17 @@
-import { FlatList, Text, View } from 'react-native';
 import { RootState } from 'store/redux';
 import { windowWidth } from 'utils/scaleFunctions';
 import { useSelector } from 'react-redux';
 import { IStoreHabits } from 'store/redux/habits';
 import { useRef, useState } from 'react';
+import { FlatList, Text, View } from 'react-native';
 import { CalendarHeader, ImagePicker, ProgressCircle } from 'components';
-import { CalendarContainer, CalendarContentContainer, ItemContainer } from './styled';
+import {
+    InfoContainer,
+    ItemContainer,
+    CalendarContainer,
+    CalendarContentContainer,
+    ImageContainer,
+} from './styled';
 
 interface ICalendarContent {
     setDate: (date: Date) => void;
@@ -20,15 +26,17 @@ const CalendarContent = (props: ICalendarContent) => {
     const renderItem = ({ item }: { item: IStoreHabits; index: number }) => {
         return (
             <ItemContainer>
-                <View
-                    style={{
-                        backgroundColor: 'yellow',
-                        width: '100%',
-                        justifyContent: 'space-evenly',
-                        alignItems: 'center',
-                        flexDirection: 'row',
-                    }}>
-                    <View style={{ flexDirection: 'column' }}>
+                <ImageContainer>
+                    <ImagePicker
+                        image={item.image}
+                        desc={''}
+                        editable={false}
+                        onChangeImage={() => console.log('')}
+                        onAddDesc={() => console.log('')}
+                    />
+                </ImageContainer>
+                <InfoContainer>
+                    <View>
                         {item.habits.map(i => (
                             <Text>{i.label}</Text>
                         ))}
@@ -39,15 +47,7 @@ const CalendarContent = (props: ICalendarContent) => {
                         showNumber={true}
                         progress={item.progress}
                     />
-                </View>
-
-                <ImagePicker
-                    image={item.image}
-                    desc={''}
-                    editable={false}
-                    onChangeImage={() => console.log('')}
-                    onAddDesc={() => console.log('')}
-                />
+                </InfoContainer>
             </ItemContainer>
         );
     };
