@@ -31,11 +31,12 @@ import _ from 'lodash';
 
 const ShowHabit = (props: {
     habit: IHabit;
+    editable: boolean;
     setMode: (mode: EnumHabit) => void;
     editHabit: (rHabit: IHabit) => void;
     removeHabit: (rHabit: IHabit) => void;
 }) => {
-    const { habit, setMode, editHabit, removeHabit } = props;
+    const { habit, editable, setMode, editHabit, removeHabit } = props;
     const [isEditOpt, setIsEditOpt] = useState<boolean>(false);
 
     return (
@@ -60,7 +61,9 @@ const ShowHabit = (props: {
                         />
                     </ShowOptionsContainer>
                 ) : (
-                    <ShowCheckButton onPress={() => editHabit({ ...habit, isDone: !habit.isDone })}>
+                    <ShowCheckButton
+                        disabled={!editable}
+                        onPress={() => editHabit({ ...habit, isDone: !habit.isDone })}>
                         <ShowCheckIndicator isDone={habit.isDone}>
                             <ShowHabitIndicator
                                 isDone={habit.isDone}
@@ -70,6 +73,7 @@ const ShowHabit = (props: {
                     </ShowCheckButton>
                 )}
                 <ShowOptionsButton
+                    disabled={!editable}
                     onPress={() => setIsEditOpt(!isEditOpt)}
                     children={<ButtonLabel children={':'} />}
                 />
@@ -81,11 +85,12 @@ const ShowHabit = (props: {
 export const CreateHabit = (props: {
     habit: IHabit;
     mode: EnumHabit;
+    editable: boolean;
     setMode: (mode: EnumHabit) => void;
     addHabit: (habit: IHabit) => void;
     editHabit: (habit: IHabit) => void;
 }) => {
-    const { habit, mode, setMode, editHabit, addHabit } = props;
+    const { habit, mode, editable, setMode, editHabit, addHabit } = props;
     const [value, setValue] = useState<string>(habit.label);
     const [editValue, setEditValue] = useState<string>('');
 
@@ -126,7 +131,6 @@ export const CreateHabit = (props: {
                 <CreateButton
                     onPress={() => {
                         if (!_.isEmpty(habit.label) && mode == EnumHabit.CREATE) {
-                            // editHabit({ ...habit, label: editValue });
                             setMode(EnumHabit.ADD);
                         }
                         if (mode == EnumHabit.CREATE) {
@@ -170,11 +174,12 @@ enum EnumHabit {
 }
 export const Habit = (props: {
     habit: IHabit;
+    editable: boolean;
     addHabit: (h: IHabit) => void;
     editHabit: (h: IHabit) => void;
     removeHabit: (h: IHabit) => void;
 }) => {
-    const { habit, addHabit, editHabit, removeHabit } = props;
+    const { habit, editable, addHabit, editHabit, removeHabit } = props;
     const { t } = useTranslation();
 
     const [mode, setMode] = useState<EnumHabit>(
@@ -185,6 +190,7 @@ export const Habit = (props: {
         <HabitContainer>
             {mode === EnumHabit.ADD && (
                 <AddHabitContainer
+                    disabled={!editable}
                     onPress={() => setMode(EnumHabit.CREATE)}
                     children={<AddHabitLabel children={t('addHabit')} />}
                 />
@@ -194,6 +200,7 @@ export const Habit = (props: {
                 <CreateHabit
                     mode={mode}
                     habit={habit}
+                    editable={editable}
                     setMode={setMode}
                     addHabit={addHabit}
                     editHabit={editHabit}
@@ -203,6 +210,7 @@ export const Habit = (props: {
             {mode === EnumHabit.SHOW && (
                 <ShowHabit
                     habit={habit}
+                    editable={editable}
                     setMode={setMode}
                     editHabit={editHabit}
                     removeHabit={removeHabit}

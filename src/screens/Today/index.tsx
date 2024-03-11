@@ -18,6 +18,7 @@ export const emptyHabit: IHabit = {
 
 interface IContent {
     day: IStoreHabits;
+    editable: boolean;
     addHabit: (date: string, habits: IHabit[], hb: IHabit) => void;
     removeHabit: (date: string, habits: IHabit[], hb: IHabit) => void;
     editHabit: (date: string, habits: IHabit[], hb: IHabit) => void;
@@ -26,7 +27,7 @@ interface IContent {
 }
 
 const Content = (props: IContent) => {
-    const { day, addHabit, removeHabit, editHabit, addDescription, addImage } = props;
+    const { day, editable, addHabit, removeHabit, editHabit, addDescription, addImage } = props;
     const { date, habits, description, image, progress } = day;
 
     return (
@@ -37,6 +38,7 @@ const Content = (props: IContent) => {
                 <Habit
                     key={index}
                     habit={habit}
+                    editable={editable}
                     addHabit={h => addHabit(date as string, habits, h)}
                     editHabit={h => editHabit(date as string, habits, h)}
                     removeHabit={h => removeHabit(date as string, habits, h)}
@@ -46,6 +48,7 @@ const Content = (props: IContent) => {
             {habits.length < 5 && (
                 <Habit
                     habit={emptyHabit}
+                    editable={editable}
                     addHabit={h => addHabit(date as string, habits, h)}
                     editHabit={h => editHabit(date as string, habits, h)}
                     removeHabit={h => removeHabit(date as string, habits, h)}
@@ -53,9 +56,9 @@ const Content = (props: IContent) => {
             )}
 
             <ImagePicker
-                editable={true}
                 image={image}
                 desc={description}
+                editable={editable}
                 onAddDesc={d => addDescription(date as string, d)}
                 onChangeImage={i => addImage(date as string, i)}
             />
@@ -167,17 +170,20 @@ export const Today = (props: { index: number; setIndex: (i: number) => void }) =
         );
     };
 
-    const renderItem = ({ item, index }: { item: IStoreHabits; index: number }) => (
-        <Content
-            key={index}
-            day={item}
-            addHabit={addHabit}
-            removeHabit={removeHabit}
-            editHabit={editHabit}
-            addImage={addImage}
-            addDescription={addDescription}
-        />
-    );
+    const renderItem = ({ item, index }: { item: IStoreHabits; index: number }) => {
+        return (
+            <Content
+                key={index}
+                day={item}
+                editable={isSameDay(todayDate, new Date(item.date))}
+                addHabit={addHabit}
+                removeHabit={removeHabit}
+                editHabit={editHabit}
+                addImage={addImage}
+                addDescription={addDescription}
+            />
+        );
+    };
 
     return (
         <TodayContainer>

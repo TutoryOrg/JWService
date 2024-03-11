@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 import { months, days } from 'utils/constants';
 import { useTranslation } from 'react-i18next';
-import { ProgressCircle } from 'components';
+import { ProgressCircle } from 'components/ProgressCircle';
 import { Container, DateLabelText, MonthLabelText } from './styled';
 
 interface IDateLabel {
