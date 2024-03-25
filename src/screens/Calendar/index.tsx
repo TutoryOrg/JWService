@@ -10,7 +10,6 @@ import {
     ItemContainer,
     CalendarContainer,
     CalendarContentContainer,
-    ImageContainer,
 } from './styled';
 
 interface ICalendarContent {
