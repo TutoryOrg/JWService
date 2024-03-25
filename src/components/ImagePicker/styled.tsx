@@ -6,7 +6,7 @@ export const ImageViewer = styled.Image`
     width: 100%;
     height: 100%;
     border-radius: 10px;
-    background-color: yellow;
+    background-color: ${props => props.theme.bgColorDimmed};
 `;
 
 export const ImageContainer = styled.TouchableOpacity`
