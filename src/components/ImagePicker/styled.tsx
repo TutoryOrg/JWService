@@ -6,6 +6,7 @@ export const ImageViewer = styled.Image`
     width: 100%;
     height: 100%;
     border-radius: 10px;
+    background-color: yellow;
 `;
 
 export const ImageContainer = styled.TouchableOpacity`
@@ -20,7 +21,6 @@ export const ImagePickerContainer = styled.View`
     height: 100%;
     max-width: 1000px;
     align-self: center;
-    margin-top: ${verticalScale(25)}px;
 `;
 
 export const CommentDesc = styled.TextInput`

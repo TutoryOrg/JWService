@@ -5,6 +5,7 @@ declare module 'styled-components' {
     export interface DefaultTheme {
         themeName: string;
         bgColor: string;
+        bgColorDimmed: string;
         txtColor: string;
         selected: string;
         txtSelected: string;
@@ -16,6 +17,7 @@ declare module 'styled-components' {
 export const lightTheme: DefaultTheme = {
     themeName: 'lightTheme',
     bgColor: '#FFFFFF',
+    bgColorDimmed: '#ffffff80',
     txtColor: '#000000',
     selected: '#000000',
     txtSelected: '#FFFFFF',
@@ -26,6 +28,7 @@ export const lightTheme: DefaultTheme = {
 export const darkTheme: DefaultTheme = {
     themeName: 'darkTheme',
     bgColor: '#000000',
+    bgColorDimmed: '#00000080',
     txtColor: '#FFFFFF',
     selected: '#FFFFFF',
     txtSelected: '#000000',

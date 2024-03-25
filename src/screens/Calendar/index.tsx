@@ -26,15 +26,13 @@ const CalendarContent = (props: ICalendarContent) => {
     const renderItem = ({ item }: { item: IStoreHabits; index: number }) => {
         return (
             <ItemContainer>
-                <ImageContainer>
-                    <ImagePicker
-                        image={item.image}
-                        desc={''}
-                        editable={false}
-                        onChangeImage={() => console.log('')}
-                        onAddDesc={() => console.log('')}
-                    />
-                </ImageContainer>
+                <ImagePicker
+                    image={item.image}
+                    desc={''}
+                    editable={false}
+                    onChangeImage={() => console.log('')}
+                    onAddDesc={() => console.log('')}
+                />
                 <InfoContainer>
                     <View>
                         {item.habits.map(i => (

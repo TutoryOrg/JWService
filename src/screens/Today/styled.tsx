@@ -1,10 +1,11 @@
 import styled from 'styled-components/native';
-import { windowHeight } from 'utils/scaleFunctions';
+import { verticalScale, windowHeight } from 'utils/scaleFunctions';
 
 export const ImageContainer = styled.View`
     width: 90%;
     height: 45%;
     align-self: center;
+    margin-top: ${verticalScale(25)}px;
 `;
 
 export const ContentContainer = styled.View`
