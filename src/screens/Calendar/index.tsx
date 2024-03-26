@@ -2,12 +2,13 @@ import { RootState } from 'store/redux';
 import { windowWidth } from 'utils/scaleFunctions';
 import { useSelector } from 'react-redux';
 import { IStoreHabits } from 'store/redux/habits';
+import { FlatList, View } from 'react-native';
 import { useRef, useState } from 'react';
-import { FlatList, Text, View } from 'react-native';
 import { CalendarHeader, ImagePicker, ProgressCircle } from 'components';
 import {
     InfoContainer,
     ItemContainer,
+    InfoItemsLable,
     CalendarContainer,
     CalendarContentContainer,
 } from './styled';
@@ -27,7 +28,7 @@ const CalendarContent = (props: ICalendarContent) => {
             <ItemContainer>
                 <ImagePicker
                     image={item.image}
-                    desc={''}
+                    desc={item.description}
                     editable={false}
                     onChangeImage={() => console.log('')}
                     onAddDesc={() => console.log('')}
@@ -35,7 +36,7 @@ const CalendarContent = (props: ICalendarContent) => {
                 <InfoContainer>
                     <View>
                         {item.habits.map(i => (
-                            <Text>{i.label}</Text>
+                            <InfoItemsLable isDone={i.isDone}>{i.label}</InfoItemsLable>
                         ))}
                     </View>
                     <ProgressCircle

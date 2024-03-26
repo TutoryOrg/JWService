@@ -2,6 +2,12 @@ import styled from 'styled-components/native';
 import { fontFamilies, fontSizes } from 'utils/constants';
 import { isMobile, windowHeight, windowWidth } from 'utils/scaleFunctions';
 
+export const InfoItemsLable = styled.Text<{ isDone: boolean }>`
+    font-size: ${fontSizes.normal}px;
+    font-family: ${fontFamilies.CascadiaBold};
+    color: ${props => (props.isDone ? props.theme.txtColor : props.theme.gray)};
+`;
+
 export const InfoContainer = styled.View`
     width: 100%;
     height: 100%;
