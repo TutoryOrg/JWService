@@ -1,7 +1,6 @@
 import { Week } from './Week';
 import { Year } from './Year';
 import { Month } from './Month';
-import { useState } from 'react';
 import { Container } from './styled';
 import { days, months } from 'utils/constants';
 import { CalendarMode } from 'utils/constants';
@@ -9,12 +8,13 @@ import { useTranslation } from 'react-i18next';
 
 interface ICalendarHeader {
     date: Date;
+    mode: CalendarMode;
+    setMode: (m: CalendarMode) => void;
 }
 
 export const CalendarHeader = (props: ICalendarHeader) => {
-    const { date } = props;
+    const { date, mode, setMode } = props;
     const { t } = useTranslation();
-    const [mode, setMode] = useState<CalendarMode>(CalendarMode.WEEK);
 
     const year = date.getFullYear();
     const month = months[date.getMonth()];
