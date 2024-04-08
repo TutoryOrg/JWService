@@ -14,8 +14,8 @@ export const InfoContainer = styled.View`
     position: absolute;
     flex-direction: row;
     justify-content: space-around;
-    padding-left: ${isMobile ? '0%' : '5%'};
-    padding-right: ${isMobile ? '0%' : '5%'};
+    padding-left: ${isMobile ? '0%' : '15%'};
+    padding-right: ${isMobile ? '0%' : '15%'};
     padding-top: ${isMobile ? '10%' : '1%'};
     background-color: ${props => props.theme.bgColorDimmed};
 `;
