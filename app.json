@@ -2,7 +2,7 @@
     "expo": {
         "name": "hhbts",
         "slug": "hhbts",
-        "version": "1.0.1",
+        "version": "1.0.2",
         "orientation": "portrait",
         "icon": "./assets/images/emoji6.png",
         "userInterfaceStyle": "automatic",
@@ -17,6 +17,7 @@
             "bundleIdentifier": "com.alejandro.hhbts"
         },
         "android": {
+            "package": "com.alejandro.hhbts",
             "softwareKeyboardLayoutMode": "pan",
             "adaptiveIcon": {
                 "foregroundImage": "./assets/adaptive-icon.png",
