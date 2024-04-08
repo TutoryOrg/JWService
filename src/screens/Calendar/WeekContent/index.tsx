@@ -29,8 +29,10 @@ export const WeekContent = (props: ICalendarContent) => {
                 />
                 <InfoContainer>
                     <View>
-                        {item.habits.map(i => (
-                            <InfoItemsLable isDone={i.isDone}>{i.label}</InfoItemsLable>
+                        {item.habits.map((i, index) => (
+                            <InfoItemsLable key={index} isDone={i.isDone}>
+                                {i.label}
+                            </InfoItemsLable>
                         ))}
                     </View>
                     <ProgressCircle
