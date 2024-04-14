@@ -27,7 +27,7 @@ export const ProgressCircle = (props: IProgressCircle) => {
     `;
 
     const NumberText = styled.Text`
-        font-size: ${fontSizes.normal};
+        font-size: ${fontSizes.normal}px;
         font-family: ${fontFamilies.CascadiaBold};
         color: ${props => props.theme.txtColor};
         position: absolute;

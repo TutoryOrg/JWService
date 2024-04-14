@@ -1,4 +1,5 @@
-import { launchImageLibraryAsync } from 'expo-image-picker';
+import { isMobile } from 'utils/scaleFunctions';
+import { launchImageLibraryAsync, launchCameraAsync } from 'expo-image-picker';
 import { CommentDesc, ImageViewer, ImageContainer, ImagePickerContainer } from './styled';
 import _ from 'lodash';
 
@@ -13,10 +14,16 @@ interface IImagePicker {
 export const ImagePicker = ({ desc, image, editable, onChangeImage, onAddDesc }: IImagePicker) => {
     const pickImageAsync = async () => {
         if (!editable) return;
-        let result = await launchImageLibraryAsync({
-            allowsEditing: true,
-            quality: 1,
-        });
+
+        let result = isMobile
+            ? await launchCameraAsync({
+                  allowsEditing: true,
+                  quality: 1,
+              })
+            : await launchImageLibraryAsync({
+                  allowsEditing: true,
+                  quality: 1,
+              });
         if (result.assets) onChangeImage(result.assets[0].uri);
     };
 

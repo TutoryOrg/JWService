@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { Direction } from 'utils/constants';
 import { useSelector } from 'react-redux';
+import { Camera, CameraType } from 'expo-camera';
 import { Arrow, DateHeader, Habit, ImagePicker } from 'components';
 import { RootState, useAppDispatch } from 'store/redux';
 import { TouchableOpacity, FlatList } from 'react-native';
@@ -29,6 +30,8 @@ interface IContent {
 const Content = (props: IContent) => {
     const { day, editable, addHabit, removeHabit, editHabit, addDescription, addImage } = props;
     const { date, habits, description, image, progress } = day;
+    const [type, setType] = useState(CameraType.back);
+    const [permission, requestPermission] = Camera.useCameraPermissions();
 
     return (
         <ContentContainer>
@@ -78,29 +81,29 @@ export const Today = (props: { index: number; setIndex: (i: number) => void }) =
     const [savedHabitsToday, setHabitsToday] = useState<IStoreHabits[]>(
         _.isEmpty(savedHabits)
             ? [
-                  {
-                      date: todayDate.toString(),
-                      image: '',
-                      habits: [],
-                      description: '',
-                      progress: 0,
-                  },
-              ]
+                {
+                    date: todayDate.toString(),
+                    image: '',
+                    habits: [],
+                    description: '',
+                    progress: 0,
+                },
+            ]
             : isSameDay(new Date(savedHabits[0].date as string), todayDate)
-            ? savedHabits
-            : [
-                  {
-                      date: todayDate.toString(),
-                      image: '',
-                      habits: savedHabits[0].habits.map(h => ({
-                          ...h,
-                          isDone: false,
-                      })),
-                      description: '',
-                      progress: 0,
-                  },
-                  ...savedHabits,
-              ]
+                ? savedHabits
+                : [
+                    {
+                        date: todayDate.toString(),
+                        image: '',
+                        habits: savedHabits[0].habits.map(h => ({
+                            ...h,
+                            isDone: false,
+                        })),
+                        description: '',
+                        progress: 0,
+                    },
+                    ...savedHabits,
+                ]
     );
 
     const saveDataAsync = useCallback(

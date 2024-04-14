@@ -33,7 +33,7 @@ export const DateHeader = (props: IDateHeader) => {
     return (
         <Container>
             <DateLabel month={t(month)} weekDay={t(weekDay)} numberDay={numberDay} />
-            <ProgressCircle showNumber={false} strokeWidth={12} size={55} progress={progress} />
+            <ProgressCircle showNumber={false} strokeWidth={12} size={50} progress={progress} />
         </Container>
     );
 };

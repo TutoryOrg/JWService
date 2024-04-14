@@ -17,7 +17,7 @@ export const DateLabelText = styled.Text`
 export const Container = styled.View`
     width: 90%;
     align-self: center;
-    height: ${verticalScale(50)}px;
+    height: ${verticalScale(60)}px;
     margin-top: ${verticalScale(10)}px;
     align-items: center;
     flex-direction: row;
