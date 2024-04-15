@@ -1,15 +1,21 @@
 import styled from 'styled-components/native';
-import { verticalScale, windowWidth } from 'utils/scaleFunctions';
+import { fontFamilies, fontSizes } from 'utils/constants';
+import { isMobile, verticalScale } from 'utils/scaleFunctions';
 
-export const GridItem = styled.View`
+export const NumberDate = styled.Text<{ selected: boolean }>`
+    font-size: ${isMobile ? fontSizes.normalX : fontSizes.large}px;
+    font-family: ${fontFamilies.CascadiaBold};
+    color: ${props => (props.selected ? props.theme.txtSelected : props.theme.txtColor)};
+`;
+
+export const GridItem = styled.TouchableOpacity<{ invisible: boolean; selected: boolean }>`
+    opacity: ${props => props.invisible && '0'};
     align-items: center;
     justify-content: center;
-    height: ${windowWidth < 700 ? verticalScale(40) : verticalScale(70)}px;
-    width: ${windowWidth < 700 ? verticalScale(40) : verticalScale(70)}px;
-    margin-top: ${windowWidth < 700 ? verticalScale(5) : verticalScale(10)}px;
-    margin-bottom: ${windowWidth < 700 ? verticalScale(5) : verticalScale(10)}px;
-    margin-left: ${windowWidth < 700 ? verticalScale(5) : verticalScale(46)}px;
-    margin-right: ${windowWidth < 700 ? verticalScale(5) : verticalScale(46)}px;
+    height: ${isMobile ? verticalScale(36) : verticalScale(60)}px;
+    width: ${isMobile ? verticalScale(36) : verticalScale(60)}px;
+    border-radius: ${verticalScale(18)}px;
+    background-color: ${props => (props.selected ? props.theme.selected : props.theme.bgColor)};
 `;
 
 export const MonthContentContainer = styled.View`
