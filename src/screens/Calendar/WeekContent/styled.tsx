@@ -2,6 +2,34 @@ import styled from 'styled-components/native';
 import { fontFamilies, fontSizes } from 'utils/constants';
 import { isMobile, windowHeight, windowWidth } from 'utils/scaleFunctions';
 
+export const DirectionMoveLeft = styled.TouchableOpacity<{ disabled: boolean }>`
+    opacity: ${props => props.disabled && 0};
+    position: absolute;
+    left: 8%;
+    top: 300px;
+    width: 50px;
+    height: 50px;
+    z-index: 99px;
+    background-color: gray;
+    border-radius: 90px;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const DirectionMoveRight = styled.TouchableOpacity<{ disabled: boolean }>`
+    opacity: ${props => props.disabled && 0};
+    position: absolute;
+    right: 8%;
+    top: 300px;
+    z-index: 99px;
+    width: 50px;
+    height: 50px;
+    background-color: gray;
+    border-radius: 90px;
+    align-items: center;
+    justify-content: center;
+`;
+
 export const InfoItemsLable = styled.Text<{ isDone: boolean }>`
     font-size: ${fontSizes.normal}px;
     font-family: ${fontFamilies.CascadiaBold};

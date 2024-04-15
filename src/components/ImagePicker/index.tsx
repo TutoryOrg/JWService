@@ -1,12 +1,11 @@
 import { isMobile } from 'utils/scaleFunctions';
 import { CommentDesc, ImageViewer, ImageContainer, ImagePickerContainer } from './styled';
 import {
-    launchImageLibraryAsync,
-    useCameraPermissions,
     launchCameraAsync,
+    useCameraPermissions,
+    launchImageLibraryAsync,
 } from 'expo-image-picker';
 import _ from 'lodash';
-import { useEffect } from 'react';
 
 interface IImagePicker {
     image: string;
