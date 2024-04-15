@@ -1,5 +1,5 @@
 import { RootState } from 'store/redux';
-import { windowHeight, windowWidth } from 'utils/scaleFunctions';
+import { isMobile, windowHeight, windowWidth } from 'utils/scaleFunctions';
 import { useSelector } from 'react-redux';
 import { IStoreHabits } from 'store/redux/habits';
 import { FlatList, View } from 'react-native';
@@ -66,17 +66,20 @@ export const WeekContent = (props: ICalendarContent) => {
 
     return (
         <CalendarContentContainer>
-            <DirectionMoveLeft
-                disabled={index >= savedHabits.length - 1}
-                onPress={() => scrollToIndex(index + 1)}
-                children={<Arrow direction={Direction.LEFT} />}
-            />
-
-            <DirectionMoveRight
-                disabled={index === 0}
-                onPress={() => scrollToIndex(index - 1)}
-                children={<Arrow direction={Direction.RIGHT} />}
-            />
+            {!isMobile && (
+                <>
+                    <DirectionMoveLeft
+                        disabled={index >= savedHabits.length - 1}
+                        onPress={() => scrollToIndex(index + 1)}
+                        children={<Arrow direction={Direction.LEFT} />}
+                    />
+                    <DirectionMoveRight
+                        disabled={index === 0}
+                        onPress={() => scrollToIndex(index - 1)}
+                        children={<Arrow direction={Direction.RIGHT} />}
+                    />
+                </>
+            )}
 
             <FlatList
                 ref={ref}
