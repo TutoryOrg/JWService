@@ -1,7 +1,12 @@
 import { isMobile } from 'utils/scaleFunctions';
-import { launchImageLibraryAsync, launchCameraAsync } from 'expo-image-picker';
 import { CommentDesc, ImageViewer, ImageContainer, ImagePickerContainer } from './styled';
+import {
+    launchImageLibraryAsync,
+    useCameraPermissions,
+    launchCameraAsync,
+} from 'expo-image-picker';
 import _ from 'lodash';
+import { useEffect } from 'react';
 
 interface IImagePicker {
     image: string;
@@ -12,7 +17,14 @@ interface IImagePicker {
 }
 
 export const ImagePicker = ({ desc, image, editable, onChangeImage, onAddDesc }: IImagePicker) => {
+    const [status, requestPermission] = useCameraPermissions();
+
+    if (!status?.granted) {
+        requestPermission();
+    }
+
     const pickImageAsync = async () => {
+        if (!status?.granted) return;
         if (!editable) return;
 
         let result = isMobile
