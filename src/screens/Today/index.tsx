@@ -81,29 +81,29 @@ export const Today = (props: { index: number; setIndex: (i: number) => void }) =
     const [savedHabitsToday, setHabitsToday] = useState<IStoreHabits[]>(
         _.isEmpty(savedHabits)
             ? [
-                {
-                    date: todayDate.toString(),
-                    image: '',
-                    habits: [],
-                    description: '',
-                    progress: 0,
-                },
-            ]
+                  {
+                      date: todayDate.toString(),
+                      image: '',
+                      habits: [],
+                      description: '',
+                      progress: 0,
+                  },
+              ]
             : isSameDay(new Date(savedHabits[0].date as string), todayDate)
-                ? savedHabits
-                : [
-                    {
-                        date: todayDate.toString(),
-                        image: '',
-                        habits: savedHabits[0].habits.map(h => ({
-                            ...h,
-                            isDone: false,
-                        })),
-                        description: '',
-                        progress: 0,
-                    },
-                    ...savedHabits,
-                ]
+            ? savedHabits
+            : [
+                  {
+                      date: todayDate.toString(),
+                      image: '',
+                      habits: savedHabits[0].habits.map(h => ({
+                          ...h,
+                          isDone: false,
+                      })),
+                      description: '',
+                      progress: 0,
+                  },
+                  ...savedHabits,
+              ]
     );
 
     const saveDataAsync = useCallback(
