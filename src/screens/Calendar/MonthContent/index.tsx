@@ -1,9 +1,9 @@
 import { FlatList } from 'react-native';
 import { RootState } from 'store/redux';
-import { isSameDay, windowWidth } from 'utils/scaleFunctions';
 import { useSelector } from 'react-redux';
-import { GridItem, MonthContentContainer, NumberDate } from './styled';
 import { IStoreHabits } from 'store/redux/habits';
+import { isSameDay, windowWidth } from 'utils/scaleFunctions';
+import { GridItem, MonthContentContainer, NumberDate } from './styled';
 import _ from 'lodash';
 
 function getDaysOfMonth(date: Date) {

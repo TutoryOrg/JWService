@@ -1,19 +1,19 @@
 import { RootState } from 'store/redux';
-import { isMobile, windowHeight, windowWidth } from 'utils/scaleFunctions';
+import { Direction } from 'utils/constants';
 import { useSelector } from 'react-redux';
 import { IStoreHabits } from 'store/redux/habits';
 import { FlatList, View } from 'react-native';
 import { useRef, useState } from 'react';
+import { isMobile, windowWidth } from 'utils/scaleFunctions';
 import { Arrow, ImagePicker, ProgressCircle } from 'components';
 import {
     InfoContainer,
     ItemContainer,
     InfoItemsLable,
-    CalendarContentContainer,
     DirectionMoveLeft,
     DirectionMoveRight,
+    CalendarContentContainer,
 } from './styled';
-import { Direction } from 'utils/constants';
 
 interface ICalendarContent {
     setDate: (date: Date) => void;
