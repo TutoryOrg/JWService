@@ -1,13 +1,12 @@
 import { useRef } from 'react';
 import { Direction } from 'utils/constants';
 import { useSelector } from 'react-redux';
-import { Camera, CameraType } from 'expo-camera';
-import { Arrow, DateHeader, Habit, ImagePicker } from 'components';
 import { RootState, useAppDispatch } from 'store/redux';
 import { TouchableOpacity, FlatList } from 'react-native';
 import { useEffect, useCallback, useState } from 'react';
 import { isMobile, isSameDay, windowHeight } from 'utils/scaleFunctions';
 import { IHabit, IStoreHabits, setSavedHabits } from 'store/redux/habits';
+import { Arrow, DateHeader, Habit, ImagePicker } from 'components';
 import { ContentContainer, ImageContainer, TodayContainer } from './styled';
 import _ from 'lodash';
 
@@ -30,8 +29,6 @@ interface IContent {
 const Content = (props: IContent) => {
     const { day, editable, addHabit, removeHabit, editHabit, addDescription, addImage } = props;
     const { date, habits, description, image, progress } = day;
-    const [type, setType] = useState(CameraType.back);
-    const [permission, requestPermission] = Camera.useCameraPermissions();
 
     return (
         <ContentContainer>
