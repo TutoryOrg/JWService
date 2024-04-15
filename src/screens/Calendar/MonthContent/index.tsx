@@ -26,10 +26,6 @@ const mergeDataAndDays = (days: string[], savedHabits: IStoreHabits[]) => {
 
     savedHabits.forEach(habit => {
         const index = days.findIndex(day => isSameDay(new Date(day), new Date(habit.date)));
-        const day = new Date(days[16]);
-        const day2 = new Date(habit.date);
-        console.log({ day });
-        console.log({ day2 });
         if (index !== -1) {
             mergedArray[index] = habit;
         }
