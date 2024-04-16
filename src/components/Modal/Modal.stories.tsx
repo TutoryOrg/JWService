@@ -1,30 +1,33 @@
-import { CalendarMode } from 'utils/constants';
+import { Modal } from './index';
 import { ThemeProvider } from 'styled-components/native';
-import { CalendarHeader } from './index';
 import { ViewStoriesContainer } from 'components/ViewStory';
 import { darkTheme, lightTheme } from 'themes';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 export default {
-    title: 'components/CalendarHeader',
-    component: CalendarHeader,
+    title: 'components/Modal',
+    component: Modal,
     parameters: {
         notes: '',
     },
     argTypes: {},
-} as ComponentMeta<typeof CalendarHeader>;
+} as ComponentMeta<typeof Modal>;
 
-export const Dark: ComponentStory<typeof CalendarHeader> = args => {
+export const Dark: ComponentStory<typeof Modal> = args => {
     return (
         <ThemeProvider theme={darkTheme}>
             <ViewStoriesContainer>
-                <CalendarHeader date={new Date()} mode={CalendarMode.WEEK} setMode={() => null} />
+                <Modal />
             </ViewStoriesContainer>
         </ThemeProvider>
     );
 };
 
 Dark.story = {
+    args: {
+        date: new Date(),
+        progress: 10,
+    },
     parameters: {
         backgrounds: {
             default: 'dark',
@@ -32,17 +35,18 @@ Dark.story = {
     },
 };
 
-export const Light: ComponentStory<typeof CalendarHeader> = args => {
+export const Light: ComponentStory<typeof Modal> = args => {
     return (
         <ThemeProvider theme={lightTheme}>
             <ViewStoriesContainer>
-                <CalendarHeader date={new Date()} mode={CalendarMode.WEEK} setMode={() => null} />
+                <Modal />
             </ViewStoriesContainer>
         </ThemeProvider>
     );
 };
 
 Light.story = {
+    args: {},
     parameters: {
         backgrounds: {
             default: 'light',

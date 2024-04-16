@@ -41,7 +41,7 @@ const ShowHabit = (props: {
 
     return (
         <ShowHabitContainer>
-            <ShowHabitLabel children={habit.label} />
+            <ShowHabitLabel children={habit?.label} />
             <ShowHabitButtonContainer>
                 {isEditOpt ? (
                     <ShowOptionsContainer>
@@ -91,7 +91,7 @@ export const CreateHabit = (props: {
     editHabit: (habit: IHabit) => void;
 }) => {
     const { habit, mode, editable, setMode, editHabit, addHabit } = props;
-    const [value, setValue] = useState<string>(habit.label);
+    const [value, setValue] = useState<string>(habit?.label);
     const [editValue, setEditValue] = useState<string>('');
 
     return (
@@ -114,11 +114,11 @@ export const CreateHabit = (props: {
             <CreateButtonsContainer>
                 <CancelButton
                     onPress={() => {
-                        if (_.isEmpty(habit.label) && mode == EnumHabit.CREATE) {
+                        if (_.isEmpty(habit?.label) && mode == EnumHabit.CREATE) {
                             setValue('');
                             setMode(EnumHabit.ADD);
                         }
-                        if (!_.isEmpty(habit.label) && mode == EnumHabit.CREATE) {
+                        if (!_.isEmpty(habit?.label) && mode == EnumHabit.CREATE) {
                             setValue('');
                             setMode(EnumHabit.SHOW);
                         }
@@ -130,11 +130,11 @@ export const CreateHabit = (props: {
                 />
                 <CreateButton
                     onPress={() => {
-                        if (!_.isEmpty(habit.label) && mode == EnumHabit.CREATE) {
+                        if (!_.isEmpty(habit?.label) && mode == EnumHabit.CREATE) {
                             setMode(EnumHabit.ADD);
                         }
                         if (mode == EnumHabit.CREATE) {
-                            setMode(_.isEmpty(habit.label) ? EnumHabit.ADD : EnumHabit.SHOW);
+                            setMode(_.isEmpty(habit?.label) ? EnumHabit.ADD : EnumHabit.SHOW);
                             addHabit({
                                 id: genUid(),
                                 label: value,
@@ -183,7 +183,7 @@ export const Habit = (props: {
     const { t } = useTranslation();
 
     const [mode, setMode] = useState<EnumHabit>(
-        _.isEmpty(habit.label) ? EnumHabit.ADD : EnumHabit.SHOW
+        _.isEmpty(habit?.label) ? EnumHabit.ADD : EnumHabit.SHOW
     );
 
     return (

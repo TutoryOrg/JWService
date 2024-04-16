@@ -16,12 +16,12 @@ export const CalendarHeader = (props: ICalendarHeader) => {
     const { date, mode, setMode } = props;
     const { t } = useTranslation();
 
-    const year = date.getFullYear();
-    const month = months[date.getMonth()];
-    const weekDay = days[date.getDay()];
-    const numberDay = date.getDate();
-    const daysOfWeek = days.map(d => t(d));
-    daysOfWeek.push(daysOfWeek.shift() as string);
+    const year = date?.getFullYear();
+    const month = months[date?.getMonth()];
+    const weekDay = days[date?.getDay()];
+    const numberDay = date?.getDate();
+    const daysOfWeek = days?.map(d => t(d));
+    daysOfWeek.push(daysOfWeek?.shift() as string);
 
     return (
         <Container>

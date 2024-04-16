@@ -18,9 +18,7 @@ interface IImagePicker {
 export const ImagePicker = ({ desc, image, editable, onChangeImage, onAddDesc }: IImagePicker) => {
     const [status, requestPermission] = useCameraPermissions();
 
-    if (!status?.granted) {
-        requestPermission();
-    }
+    if (!status?.granted) requestPermission();
 
     const pickImageAsync = async () => {
         if (!status?.granted) return;
