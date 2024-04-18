@@ -1,3 +1,4 @@
+import { Text } from 'react-native';
 import { Modal } from './index';
 import { ThemeProvider } from 'styled-components/native';
 import { ViewStoriesContainer } from 'components/ViewStory';
@@ -17,17 +18,16 @@ export const Dark: ComponentStory<typeof Modal> = args => {
     return (
         <ThemeProvider theme={darkTheme}>
             <ViewStoriesContainer>
-                <Modal />
+                <Modal>
+                    <Text>hola</Text>
+                </Modal>
             </ViewStoriesContainer>
         </ThemeProvider>
     );
 };
 
 Dark.story = {
-    args: {
-        date: new Date(),
-        progress: 10,
-    },
+    args: {},
     parameters: {
         backgrounds: {
             default: 'dark',
@@ -39,7 +39,7 @@ export const Light: ComponentStory<typeof Modal> = args => {
     return (
         <ThemeProvider theme={lightTheme}>
             <ViewStoriesContainer>
-                <Modal />
+                <Text>hola</Text>
             </ViewStoriesContainer>
         </ThemeProvider>
     );

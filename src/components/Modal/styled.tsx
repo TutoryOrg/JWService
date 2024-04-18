@@ -1,11 +1,15 @@
 import styled from 'styled-components/native';
-import { fontSizes } from 'utils/constants';
-import { isMobile, verticalScale } from 'utils/scaleFunctions';
 
 export const ModalContainer = styled.View`
     position: absolute;
+    flex: 1;
+    top: 0;
+    left: 0;
     z-index: 99;
-    width: 100vh;
-    height: 100vh;
-    background-color: grey;
+    width: 100%;
+    height: 100%;
+    background-color: ${props => props.theme.bgColorDimmed};
+    border: 1px solid yellow;
+    align-items: center;
+    justify-content: center;
 `;

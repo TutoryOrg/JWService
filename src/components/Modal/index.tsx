@@ -1,5 +1,10 @@
+import { Text } from 'react-native';
 import { ModalContainer } from './styled';
 
-export const Modal = (props: {}) => {
-    return <ModalContainer></ModalContainer>;
+interface IModal {
+    children: JSX.Element;
+}
+export const Modal = (props: IModal) => {
+    const { children } = props;
+    return <ModalContainer>{children}</ModalContainer>;
 };
