@@ -111,7 +111,9 @@ export const Today = (props: { index: number; setIndex: (i: number) => void }) =
     );
 
     useEffect(() => {
-        saveDataAsync(savedHabitsToday);
+        if (savedHabitsToday[0].habits.some(h => h.isDone)) {
+            saveDataAsync(savedHabitsToday);
+        }
     }, [savedHabitsToday]);
 
     const isValidIndex = (i: number) => i >= 0 && i < savedHabitsToday.length;

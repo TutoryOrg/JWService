@@ -48,6 +48,9 @@ export const MonthContent = (props: IMonthContent) => {
     const savedHabits = useSelector((state: RootState) => state.habits.savedHabits);
     const daysData = mergeDataAndDays(getDaysOfMonth(date), savedHabits);
 
+    console.log('savedHabits');
+    console.log({ savedHabits });
+
     const renderItem = (props: any) => {
         const { item } = props;
         const isDay = typeof item === 'string' || typeof item === 'object';
