@@ -53,6 +53,6 @@ export const darkTheme: DefaultTheme = {
     pro1: '#343a40',
     pro2: '#868e96',
     pro3: '#ced4da',
-    pro4: '#e9ecef',
+    pro4: '#D1D4D7',
     pro5: '#ffffff',
 };
