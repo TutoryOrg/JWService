@@ -2,8 +2,8 @@ import { FlatList } from 'react-native';
 import { RootState } from 'store/redux';
 import { useSelector } from 'react-redux';
 import { IStoreHabits } from 'store/redux/habits';
+import { GridItem, NumberDate } from './styled';
 import { isSameDay, windowWidth } from 'utils/scaleFunctions';
-import { GridItem, MonthContentContainer, NumberDate } from './styled';
 import _ from 'lodash';
 
 function getDaysOfMonth(date: Date) {
@@ -66,17 +66,15 @@ export const MonthContent = (props: IMonthContent) => {
     };
 
     return (
-        <MonthContentContainer>
-            <FlatList
-                numColumns={7}
-                data={daysData}
-                renderItem={renderItem}
-                columnWrapperStyle={{
-                    margin: 20,
-                    width: windowWidth - windowWidth * 0.18,
-                    justifyContent: 'space-between',
-                }}
-            />
-        </MonthContentContainer>
+        <FlatList
+            numColumns={7}
+            data={daysData}
+            renderItem={renderItem}
+            columnWrapperStyle={{
+                margin: 20,
+                width: windowWidth - windowWidth * 0.18,
+                justifyContent: 'space-between',
+            }}
+        />
     );
 };

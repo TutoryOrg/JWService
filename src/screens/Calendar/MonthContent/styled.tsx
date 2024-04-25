@@ -36,7 +36,3 @@ export const GridItem = styled.TouchableOpacity<{
                 : props.theme.txtSelected
             : props.theme.bgColor};
 `;
-
-export const MonthContentContainer = styled.View`
-    align-items: center;
-`;
