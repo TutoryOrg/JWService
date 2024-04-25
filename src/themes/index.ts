@@ -35,8 +35,8 @@ export const lightTheme: DefaultTheme = {
     pro1: '#e9ecef',
     pro2: '#ced4da',
     pro3: '#868e96',
-    pro4: '#343a40',
-    pro5: '#1e1e1e',
+    pro4: '#5C6166',
+    pro5: '#000000',
 };
 
 export const darkTheme: DefaultTheme = {
@@ -49,7 +49,7 @@ export const darkTheme: DefaultTheme = {
     borderColor: '#FFFFFF',
     gray: '#565555',
     grayDimmed: '#56555580',
-    pro0: '#1e1e1e',
+    pro0: '#000000',
     pro1: '#343a40',
     pro2: '#868e96',
     pro3: '#ced4da',
