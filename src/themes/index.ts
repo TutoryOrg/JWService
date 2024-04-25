@@ -12,6 +12,12 @@ declare module 'styled-components' {
         borderColor: string;
         gray: string;
         grayDimmed: string;
+        pro0: string;
+        pro1: string;
+        pro2: string;
+        pro3: string;
+        pro4: string;
+        pro5: string;
     }
 }
 
@@ -25,6 +31,12 @@ export const lightTheme: DefaultTheme = {
     borderColor: '#000000',
     gray: '#dedede',
     grayDimmed: '#dedede80',
+    pro0: '#ffffff',
+    pro1: '#e9ecef',
+    pro2: '#ced4da',
+    pro3: '#868e96',
+    pro4: '#343a40',
+    pro5: '#1e1e1e',
 };
 
 export const darkTheme: DefaultTheme = {
@@ -37,4 +49,10 @@ export const darkTheme: DefaultTheme = {
     borderColor: '#FFFFFF',
     gray: '#565555',
     grayDimmed: '#56555580',
+    pro0: '#1e1e1e',
+    pro1: '#343a40',
+    pro2: '#868e96',
+    pro3: '#ced4da',
+    pro4: '#e9ecef',
+    pro5: '#ffffff',
 };

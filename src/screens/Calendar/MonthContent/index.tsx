@@ -48,18 +48,19 @@ export const MonthContent = (props: IMonthContent) => {
     const savedHabits = useSelector((state: RootState) => state.habits.savedHabits);
     const daysData = mergeDataAndDays(getDaysOfMonth(date), savedHabits);
 
-    console.log('savedHabits');
-    console.log({ savedHabits });
-
     const renderItem = (props: any) => {
         const { item } = props;
         const isDay = typeof item === 'string' || typeof item === 'object';
         const hasData = isDay && !_.isEmpty(item.date);
         const itemDate = isDay && hasData ? new Date(item.date) : new Date(item);
+        const progress = item.progress || 0;
+        console.log(progress);
 
         return (
-            <GridItem disabled={!hasData} invisible={!isDay} selected={hasData}>
-                <NumberDate selected={hasData}>{itemDate.getDate()}</NumberDate>
+            <GridItem progress={progress} disabled={!hasData} invisible={!isDay} selected={hasData}>
+                <NumberDate progress={progress} selected={hasData}>
+                    {itemDate.getDate()}
+                </NumberDate>
             </GridItem>
         );
     };
