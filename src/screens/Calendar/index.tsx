@@ -14,6 +14,7 @@ export const Calendar = () => {
             <CalendarHeader date={date} mode={mode} setMode={setMode} />
             {mode === CalendarMode.WEEK && <WeekContent setDate={setDate} />}
             {mode === CalendarMode.MONTH && <MonthContent date={date} />}
+            {mode === CalendarMode.YEAR && <MonthContent date={date} />}
         </CalendarContainer>
     );
 };

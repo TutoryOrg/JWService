@@ -54,7 +54,6 @@ export const MonthContent = (props: IMonthContent) => {
         const hasData = isDay && !_.isEmpty(item.date);
         const itemDate = isDay && hasData ? new Date(item.date) : new Date(item);
         const progress = item.progress || 0;
-        console.log(progress);
 
         return (
             <GridItem progress={progress} disabled={!hasData} invisible={!isDay} selected={hasData}>
