@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { WeekContent } from './WeekContent';
+import { YearContent } from './YearContent';
 import { CalendarMode } from 'utils/constants';
 import { MonthContent } from './MonthContent';
 import { CalendarHeader } from 'components';
@@ -14,7 +15,7 @@ export const Calendar = () => {
             <CalendarHeader date={date} mode={mode} setMode={setMode} />
             {mode === CalendarMode.WEEK && <WeekContent setDate={setDate} />}
             {mode === CalendarMode.MONTH && <MonthContent date={date} />}
-            {mode === CalendarMode.YEAR && <MonthContent date={date} />}
+            {mode === CalendarMode.YEAR && <YearContent date={date} />}
         </CalendarContainer>
     );
 };
