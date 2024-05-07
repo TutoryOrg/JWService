@@ -21,13 +21,14 @@ const mergeDataAndDays = (days: string[], savedHabits: IStoreHabits[]) => {
     const data = Array.from(Array(42).keys());
     const firstDay = new Date(days[0]).getDay() - 1;
     const mergedArray = [];
+
     mergedArray.push(...data.slice(0, firstDay));
     mergedArray.push(...days);
 
     savedHabits.forEach(habit => {
         const index = days.findIndex(day => isSameDay(new Date(day), new Date(habit.date)));
         if (index !== -1) {
-            mergedArray[index] = habit;
+            mergedArray[index + firstDay] = habit;
         }
     });
 
