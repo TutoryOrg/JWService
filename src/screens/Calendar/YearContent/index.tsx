@@ -13,13 +13,13 @@ export const YearContent = (props: IYearContent) => {
             {months.map(m => (
                 <View
                     style={{
-                        height: 80,
-                        width: 80,
-                        backgroundColor: 'yellow',
+                        width: 100,
+                        height: 100,
                         justifyContent: 'center',
                         alignItems: 'center',
+                        alignContent: 'center',
                     }}>
-                    <Text>{m}</Text>
+                    <Text style={{ color: 'white', fontSize: 50 }}>{m}</Text>
                 </View>
             ))}
         </YearContentContainer>
