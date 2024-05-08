@@ -8,12 +8,12 @@ interface IYearContent {
 export const YearContent = (props: IYearContent) => {
     const { date } = props;
     const { t } = useTranslation();
-    const month = months[date.getMonth()];
-    console.log({ month });
+    const currentMonth = months[date.getMonth()];
+    console.log({ currentMonth });
     return (
         <YearContentContainer>
             {months.map(m => (
-                <MonthContainer>
+                <MonthContainer selected={m === currentMonth}>
                     <MonthLabel>{t(`${m}_`)}</MonthLabel>
                 </MonthContainer>
             ))}

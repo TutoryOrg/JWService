@@ -32,7 +32,8 @@ export const fontSizes = {
     normalX: 18,
     normalXL: 20,
     large: 22,
-    Xlarge: 50,
+    Xlarge: 35,
+    XXlarge: 50,
 };
 
 export const fontFamilies = {
