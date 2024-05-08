@@ -9,11 +9,11 @@ export const YearContent = (props: IYearContent) => {
     const { date } = props;
     const { t } = useTranslation();
     const currentMonth = months[date.getMonth()];
-    console.log({ currentMonth });
+
     return (
         <YearContentContainer>
-            {months.map(m => (
-                <MonthContainer selected={m === currentMonth}>
+            {months.map((m, index) => (
+                <MonthContainer key={index} selected={m === currentMonth}>
                     <MonthLabel>{t(`${m}_`)}</MonthLabel>
                 </MonthContainer>
             ))}
