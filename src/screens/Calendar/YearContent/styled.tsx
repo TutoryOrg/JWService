@@ -20,11 +20,11 @@ export const MonthContainer = styled.View<{ selected: boolean }>`
     align-items: center;
     align-content: center;
     border-radius: 80px;
-    background-color: ${props => (props.selected ? 'red' : 'white')};
+    background-color: ${props => (props.selected ? props.theme.selected : props.theme.bgColor)};
 `;
 
-export const MonthLabel = styled.Text`
-    color: ${props => props.theme.txtColor};
+export const MonthLabel = styled.Text<{ selected: boolean }>`
+    color: ${props => (props.selected ? props.theme.txtSelected : props.theme.txtColor)};
     font-size: ${isMobile ? fontSizes.Xlarge : fontSizes.XXlarge}px;
     font-family: ${fontFamilies.CascadiaMono};
 `;

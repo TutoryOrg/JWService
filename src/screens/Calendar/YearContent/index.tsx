@@ -14,7 +14,7 @@ export const YearContent = (props: IYearContent) => {
         <YearContentContainer>
             {months.map((m, index) => (
                 <MonthContainer key={index} selected={m === currentMonth}>
-                    <MonthLabel>{t(`${m}_`)}</MonthLabel>
+                    <MonthLabel selected={m === currentMonth}>{t(`${m}_`)}</MonthLabel>
                 </MonthContainer>
             ))}
         </YearContentContainer>
