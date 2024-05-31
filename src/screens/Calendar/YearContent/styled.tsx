@@ -14,8 +14,8 @@ export const YearContentContainer = styled.View`
 `;
 
 export const MonthContainer = styled.View<{ selected: boolean }>`
-    width: 100px;
-    height: 100px;
+    width: ${isMobile ? '80' : '100'}px;
+    height: ${isMobile ? '80' : '100'}px;
     justify-content: center;
     align-items: center;
     align-content: center;
