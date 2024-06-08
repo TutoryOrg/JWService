@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
+import { isMobile } from 'utils/scaleFunctions';
 import { fontFamilies, fontSizes } from 'utils/constants';
-import { isMobile, verticalScale, windowWidth } from 'utils/scaleFunctions';
 
 export const MonthContainer = styled.View<{ selected: boolean }>`
     width: ${isMobile ? '80' : '100'}px;

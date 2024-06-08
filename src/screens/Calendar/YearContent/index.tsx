@@ -1,7 +1,7 @@
 import { months } from 'utils/constants';
+import { FlatList } from 'react-native';
 import { MonthContainer, MonthLabel } from './styled';
 import { useTranslation } from 'react-i18next';
-import { View, Text, FlatList } from 'react-native';
 import { isMobile, windowWidth } from 'utils/scaleFunctions';
 import _ from 'lodash';
 
@@ -29,8 +29,8 @@ export const YearContent = (props: IYearContent) => {
             renderItem={renderItem}
             columnWrapperStyle={{
                 margin: 35,
-                width: isMobile ? windowWidth - windowWidth * 0.3 : windowWidth - windowWidth * 0.4,
                 justifyContent: 'space-between',
+                width: isMobile ? windowWidth - windowWidth * 0.3 : windowWidth - windowWidth * 0.4,
             }}
         />
     );
