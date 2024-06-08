@@ -2,17 +2,6 @@ import styled from 'styled-components/native';
 import { fontFamilies, fontSizes } from 'utils/constants';
 import { isMobile, verticalScale, windowWidth } from 'utils/scaleFunctions';
 
-export const YearContentContainer = styled.View`
-    width: 90%;
-    height: 70%;
-    display: grid;
-    grid-template-columns: ${isMobile ? 'auto auto auto' : 'auto auto auto auto'};
-    justify-content: center;
-    align-content: center;
-    column-gap: ${windowWidth / 8}px;
-    row-gap: ${isMobile ? verticalScale(50) : verticalScale(100)}px;
-`;
-
 export const MonthContainer = styled.View<{ selected: boolean }>`
     width: ${isMobile ? '80' : '100'}px;
     height: ${isMobile ? '80' : '100'}px;
