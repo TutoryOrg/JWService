@@ -8,7 +8,7 @@ import { CalendarContainer } from './styled';
 
 export const Calendar = () => {
     const [date, setDate] = useState(new Date());
-    const [mode, setMode] = useState<CalendarMode>(CalendarMode.YEAR);
+    const [mode, setMode] = useState<CalendarMode>(CalendarMode.WEEK);
 
     return (
         <CalendarContainer>

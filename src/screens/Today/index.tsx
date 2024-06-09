@@ -111,7 +111,10 @@ export const Today = (props: { index: number; setIndex: (i: number) => void }) =
     );
 
     useEffect(() => {
-        saveDataAsync(savedHabitsToday);
+        const notEmptyToday =
+            savedHabitsToday[0].habits.find(h => h.isDone) || !_.isEmpty(savedHabitsToday[0].image);
+
+        if (notEmptyToday) saveDataAsync(savedHabitsToday);
     }, [savedHabitsToday]);
 
     const isValidIndex = (i: number) => i >= 0 && i < savedHabitsToday.length;
@@ -204,6 +207,7 @@ export const Today = (props: { index: number; setIndex: (i: number) => void }) =
                     index,
                 })}
                 onScroll={(e: any) => {
+                    console.log(typeof e);
                     const index = Math.round(e.nativeEvent.contentOffset.y / windowHeight);
                     setIndex(index);
                 }}
