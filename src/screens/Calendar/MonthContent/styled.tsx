@@ -18,7 +18,7 @@ export const GridItem = styled.TouchableOpacity<{
     justify-content: center;
     height: ${isMobile ? verticalScale(36) : verticalScale(60)}px;
     width: ${isMobile ? verticalScale(36) : verticalScale(60)}px;
-    border-radius: ${verticalScale(18)}px;
+    border-radius: 12px;
     background-color: ${props =>
         props.selected
             ? props.progress === 0
