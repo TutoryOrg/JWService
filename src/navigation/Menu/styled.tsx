@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
-import { isMobile, verticalScale, windowWidth, windowHeight } from 'utils/scaleFunctions';
 import { Screens, fontFamilies, fontSizes } from 'utils/constants';
+import { isMobile, verticalScale, windowWidth, windowHeight } from 'utils/scaleFunctions';
 
 export interface ISideMenu {
     options: IOption[];
@@ -64,7 +64,7 @@ export const OptionContainer = styled.TouchableOpacity<{
     background-color: ${props => (props.selected ? props.theme.selected : props.theme.bgColor)};
 `;
 
-export const SideMenuContainer = styled.View`
+export const SideMenuContainer = styled.SafeAreaView`
     width: 10%;
     height: 100%;
     max-width: 120px;
@@ -86,7 +86,7 @@ export const MenuContainer = styled.SafeAreaView`
     background-color: ${props => props.theme.bgColor};
 `;
 
-export const Content = styled.View`
+export const Content = styled.SafeAreaView`
     width: 90%;
     overflow: hidden;
     height: ${windowHeight}px;

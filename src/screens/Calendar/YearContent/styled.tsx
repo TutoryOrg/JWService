@@ -8,7 +8,7 @@ export const MonthContainer = styled.View<{ selected: boolean }>`
     justify-content: center;
     align-items: center;
     align-content: center;
-    border-radius: 80px;
+    border-radius: 24px;
     background-color: ${props => (props.selected ? props.theme.selected : props.theme.bgColor)};
 `;
 
