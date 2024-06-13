@@ -1,4 +1,3 @@
-import { Text } from 'react-native';
 import { ModalContainer } from './styled';
 
 interface IModal {
