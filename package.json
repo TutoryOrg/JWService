@@ -8,6 +8,7 @@
         "android": "expo run:android",
         "ios": "expo run:ios",
         "web": "expo start --web",
+        "build-web": "npm i -f && npx expo export --platform web",
         "mock:api": "json-server --watch src/mock/db.js --port 3010 --routes src/mock/routes.json --middlewares src/mock/middleware.js --delay 500 --static src/mock/files",
         "eject": "expo eject",
         "build-storybook": "build-storybook",
@@ -47,11 +48,10 @@
         "react-native-view-shot": "3.8.0",
         "react-native-web": "~0.19.6",
         "react-redux": "^7.2.9",
-        "styled-components": "^5.3.11"
+        "styled-components": "^5.3.11",
+        "@expo/metro-runtime": "~3.1.3"
     },
     "devDependencies": {
-        "@eslint/compat": "^1.0.3",
-        "@eslint/js": "^9.4.0",
         "@storybook/addon-actions": "^6.5.16",
         "@storybook/addon-controls": "^6.5.16",
         "@storybook/addon-essentials": "^6.5.16",
@@ -70,13 +70,10 @@
         "@types/styled-components": "^5.1.26",
         "@types/styled-components-react-native": "^5.2.1",
         "cross-env": "^7.0.3",
-        "eslint": "^9.4.0",
-        "eslint-plugin-react": "^7.34.2",
         "globals": "^15.4.0",
         "json-server": "^0.17.4",
         "light-uid": "^1.1.0",
-        "typescript": "^5.3.0",
-        "typescript-eslint": "^7.12.0"
+        "typescript": "^5.3.0"
     },
     "resolutions": {
         "react-docgen-typescript": "2.2.2",
