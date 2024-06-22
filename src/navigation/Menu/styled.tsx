@@ -1,6 +1,13 @@
 import styled from 'styled-components/native';
 import { Screens, fontFamilies, fontSizes } from 'utils/constants';
-import { isMobile, verticalScale, windowWidth, windowHeight } from 'utils/scaleFunctions';
+import {
+    isIOs,
+    isMobile,
+    isAndroid,
+    verticalScale,
+    windowWidth,
+    windowHeight,
+} from 'utils/scaleFunctions';
 
 export interface ISideMenu {
     options: IOption[];
@@ -79,7 +86,7 @@ export const MenuContainer = styled.SafeAreaView`
     overflow: hidden;
     width: ${windowWidth}px;
     flex-direction: row;
-    padding-top: ${isMobile ? 40 : 0}px;
+    padding-top: ${isAndroid || isIOs ? 40 : 0}px;
     border: ${props => (isMobile ? `2px solid ${props.theme.borderColor}` : 'none')};
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;

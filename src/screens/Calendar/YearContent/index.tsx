@@ -28,7 +28,7 @@ export const YearContent = (props: IYearContent) => {
             data={months}
             renderItem={renderItem}
             columnWrapperStyle={{
-                margin: 35,
+                margin: 25,
                 justifyContent: 'space-between',
                 width: isMobile ? windowWidth - windowWidth * 0.3 : windowWidth - windowWidth * 0.4,
             }}
