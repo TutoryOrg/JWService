@@ -8,6 +8,7 @@ export const ModalContainer = styled.View`
     z-index: 99;
     width: 100%;
     height: 100%;
+    backdrop-filter: blur(10px);
     background-color: ${props => props.theme.bgColorDimmed};
     border: 1px solid yellow;
     align-items: center;

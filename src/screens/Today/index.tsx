@@ -2,11 +2,11 @@ import { useRef } from 'react';
 import { Direction } from 'utils/constants';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from 'store/redux';
-import { TouchableOpacity, FlatList } from 'react-native';
+import { TouchableOpacity, FlatList, Text } from 'react-native';
 import { useEffect, useCallback, useState } from 'react';
 import { isMobile, isSameDay, windowHeight } from 'utils/scaleFunctions';
 import { IHabit, IStoreHabits, setSavedHabits } from 'store/redux/habits';
-import { Arrow, DateHeader, Habit, ImagePicker } from 'components';
+import { Arrow, DateHeader, Habit, ImagePicker, Modal } from 'components';
 import { ContentContainer, ImageContainer, TodayContainer } from './styled';
 import _ from 'lodash';
 
@@ -212,6 +212,7 @@ export const Today = (props: { index: number; setIndex: (i: number) => void }) =
                     setIndex(index);
                 }}
             />
+
             {!isMobile && isValidIndex(index - 1) && (
                 <TouchableOpacity
                     style={{
@@ -248,6 +249,7 @@ export const Today = (props: { index: number; setIndex: (i: number) => void }) =
                     children={<Arrow direction={Direction.DOWN} />}
                 />
             )}
+            <Modal children={<Text>{'modal'}</Text>} />
         </TodayContainer>
     );
 };
