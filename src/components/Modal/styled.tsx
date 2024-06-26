@@ -1,6 +1,26 @@
 import styled from 'styled-components/native';
+import { fontSizes } from 'utils/constants';
 
-export const ModalContainer = styled.View`
+export const Icon = styled.Image`
+    height: ${fontSizes.large}px;
+    width: ${fontSizes.large}px;
+`
+
+export const CloseButton = styled.TouchableOpacity`
+    position:absolute;
+    top: 20;
+    right: 20;
+    height: ${fontSizes.XXlarge}px;
+    width: ${fontSizes.XXlarge}px;
+    border-radius: 90px;
+    background-color: yellow;
+    justify-content:center;
+    align-items: center;
+
+`;
+
+export const ModalContainer = styled.View<{ isOpen: boolean }>`
+    display: ${props => !props.isOpen && 'none'};
     position: absolute;
     flex: 1;
     top: 0;

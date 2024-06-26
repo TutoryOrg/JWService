@@ -1,3 +1,6 @@
+import { useAtom } from 'jotai';
+import { modalAtom } from 'navigation/Menu';
+import { useRef } from 'react';
 import { isMobile } from 'utils/scaleFunctions';
 import { CommentDesc, ImageViewer, ImageContainer, ImagePickerContainer } from './styled';
 import {
@@ -6,6 +9,7 @@ import {
     launchImageLibraryAsync,
 } from 'expo-image-picker';
 import _ from 'lodash';
+import { Modal } from 'components';
 
 interface IImagePicker {
     image: string;
@@ -17,23 +21,25 @@ interface IImagePicker {
 
 export const ImagePicker = ({ desc, image, editable, onChangeImage, onAddDesc }: IImagePicker) => {
     const [status, requestPermission] = useCameraPermissions();
+    const [isOpen, setOpen] = useAtom(modalAtom);
 
     if (!status?.granted) requestPermission();
 
     const pickImageAsync = async () => {
-        if (!status?.granted) return;
-        if (!editable) return;
-
-        let result = isMobile
-            ? await launchCameraAsync({
-                  allowsEditing: true,
-                  quality: 1,
-              })
-            : await launchImageLibraryAsync({
-                  allowsEditing: true,
-                  quality: 1,
-              });
-        if (result.assets) onChangeImage(result.assets[0].uri);
+        setOpen(true)
+        // if (!status?.granted) return;
+        // if (!editable) return;
+        //
+        // let result = isMobile
+        //     ? await launchCameraAsync({
+        //           allowsEditing: true,
+        //           quality: 1,
+        //       })
+        //     : await launchImageLibraryAsync({
+        //           allowsEditing: true,
+        //           quality: 1,
+        //       });
+        // if (result.assets) onChangeImage(result.assets[0].uri);
     };
 
     return (
