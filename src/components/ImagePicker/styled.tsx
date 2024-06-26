@@ -2,6 +2,17 @@ import styled from 'styled-components/native';
 import { fontSizes } from 'utils/constants';
 import { isMobile, verticalScale } from 'utils/scaleFunctions';
 
+export const OptionsContainer = styled.View`
+    width: ${verticalScale(200)}px;
+    height: ${verticalScale(100)}px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items:center;
+    border-radius: 10px;
+    background-color: ${props => props.theme.borderColor};
+`
+
 export const ImageViewer = styled.Image`
     width: 100%;
     height: 100%;

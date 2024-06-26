@@ -1,19 +1,20 @@
 import styled from 'styled-components/native';
 import { fontSizes } from 'utils/constants';
+import { verticalScale } from 'utils/scaleFunctions';
 
 export const Icon = styled.Image`
-    height: ${fontSizes.large}px;
-    width: ${fontSizes.large}px;
+    height: ${verticalScale(fontSizes.normal)}px;
+    width: ${verticalScale(fontSizes.normal)}px;
 `
 
 export const CloseButton = styled.TouchableOpacity`
     position:absolute;
     top: 20;
     right: 20;
-    height: ${fontSizes.XXlarge}px;
-    width: ${fontSizes.XXlarge}px;
+    height: ${verticalScale(fontSizes.Xlarge)}px;
+    width: ${verticalScale(fontSizes.Xlarge)}px;
     border-radius: 90px;
-    background-color: yellow;
+    background-color: ${props => props.theme.borderColor};
     justify-content:center;
     align-items: center;
 
@@ -30,7 +31,6 @@ export const ModalContainer = styled.View<{ isOpen: boolean }>`
     height: 100%;
     backdrop-filter: blur(10px);
     background-color: ${props => props.theme.bgColorDimmed};
-    border: 1px solid yellow;
     align-items: center;
     justify-content: center;
 `;

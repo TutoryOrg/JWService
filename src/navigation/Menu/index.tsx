@@ -47,7 +47,7 @@ export const SideMenu = memo((props: ISideMenu) => {
 
 
 export const modalAtom = atom(false)
-export const contentAtom = atom(<Text>{'holaa'}</Text>)
+export const contentAtom = atom(<Text>{''}</Text>)
 
 export function Menu(props: { onLayoutRootView: () => Promise<void> }) {
     const { onLayoutRootView } = props;
