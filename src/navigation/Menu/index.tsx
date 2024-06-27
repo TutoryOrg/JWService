@@ -51,11 +51,11 @@ export const contentAtom = atom(<Text>{''}</Text>)
 
 export function Menu(props: { onLayoutRootView: () => Promise<void> }) {
     const { onLayoutRootView } = props;
+    const [content] = useAtom(contentAtom);
     const [options, setOptions] = useState(initOptions);
     const [todayIndex, setTodayIndex] = useState<number>(0);
-    const selected = useMemo(() => options.find(op => op.selected === true)?.text, [options]);
 
-    const [content] = useAtom(contentAtom);
+    const selected = useMemo(() => options.find(op => op.selected === true)?.text, [options]);
 
     return (
         <MenuContainer onLayout={onLayoutRootView}>

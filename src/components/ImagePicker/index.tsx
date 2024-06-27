@@ -1,18 +1,17 @@
 import { useAtom } from 'jotai';
+import { useTheme } from 'styled-components/native';
+import { isAndroid, isIOs } from 'utils/scaleFunctions';
 import { contentAtom, modalAtom } from 'navigation/Menu';
-import { useRef, useState } from 'react';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { CommentDesc, ImageViewer, ImageContainer, ImagePickerContainer, OptionsContainer } from './styled';
 import {
     launchCameraAsync,
     useCameraPermissions,
     launchImageLibraryAsync,
 } from 'expo-image-picker';
-import { Image, TouchableOpacity } from 'react-native';
-import { useTheme } from 'styled-components/native';
 import _ from 'lodash';
-import { Camera } from 'expo-camera';
-import { isMobile } from 'utils/scaleFunctions';
-
+import { CameraView, Camera } from 'expo-camera';
+import { useRef } from 'react';
 
 interface IImagePicker {
     image: string;
@@ -23,15 +22,14 @@ interface IImagePicker {
 }
 
 export const ImagePicker = ({ desc, image, editable, onChangeImage, onAddDesc }: IImagePicker) => {
-    const [status, requestPermission] = useCameraPermissions();
     const { themeName } = useTheme();
+    const [status, requestPermission] = useCameraPermissions();
 
     const [isOpen, setOpen] = useAtom(modalAtom);
     const [content, setContent] = useAtom(contentAtom);
-    const [option, setOption] = useState<string | undefined>(undefined)
 
     if (!status?.granted) {
-        Camera.requestCameraPermissionsAsync()
+        // Camera.getCameraPermissionsAsync()
         requestPermission();
     }
 
@@ -43,35 +41,65 @@ export const ImagePicker = ({ desc, image, editable, onChangeImage, onAddDesc }:
 
     }
 
-    const pickImageAsync = async (option: string) => {
-        console.log({ option })
-        console.log(_.isEqual(option, 'camera'))
+    const pickImageWithGallery = async () => {
+        let result = await launchCameraAsync({
+            allowsEditing: true,
+            quality: 1,
+        });
+        if (result.assets) { onChangeImage(result.assets[0].uri); setOpen(false) }
+    }
 
-        let result = option === 'camera'
-            ? await launchCameraAsync({
-                allowsEditing: true,
-                quality: 1,
-            })
-            : await launchImageLibraryAsync({
+    const pickImageWithCamera = async () => {
+        if (isIOs || isAndroid) {
+            let result = await launchImageLibraryAsync({
                 allowsEditing: true,
                 quality: 1,
             });
-        if (result.assets) { onChangeImage(result.assets[0].uri); setOpen(false) }
-    };
+            if (result.assets) { onChangeImage(result.assets[0].uri); setOpen(false) }
+        } else {
+            const permission = await Camera.requestCameraPermissionsAsync()
+            console.log({ permission })
+            if (permission && permission?.granted) setContent(WebCamera())
+        }
+    }
+
+    const cameraRef = useRef<any>()
+
+    const WebCamera = () => {
+        const takePicture = async () => {
+            console.log({ CameraView })
+            console.log({ Camera })
+            console.log({ cameraRef })
+            const options = {
+                quality: 1,
+                base64: true
+            }
+            const pic = await cameraRef?.current?._cameraRef?.current?.takePicture(options)
+            if (pic?.uri) { onChangeImage(pic.uri); setOpen(false) }
+        }
+        return (
+            <CameraView ref={cameraRef}>
+                <View style={{}}>
+                    <TouchableOpacity onPress={takePicture} style={{}}>
+                        <Text style={{}}>Flip Camera</Text>
+                    </TouchableOpacity>
+                </View>
+            </CameraView>
+        )
+    }
 
 
     const OptionsModal = () => {
         return (
             <OptionsContainer>
-                {/*<Camera style={{ height: 100, width: 100 }} />*/}
-                <TouchableOpacity onPress={() => pickImageAsync('gallery')}>
+                <TouchableOpacity onPress={pickImageWithGallery}>
                     <Image source={
                         themeName === 'darkTheme'
                             ? require('../../../assets/icons/black_gallery.png')
                             : require('../../../assets/icons/white_gallery.png')
                     } />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => pickImageAsync('camera')}>
+                <TouchableOpacity onPress={pickImageWithCamera}>
                     <Image source={
                         themeName === 'darkTheme'
                             ? require('../../../assets/icons/black_camera.png')
