@@ -16,8 +16,8 @@ export const Modal = (props: IModal) => {
     const [content, setContent] = useAtom(contentAtom);
 
     useEffect(() => {
-        if (!isOpen) setContent(<></>)
-    }, [isOpen])
+        if (!isOpen) setContent(<></>);
+    }, [isOpen]);
 
     return (
         <ModalContainer isOpen={isOpen}>
@@ -32,5 +32,5 @@ export const Modal = (props: IModal) => {
                 />
             </CloseButton>
         </ModalContainer>
-    )
+    );
 };

@@ -1,42 +1,48 @@
 {
-    "expo": {
-        "plugins": [
-            [
-                "expo-image-picker",
-                {
-                    "photosPermission": "The app accesses your photos to let you share them with your friends."
-                }
-            ]
-        ],
-        "platforms": ["ios", "android", "web"],
-        "name": "hhbts",
-        "slug": "hhbts",
-        "version": "1.0.9",
-        "orientation": "portrait",
-        "icon": "./assets/images/emoji6.png",
-        "userInterfaceStyle": "automatic",
-        "splash": {
-            "image": "./assets/images/splash.png",
-            "resizeMode": "contain",
-            "backgroundColor": "#ffffff"
-        },
-        "assetBundlePatterns": ["**/*"],
-        "ios": {
-            "supportsTablet": true,
-            "bundleIdentifier": "com.alejandro.hhbts"
-        },
-        "android": {
-            "package": "com.alejandro.hhbts",
-            "softwareKeyboardLayoutMode": "pan",
-            "adaptiveIcon": {
-                "foregroundImage": "./assets/adaptive-icon.png",
-                "backgroundColor": "#ffffff"
-            }
-        },
-        "web": {
-            "favicon": "./assets/favicon.png",
-            "output": "single",
-            "bundler": "metro"
-        }
-    }
+	"expo": {
+		"plugins": [
+			[
+				"expo-camera",
+				{
+					"cameraPermission": "Allow $(PRODUCT_NAME) to access your camera",
+					"microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone",
+					"recordAudioAndroid": true
+				},
+				"expo-image-picker",
+				{
+					"photosPermission": "The app accesses your photos to let you share them with your friends."
+				}
+			]
+		],
+		"platforms": ["ios", "android", "web"],
+		"name": "hhbts",
+		"slug": "hhbts",
+		"version": "1.0.9",
+		"orientation": "portrait",
+		"icon": "./assets/images/emoji6.png",
+		"userInterfaceStyle": "automatic",
+		"splash": {
+			"image": "./assets/images/splash.png",
+			"resizeMode": "contain",
+			"backgroundColor": "#ffffff"
+		},
+		"assetBundlePatterns": ["**/*"],
+		"ios": {
+			"supportsTablet": true,
+			"bundleIdentifier": "com.alejandro.hhbts"
+		},
+		"android": {
+			"package": "com.alejandro.hhbts",
+			"softwareKeyboardLayoutMode": "pan",
+			"adaptiveIcon": {
+				"foregroundImage": "./assets/adaptive-icon.png",
+				"backgroundColor": "#ffffff"
+			}
+		},
+		"web": {
+			"favicon": "./assets/favicon.png",
+			"output": "single",
+			"bundler": "metro"
+		}
+	}
 }

@@ -9,8 +9,8 @@ export const Icon = styled.Image`
 
 export const CloseButton = styled.TouchableOpacity`
     position:absolute;
-    top: 20;
-    right: 20;
+    top: 20px;
+    right: 20px;
     height: ${verticalScale(fontSizes.Xlarge)}px;
     width: ${verticalScale(fontSizes.Xlarge)}px;
     border-radius: 90px;
