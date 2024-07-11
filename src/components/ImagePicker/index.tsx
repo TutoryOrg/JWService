@@ -1,15 +1,15 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useAtom } from 'jotai';
 import { useTheme } from 'styled-components/native';
 import { isAndroid, isIOs, isMobile } from 'utils/scaleFunctions';
 import { contentAtom, modalAtom } from 'navigation/Menu';
-import { Image, TouchableOpacity, View } from 'react-native';
-import { CommentDesc, ImageViewer, ImageContainer, ImagePickerContainer, OptionsContainer } from './styled';
 import { launchImageLibraryAsync, MediaTypeOptions } from 'expo-image-picker';
+import { Button, Image, Text, TouchableOpacity, View } from 'react-native';
+import { CommentDesc, ImageViewer, ImageContainer, ImagePickerContainer, OptionsContainer } from './styled';
+import { manipulateAsync, FlipType, SaveFormat } from 'expo-image-manipulator';
 import _ from 'lodash';
 
-// import { launchCameraAsync, useCameraPermissions, launchImageLibraryAsync } from 'expo-image-picker';
-// import { CameraView, Camera } from 'expo-camera';
+import { CameraView, useCameraPermissions } from 'expo-camera';
 
 interface IImagePicker {
 	image: string;
@@ -22,9 +22,18 @@ interface IImagePicker {
 export const ImagePicker = ({ desc, image, editable, onChangeImage, onAddDesc }: IImagePicker) => {
 	const { themeName } = useTheme();
 	const cameraRef = useRef<any>();
-	// const [status, requestPermission] = useCameraPermissions();
 	const [isOpen, setOpen] = useAtom(modalAtom);
 	const [content, setContent] = useAtom(contentAtom);
+	const [permission, requestPermission] = useCameraPermissions();
+
+	if (!permission?.granted) {
+		return (
+			<View style={{ flex: 1, justifyContent: 'center' }}>
+				<Text style={{ textAlign: 'center' }}>We need your permission to show the camera</Text>
+				<Button onPress={requestPermission} title='grant permission' />
+			</View>
+		);
+	}
 
 	const openOptions = () => {
 		if (!editable) {
@@ -41,48 +50,52 @@ export const ImagePicker = ({ desc, image, editable, onChangeImage, onAddDesc }:
 			aspect: [4, 3],
 			quality: 1,
 		});
-		// const result = await launchCameraAsync({
-		// 	allowsEditing: true,
-		// 	quality: 1,
-		// });
+
 		if (result.assets) {
 			onChangeImage(result.assets[0].uri);
 			setOpen(false);
 		}
 	};
 
-	const pickImageWithCamera = async () => {};
-
 	const WebCamera = () => {
 		const takePicture = async () => {
 			const options = {
 				quality: 1,
 				base64: true,
+				mirror: false,
+				flash: false,
 			};
+
 			const pic = await cameraRef?.current?._cameraRef?.current?.takePicture(options);
+
 			if (pic?.uri) {
-				onChangeImage(pic.uri);
+				const manipResult = await manipulateAsync(pic?.uri, [{ rotate: 0 }, { flip: FlipType.Horizontal }], {
+					compress: 1,
+					format: SaveFormat.PNG,
+				});
+				onChangeImage(manipResult?.uri);
 				setOpen(false);
 			}
 		};
-		// return (
-		// 	<CameraView ref={cameraRef}>
-		// 		<View style={{ height: 500, width: 500 }}>
-		// 			<TouchableOpacity
-		// 				style={{ height: 500, width: 500, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}
-		// 				onPress={takePicture}
-		// 			>
-		// 				<Image
-		// 					source={
-		// 						themeName === 'darkTheme'
-		// 							? require('../../../assets/icons/black_camera.png')
-		// 							: require('../../../assets/icons/white_camera.png')
-		// 					}
-		// 				/>
-		// 			</TouchableOpacity>
-		// 		</View>
-		// 	</CameraView>
-		// );
+
+		return (
+			<CameraView ref={cameraRef}>
+				<View style={{ height: 500, width: 500 }}>
+					<TouchableOpacity
+						style={{ height: 500, width: 500, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}
+						onPress={takePicture}
+					>
+						<Image
+							source={
+								themeName === 'darkTheme'
+									? require('../../../assets/icons/black_camera.png')
+									: require('../../../assets/icons/white_camera.png')
+							}
+						/>
+					</TouchableOpacity>
+				</View>
+			</CameraView>
+		);
 	};
 
 	const OptionsModal = () => {
@@ -97,7 +110,7 @@ export const ImagePicker = ({ desc, image, editable, onChangeImage, onAddDesc }:
 						}
 					/>
 				</TouchableOpacity>
-				<TouchableOpacity onPress={pickImageWithCamera}>
+				<TouchableOpacity onPress={() => setContent(WebCamera)}>
 					<Image
 						source={
 							themeName === 'darkTheme'
@@ -112,7 +125,8 @@ export const ImagePicker = ({ desc, image, editable, onChangeImage, onAddDesc }:
 
 	return (
 		<ImagePickerContainer>
-			<ImageContainer disabled={!editable} onPress={isAndroid || isIOs ? pickImageWithGallery : openOptions}>
+			{/* <ImageContainer disabled={!editable} onPress={isAndroid || isIOs ? openOptions : pickImageWithGallery}>*/}
+			<ImageContainer disabled={!editable} onPress={openOptions}>
 				{!_.isEmpty(image) && <ImageViewer resizeMode={'cover'} source={{ uri: image }} />}
 			</ImageContainer>
 			<CommentDesc value={desc} editable={editable} onChangeText={onAddDesc} maxLength={25} />
