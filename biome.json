@@ -37,7 +37,9 @@
 			},
 			"nursery": {
 				"all": false
-			}
+			},
+			"correctness": { "noChildrenProp": "off" }
 		}
 	}
 }
+
