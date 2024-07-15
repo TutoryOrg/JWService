@@ -13,7 +13,7 @@
 		"platforms": ["ios", "android", "web"],
 		"name": "hhbts",
 		"slug": "hhbts",
-		"version": "1.0.9",
+		"version": "1.0.10",
 		"orientation": "portrait",
 		"icon": "./assets/images/emoji6.png",
 		"userInterfaceStyle": "automatic",
@@ -25,7 +25,8 @@
 		"assetBundlePatterns": ["**/*"],
 		"ios": {
 			"supportsTablet": true,
-			"bundleIdentifier": "com.alejandro.hhbts"
+			"bundleIdentifier": "com.alejandro.hhbts",
+			"buildNumber": "2"
 		},
 		"android": {
 			"package": "com.alejandro.hhbts",
