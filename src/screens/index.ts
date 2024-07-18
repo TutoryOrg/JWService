@@ -1,3 +1,4 @@
 import { Today } from './Today';
 import { Calendar } from './Calendar';
-export { Today, Calendar };
+import { Stats } from './Stats';
+export { Stats, Today, Calendar };

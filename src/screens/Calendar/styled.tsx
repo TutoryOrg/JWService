@@ -32,11 +32,6 @@ export const ItemContainer = styled.View`
     border: solid 2px white;
 `;
 
-export const CalendarContentContainer = styled.View`
-    width: ${windowWidth}px;
-    height: ${windowHeight}px;
-`;
-
 export const CalendarContainer = styled.View`
     width: 100%;
     height: 100%;

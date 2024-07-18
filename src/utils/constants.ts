@@ -9,6 +9,7 @@ export enum Field {
 export enum Screens {
     TODAY = 'today',
     GOALS = 'goals',
+    STATS = 'stats',
     PROFILE = 'profile',
     CALENDAR = 'calendar',
 }

@@ -32,7 +32,7 @@ export const initOptions: IOption[] = [
         lastOne: false,
     },
     {
-        text: Screens.GOALS,
+        text: Screens.STATS,
         selected: false,
         lastOne: false,
     },
