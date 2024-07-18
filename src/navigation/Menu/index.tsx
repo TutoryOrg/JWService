@@ -2,7 +2,7 @@ import { atom } from 'jotai';
 import { Screens } from 'utils/constants';
 import { useTranslation } from 'react-i18next';
 import { Today, Calendar, Stats } from 'screens';
-import { memo, useMemo, useState } from 'react';
+import { memo, useEffect, useMemo, useState } from 'react';
 import {
 	type IOption,
 	type ISideMenu,
@@ -14,8 +14,9 @@ import {
 	SideMenuContainer,
 } from './styled';
 import { Modal } from 'components';
-import { Text } from 'react-native';
+import { Text, useWindowDimensions } from 'react-native';
 import { useAtom } from 'jotai';
+import { windowWidth } from 'utils/scaleFunctions';
 
 export const SideMenu = memo((props: ISideMenu) => {
 	const { options, setOptions } = props;
@@ -51,12 +52,17 @@ export const contentAtom = atom(<Text>{''}</Text>);
 
 export function Menu(props: { onLayoutRootView: () => Promise<void> }) {
 	const { onLayoutRootView } = props;
+	const { width, height } = useWindowDimensions();
 	const [content] = useAtom(contentAtom);
 	const [options, setOptions] = useState(initOptions);
 	const [todayIndex, setTodayIndex] = useState<number>(0);
 
 	const selected = useMemo(() => options.find((op) => op.selected === true)?.text, [options]);
-	console.log({ selected });
+
+	useEffect(() => {
+		return () => setTimeout(() => window.location.reload(), [700]);
+	}, [width]);
+
 	return (
 		<MenuContainer onLayout={onLayoutRootView}>
 			<SideMenu options={options} setOptions={setOptions} />
