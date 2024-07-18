@@ -1,13 +1,13 @@
 import { useRef } from 'react';
 import { Direction } from 'utils/constants';
 import { useSelector } from 'react-redux';
+import { FlatList, TouchableOpacity } from 'react-native';
 import { type RootState, useAppDispatch } from 'store/redux';
-import { FlatList, Text, TouchableOpacity } from 'react-native';
 import { useEffect, useCallback, useState } from 'react';
 import { isMobile, isSameDay, windowHeight } from 'utils/scaleFunctions';
 import { Arrow, DateHeader, Habit, ImagePicker } from 'components';
 import { type IHabit, type IStoreHabits, setSavedHabits } from 'store/redux/habits';
-import { ButtonToTop, ContentContainer, ImageContainer, TodayContainer } from './styled';
+import { ButtonToTop, ContentContainer, ImageContainer, TodayContainer, TopLabel } from './styled';
 import _ from 'lodash';
 
 export const emptyHabit: IHabit = {
@@ -181,7 +181,7 @@ export const Today = (props: { index: number; setIndex: (i: number) => void }) =
 
 	return (
 		<TodayContainer>
-			{!_.isEqual(index, 0) && <ButtonToTop onPress={() => scrollToIndex(0)} children={<Text>{'Top'}</Text>} />}
+			{!_.isEqual(index, 0) && <ButtonToTop onPress={() => scrollToIndex(0)} children={<TopLabel>{'Top'}</TopLabel>} />}
 
 			<FlatList
 				ref={ref}

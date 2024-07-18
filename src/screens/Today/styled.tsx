@@ -1,6 +1,10 @@
 import styled from 'styled-components/native';
 import { verticalScale, windowHeight } from 'utils/scaleFunctions';
 
+export const TopLabel = styled.Text`
+    color: ${props => props.theme.txtSelected};
+`
+
 export const ButtonToTop = styled.TouchableOpacity`
     position: absolute; 
     align-self: center; 
