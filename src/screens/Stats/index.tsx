@@ -18,11 +18,9 @@ const commitsData = [
 ];
 
 export const Stats = () => {
-	console.log('stats');
 	const theme = useTheme();
 	const { themeName } = theme;
-	console.log({ theme });
-	console.log({ windowWidth });
+
 	return (
 		<StatsContainer>
 			<TopLabel>Last {Math.round(windowWidth * 0.2)} days </TopLabel>
