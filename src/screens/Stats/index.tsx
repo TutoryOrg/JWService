@@ -1,7 +1,7 @@
-import { isMobile, verticalScale, windowWidth } from 'utils/scaleFunctions';
+import { useTheme } from 'styled-components/native';
+import { windowWidth } from 'utils/scaleFunctions';
 import { ContributionGraph } from 'react-native-chart-kit';
 import { StatsContainer, TopLabel } from './styled';
-import { useTheme } from 'styled-components/native';
 
 const commitsData = [
 	{ date: '2024-01-02', count: 1 },
