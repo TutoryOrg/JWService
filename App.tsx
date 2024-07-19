@@ -6,7 +6,7 @@ import { useAppState } from 'hooks/useAppState';
 import { ThemeProvider } from 'styled-components/native';
 import { useColorScheme } from 'react-native';
 import { useFontsAndLayout } from 'hooks/useFontsAndLayout';
-import { preventAutoHideAsync } from 'expo-splash-screen';
+import * as SplashScreen from 'expo-splash-screen';
 import { darkTheme, lightTheme } from 'themes';
 import Constants from 'expo-constants';
 
@@ -32,7 +32,7 @@ let AppEntryPoint = App;
 if (Constants.expoConfig?.extra?.storybookEnabled === 'true') {
 	AppEntryPoint = require('./.ondevice').default;
 } else {
-	preventAutoHideAsync();
+	SplashScreen.preventAutoHideAsync();
 }
 
 export default AppEntryPoint;

@@ -1,6 +1,6 @@
 import { useTheme } from 'styled-components/native';
-import { Direction } from 'utils/constants';
 import { ImageStyled } from './styled';
+import type { Direction } from 'utils/constants';
 
 export const Arrow = (props: { direction: Direction }) => {
 	const { direction } = props;

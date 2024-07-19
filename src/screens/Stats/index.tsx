@@ -1,52 +1,59 @@
-import { StatsContainer, TopLabel } from './styled';
+import { isMobile, verticalScale, windowWidth } from 'utils/scaleFunctions';
 import { ContributionGraph } from 'react-native-chart-kit';
-import { windowWidth } from 'utils/scaleFunctions';
+import { StatsContainer, TopLabel } from './styled';
+import { useTheme } from 'styled-components/native';
 
 const commitsData = [
-	{ date: '2017-01-02', count: 1 },
-	{ date: '2017-01-03', count: 2 },
-	{ date: '2017-01-04', count: 3 },
-	{ date: '2017-01-05', count: 4 },
-	{ date: '2017-01-06', count: 5 },
-	{ date: '2017-01-30', count: 2 },
-	{ date: '2017-01-31', count: 3 },
-	{ date: '2017-03-01', count: 2 },
-	{ date: '2017-04-02', count: 4 },
-	{ date: '2017-03-05', count: 2 },
-	{ date: '2017-02-30', count: 4 },
+	{ date: '2024-01-02', count: 1 },
+	{ date: '2024-01-03', count: 2 },
+	{ date: '2024-01-04', count: 3 },
+	{ date: '2024-01-05', count: 4 },
+	{ date: '2024-01-06', count: 5 },
+	{ date: '2024-01-30', count: 2 },
+	{ date: '2024-01-31', count: 3 },
+	{ date: '2024-03-01', count: 2 },
+	{ date: '2024-04-02', count: 4 },
+	{ date: '2024-03-05', count: 2 },
+	{ date: '2024-07-19', count: 10 },
 ];
 
 export const Stats = () => {
 	console.log('stats');
+	const theme = useTheme();
+	const { themeName } = theme;
+	console.log({ theme });
+	console.log({ windowWidth });
 	return (
 		<StatsContainer>
-			<TopLabel>Stats</TopLabel>
+			<TopLabel>Last {Math.round(windowWidth * 0.2)} days </TopLabel>
 			<ContributionGraph
+				height={210}
+				width={windowWidth * 0.8}
 				values={commitsData}
-				endDate={new Date('2017-04-01')}
-				numDays={105}
-				height={220}
-				width={windowWidth}
-				tooltipDataAttrs={(value) => console.log(value) as any}
+				endDate={new Date()}
+				numDays={Math.round(windowWidth * 0.2)}
+				tooltipDataAttrs={(value) => console.log('tooltipDataAttrs', value) as any}
 				chartConfig={{
-					backgroundColor: '#e26a00',
-					backgroundGradientFrom: '#fb8c00',
-					backgroundGradientTo: '#ffa726',
+					backgroundColor: theme.bgColor,
+					backgroundGradientFrom: theme.bgColor,
+					backgroundGradientTo: theme.bgColor,
 					decimalPlaces: 2,
-					color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-					labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-					style: {
-						borderRadius: 16,
-					},
+					color: (opacity = 1) => (themeName.includes('light') ? `rgba(0, 0, 0, ${opacity})` : `rgba(255, 255, 255, ${opacity})`),
+					labelColor: (opacity = 1) =>
+						themeName.includes('light') ? `rgba(0, 0, 0, ${opacity})` : `rgba(255, 255, 255, ${opacity})`,
+					style: {},
 					propsForDots: {
 						r: '6',
-						strokeWidth: '2',
-						stroke: '#ffa726',
+						strokeWidth: '8',
 					},
 				}}
 				style={{
-					marginVertical: 8,
+					alignSelf: 'center',
+					alignItems: 'center',
+					alignContent: 'center',
+					borderWidth: 2,
 					borderRadius: 16,
+					borderColor: 'white',
 				}}
 			/>
 		</StatsContainer>
