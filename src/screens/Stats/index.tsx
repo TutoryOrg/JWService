@@ -5,34 +5,44 @@ import { StatsContainer, TopLabel } from './styled';
 import { A } from '@expo/html-elements';
 
 const commitsData = [
-    { date: '2024-01-02', count: 1 },
-    { date: '2024-01-03', count: 2 },
-    { date: '2024-01-04', count: 3 },
-    { date: '2024-01-05', count: 4 },
-    { date: '2024-01-06', count: 5 },
-    { date: '2024-01-30', count: 2 },
-    { date: '2024-01-31', count: 3 },
-    { date: '2024-03-01', count: 2 },
-    { date: '2024-04-02', count: 4 },
-    { date: '2024-03-05', count: 2 },
-    { date: '2024-07-19', count: 10 },
+	{ date: '2024-01-02', count: 1 },
+	{ date: '2024-01-03', count: 2 },
+	{ date: '2024-01-04', count: 3 },
+	{ date: '2024-01-05', count: 4 },
+	{ date: '2024-01-06', count: 5 },
+	{ date: '2024-01-30', count: 2 },
+	{ date: '2024-01-31', count: 3 },
+	{ date: '2024-03-01', count: 2 },
+	{ date: '2024-04-02', count: 4 },
+	{ date: '2024-03-05', count: 2 },
+	{ date: '2024-07-19', count: 10 },
 ];
 
 export const Stats = () => {
-    // const theme = useTheme();
-    // const { themeName } = theme;
+	// const theme = useTheme();
+	// const { themeName } = theme;
 
-    return (
-        <StatsContainer>
-            <A href='https://localhost/sta/reg/auth/es/626900003906192240004'>
-                {/*<TopLabel>Last {Math.round(windowWidth * 0.2)} days </TopLabel>*/}
-                <TopLabel>Go to REGX0320</TopLabel>
-            </A>
-            <A href='https://localhost/sta/reg/auth/es/6269000038732779900004'>
-                {/*<TopLabel>Last {Math.round(windowWidth * 0.2)} days </TopLabel>*/}
-                <TopLabel>Go to REGX0320</TopLabel>
-            </A>
-            {/*<ContributionGraph
+	return (
+		<StatsContainer>
+			<A href='https://localhost/sta/reg/auth/es/626900003906192240004'>
+				{/*<TopLabel>Last {Math.round(windowWidth * 0.2)} days </TopLabel>*/}
+				<TopLabel>Go to https://localhost/sta/reg/auth/es/626900003906192240004</TopLabel>
+			</A>
+			<A href='https://localhost/sta/reg/auth/es/6269000038732779900004'>
+				{/*<TopLabel>Last {Math.round(windowWidth * 0.2)} days </TopLabel>*/}
+				<TopLabel>Go to https://localhost/sta/reg/auth/es/6269000038732779900004</TopLabel>
+			</A>
+
+			<A href='https://localhost/sta/reg/tramite/626900003906192240004/credentials'>
+				{/*<TopLabel>Last {Math.round(windowWidth * 0.2)} days </TopLabel>*/}
+				<TopLabel>Go to https://localhost/sta/reg/tramite/626900003906192240004/credentials</TopLabel>
+			</A>
+
+			<A href='https://localhost/sta/reg/tramite/6269000038732779900004/credentials'>
+				{/*<TopLabel>Last {Math.round(windowWidth * 0.2)} days </TopLabel>*/}
+				<TopLabel>Go to https://localhost/sta/reg/tramite/6269000038732779900004/credentials</TopLabel>
+			</A>
+			{/*<ContributionGraph
                 height={210}
                 width={windowWidth * 0.8}
                 values={commitsData}
@@ -62,6 +72,6 @@ export const Stats = () => {
                     borderColor: 'white',
                 }}
             />*/}
-        </StatsContainer>
-    );
+		</StatsContainer>
+	);
 };
