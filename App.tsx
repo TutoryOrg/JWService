@@ -15,8 +15,6 @@ function App() {
     const isDarkMode = useColorScheme() === 'dark';
     const { fontsLoaded, onLayoutRootView } = useFontsAndLayout();
 
-    console.log({ store })
-
     if (!fontsLoaded) return null;
 
     return (
