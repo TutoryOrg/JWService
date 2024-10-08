@@ -33,6 +33,17 @@ export const Stats = () => {
 				<TopLabel>Go to https://localhost/sta/reg/auth/es/6269000038732779900004</TopLabel>
 			</A>
 
+
+			<A href='https://localhost/sta/reg/auth/es/626900003906192240004/?urlBack=https://www.tao.es/'>
+				{/*<TopLabel>Last {Math.round(windowWidth * 0.2)} days </TopLabel>*/}
+				<TopLabel>Go to https://localhost/sta/reg/auth/es/626900003906192240004/?urlBack=https://www.tao.es/</TopLabel>
+			</A>
+
+			<A href='https://localhost/sta/reg/auth/es/6269000038732779900004/?urlBack=https://www.tao.es/'>
+				{/*<TopLabel>Last {Math.round(windowWidth * 0.2)} days </TopLabel>*/}
+				<TopLabel>Go to https://localhost/sta/reg/auth/es/6269000038732779900004/?urlBack=https://www.tao.es/</TopLabel>
+			</A>
+
 			<A href='https://localhost/sta/reg/tramite/626900003906192240004/credentials'>
 				{/*<TopLabel>Last {Math.round(windowWidth * 0.2)} days </TopLabel>*/}
 				<TopLabel>Go to https://localhost/sta/reg/tramite/626900003906192240004/credentials</TopLabel>
