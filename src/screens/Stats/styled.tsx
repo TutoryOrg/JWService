@@ -8,10 +8,8 @@ export const TopLabel = styled.Text`
 `;
 
 export const StatsContainer = styled.View`
-    width: 100%;
     height: 100%;
+    width: 100%;
     align-items: center;
-    text-align: left;
-    justify-content: space-evenly;
-    background-color: gray;
+    justify-content: space-around;
 `;

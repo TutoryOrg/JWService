@@ -59,9 +59,9 @@ export function Menu(props: { onLayoutRootView: () => Promise<void> }) {
 
 	const selected = useMemo(() => options.find((op) => op.selected === true)?.text, [options]);
 
-	useEffect(() => {
-		return () => setTimeout(() => window.location.reload(), [700]);
-	}, [width]);
+	// useEffect(() => {
+	// 	return () => setTimeout(() => window.location.reload(), [700]);
+	// }, [width]);
 
 	return (
 		<MenuContainer onLayout={onLayoutRootView}>

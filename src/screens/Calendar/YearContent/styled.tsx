@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import { isMobile } from 'utils/scaleFunctions';
 import { fontFamilies, fontSizes } from 'utils/constants';
 
-export const MonthContainer = styled.View<{ progress: number }>`
+export const MonthContainer = styled.TouchableOpacity<{ progress: number }>`
     align-items: center;
     border-radius: 24px;
     align-content: center;
