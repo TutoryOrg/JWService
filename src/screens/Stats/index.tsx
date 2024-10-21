@@ -17,7 +17,10 @@ export const Stats = () => {
 	const { themeName } = theme;
 	const savedHabits = useSelector((state: RootState) => state.habits.savedHabits);
 	const transformedData = transformData(savedHabits);
-	const handleTooltip: any = () => null;
+
+	const handleTooltip: any = (value: any) => {
+		return { rx: value?.count > 0 ? 5 : 0, ry: value?.count > 0 ? 5 : 0 };
+	};
 
 	return (
 		<StatsContainer>
@@ -27,7 +30,7 @@ export const Stats = () => {
 				squareSize={20}
 				width={windowWidth * 0.6}
 				values={transformedData}
-				endDate={new Date()}
+				endDate={new Date().setDate(new Date().getDate() - 1)}
 				numDays={windowWidth * 0.1}
 				tooltipDataAttrs={handleTooltip}
 				chartConfig={{
@@ -39,10 +42,6 @@ export const Stats = () => {
 					labelColor: (opacity = 1) =>
 						themeName.includes('light') ? `rgba(0, 0, 0, ${opacity})` : `rgba(255, 255, 255, ${opacity})`,
 					style: {},
-					propsForDots: {
-						r: '6',
-						strokeWidth: '8',
-					},
 				}}
 				style={{
 					paddingLeft: '12%',
@@ -50,66 +49,8 @@ export const Stats = () => {
 					borderRadius: 16,
 					borderColor: theme.borderColor,
 				}}
-			/>
-			<ContributionGraph
-				height={280}
-				gutterSize={10}
-				squareSize={20}
-				width={windowWidth * 0.6}
-				values={transformedData}
-				endDate={new Date()}
-				numDays={windowWidth * 0.1}
-				tooltipDataAttrs={handleTooltip}
-				chartConfig={{
-					backgroundColor: theme.bgColor,
-					backgroundGradientTo: theme.bgColor,
-					backgroundGradientFrom: theme.bgColor,
-					decimalPlaces: 2,
-					color: (opacity = 1) => (themeName.includes('light') ? `rgba(0, 0, 0, ${opacity})` : `rgba(255, 255, 255, ${opacity})`),
-					labelColor: (opacity = 1) =>
-						themeName.includes('light') ? `rgba(0, 0, 0, ${opacity})` : `rgba(255, 255, 255, ${opacity})`,
-					style: {},
-					propsForDots: {
-						r: '6',
-						strokeWidth: '8',
-					},
-				}}
-				style={{
-					paddingLeft: '12%',
-					borderWidth: 2,
-					borderRadius: 16,
-					borderColor: theme.borderColor,
-				}}
-			/>
-			<ContributionGraph
-				height={280}
-				gutterSize={10}
-				squareSize={20}
-				width={windowWidth * 0.6}
-				values={transformedData}
-				endDate={new Date()}
-				numDays={windowWidth * 0.1}
-				tooltipDataAttrs={handleTooltip}
-				chartConfig={{
-					backgroundColor: theme.bgColor,
-					backgroundGradientTo: theme.bgColor,
-					backgroundGradientFrom: theme.bgColor,
-					decimalPlaces: 2,
-					color: (opacity = 1) => (themeName.includes('light') ? `rgba(0, 0, 0, ${opacity})` : `rgba(255, 255, 255, ${opacity})`),
-					labelColor: (opacity = 1) =>
-						themeName.includes('light') ? `rgba(0, 0, 0, ${opacity})` : `rgba(255, 255, 255, ${opacity})`,
-					style: {},
-					propsForDots: {
-						r: '6',
-						strokeWidth: '8',
-					},
-				}}
-				style={{
-					paddingLeft: '12%',
-					borderWidth: 2,
-					borderRadius: 16,
-					borderColor: theme.borderColor,
-				}}
+				onDayPress={(val) => console.log({ val })}
+				showOutOfRangeDays={false}
 			/>
 		</StatsContainer>
 	);
