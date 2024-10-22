@@ -30,7 +30,7 @@ export const Stats = () => {
 				squareSize={20}
 				width={windowWidth * 0.6}
 				values={transformedData}
-				endDate={new Date().setDate(new Date().getDate() - 1)}
+				endDate={new Date().setDate(new Date().getDate() - 1) as unknown as Date}
 				numDays={windowWidth * 0.1}
 				tooltipDataAttrs={handleTooltip}
 				chartConfig={{
