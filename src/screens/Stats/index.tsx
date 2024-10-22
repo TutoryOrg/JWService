@@ -41,6 +41,9 @@ export const Stats = () => {
 					color: (opacity = 1) => (themeName.includes('light') ? `rgba(0, 0, 0, ${opacity})` : `rgba(255, 255, 255, ${opacity})`),
 					labelColor: (opacity = 1) =>
 						themeName.includes('light') ? `rgba(0, 0, 0, ${opacity})` : `rgba(255, 255, 255, ${opacity})`,
+					propsForLabels: {
+						fontSize: 20,
+					},
 					style: {},
 				}}
 				style={{
