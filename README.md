@@ -1,4 +1,4 @@
-# My Habits App
+# Expo: My Habits App
 Android, iOs y Web App.
 
 ## Desing 💅
