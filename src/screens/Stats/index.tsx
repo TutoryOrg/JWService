@@ -1,10 +1,9 @@
 import { useTheme } from 'styled-components/native';
 import { useSelector } from 'react-redux';
 import { windowWidth } from 'utils/scaleFunctions';
-import { StatsContainer, TopLabel } from './styled';
+import { StatsContainer } from './styled';
 import type { RootState } from 'store/redux';
 import { ContributionGraph } from 'react-native-chart-kit';
-import { A } from '@expo/html-elements';
 
 function transformData(data: any) {
 	return data.map((item: any) => ({
@@ -57,36 +56,6 @@ export const Stats = () => {
 				showOutOfRangeDays={false}
 
 			/>
-
-			<A href='https://localhost/sta/reg/auth/es/626900003906192240004/?urlBack=https://www.tao.es/'>
-				{/*<TopLabel>Last {Math.round(windowWidth * 0.2)} days </TopLabel>*/}
-				<TopLabel>Go to https://localhost/sta/reg/auth/es/626900003906192240004/?urlBack=https://www.tao.es/</TopLabel>
-			</A>
-
-			<A href='https://localhost/sta/reg/auth/es/6269000038732779900004/?urlBack=https://www.tao.es/'>
-				{/*<TopLabel>Last {Math.round(windowWidth * 0.2)} days </TopLabel>*/}
-				<TopLabel>Go to https://localhost/sta/reg/auth/es/6269000038732779900004/?urlBack=https://www.tao.es/</TopLabel>
-			</A>
-
-			<A href='https://localhost/sta/reg/tramite/626900003906192240004/credentials?urlBack=https://www.tao.es/'>
-				{/*<TopLabel>Last {Math.round(windowWidth * 0.2)} days </TopLabel>*/}
-				<TopLabel>Go to https://localhost/sta/reg/tramite/626900003906192240004/credentials?urlBack=https://www.tao.es/</TopLabel>
-			</A>
-
-			<A href='https://localhost/sta/reg/tramite/6269000038732779900004/credentials?urlBack=https://www.tao.es/'>
-				{/*<TopLabel>Last {Math.round(windowWidth * 0.2)} days </TopLabel>*/}
-				<TopLabel>Go to https://localhost/sta/reg/tramite/6269000038732779900004/credentials?urlBack=https://www.tao.es/</TopLabel>
-			</A>
-
-			<A href='https://localhost/sta/reg/tramite/626900003906192240004/credentials'>
-				{/*<TopLabel>Last {Math.round(windowWidth * 0.2)} days </TopLabel>*/}
-				<TopLabel>Go to https://localhost/sta/reg/tramite/626900003906192240004/credentials</TopLabel>
-			</A>
-
-			<A href='https://localhost/sta/reg/tramite/6269000038732779900004/credentials'>
-				{/*<TopLabel>Last {Math.round(windowWidth * 0.2)} days </TopLabel>*/}
-				<TopLabel>Go to https://localhost/sta/reg/tramite/6269000038732779900004/credentials</TopLabel>
-			</A>
 		</StatsContainer>
 	);
 };
