@@ -1,5 +1,5 @@
-# Expo: My Habits App
-Android, iOs y Web App.
+# Contribution Calendar. 
+Android, iOs y Web App using Expo + React Native
 
 ## Desing 💅
 
