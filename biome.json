@@ -38,8 +38,9 @@
 			"nursery": {
 				"all": false
 			},
-			"correctness": { "noChildrenProp": "off" }
+			"correctness": {
+				"noChildrenProp": "off"
+			}
 		}
 	}
 }
-

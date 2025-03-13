@@ -11,28 +11,28 @@ import { darkTheme, lightTheme } from 'themes';
 import Constants from 'expo-constants';
 
 function App() {
-    const store = useAppState();
-    const isDarkMode = useColorScheme() === 'dark';
-    const { fontsLoaded, onLayoutRootView } = useFontsAndLayout();
+	const store = useAppState();
+	const isDarkMode = useColorScheme() === 'dark';
+	const { fontsLoaded, onLayoutRootView } = useFontsAndLayout();
 
-    if (!fontsLoaded) return null;
+	if (!fontsLoaded) return null;
 
-    return (
-        <Provider store={store}>
-            <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
-                <Menu onLayoutRootView={onLayoutRootView} />
-                <StatusBar style={isDarkMode ? 'light' : 'dark'} />
-            </ThemeProvider>
-        </Provider>
-    );
+	return (
+		<Provider store={store}>
+			<ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+				<Menu onLayoutRootView={onLayoutRootView} />
+				<StatusBar style={isDarkMode ? 'light' : 'dark'} />
+			</ThemeProvider>
+		</Provider>
+	);
 }
 
 let AppEntryPoint = App;
 
 if (Constants.expoConfig?.extra?.storybookEnabled === 'true') {
-    AppEntryPoint = require('./.ondevice').default;
+	AppEntryPoint = require('./.ondevice').default;
 } else {
-    SplashScreen.preventAutoHideAsync();
+	SplashScreen.preventAutoHideAsync();
 }
 
 export default AppEntryPoint;
